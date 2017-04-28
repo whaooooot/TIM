@@ -1,0 +1,35 @@
+{
+  "name": "tim",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "bootstrap": "^3.3.7",
+    "cluster": "^0.7.7",
+    "ejs": "^2.5.6",
+    "express": "^4.15.2",
+    "express-mysql-session": "^1.2.0",
+    "express-session": "^1.15.2",
+    "fs": "0.0.1-security",
+    "http": "0.0.0",
+    "io": "^0.1.10",
+    "jade": "^1.11.0",
+    "md5": "^2.2.1",
+    "node-mysql": "^0.4.2",
+    "os": "^0.1.1",
+    "passport": "^0.3.2",
+    "passport-facebook": "^2.1.1",
+    "passport-local": "^1.0.0",
+    "pbkdf2-password": "^1.2.1",
+    "redis": "^2.7.1",
+    "session-file-store": "^1.0.0",
+    "sha256": "^0.2.0",
+    "sha512": "0.0.1"
+  }
+}
