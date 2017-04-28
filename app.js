@@ -6,7 +6,7 @@ if (cluster.isMaster) { //클러스터설정
     for(var i =0;i<numCPUs;i+=1)
         cluster.fork();
 } else {
-    // Workers share the TCP connection in this serve
+    // Workers share the TCP connection in this server
     var session = require('express-session'); //세션 모듈불러오기
     var MySQLStore = require('express-mysql-session')(session);
     var bodyParser = require('body-parser');//바디파서 모듈불러오기
