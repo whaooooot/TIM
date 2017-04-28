@@ -15,6 +15,7 @@ if (cluster.isMaster) { //클러스터설정
     var http = require('http');
 
 
+
     //var sha256 = require('sha256'); //sha512 보안모듈가져오기 안씀
     var bkfd2Password = require("pbkdf2-password"); //보안모듈
     var passport = require('passport');  // 패스포트인프라모듈
@@ -131,6 +132,42 @@ if (cluster.isMaster) { //클러스터설정
         });
       }
     ));
+
+
+//       //지도api
+//       app.get('/map', function(req, res){
+//         var output=`
+//         <!DOCTYPE html>
+// <html>
+//
+// <head>
+//     <meta charset="utf-8" />
+//     <title>Daum 지도 시작하기</title>
+// </head>
+//
+// <body>
+//     <div id="map" style="width:500px;height:400px;"></div>
+//     <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=24baf278d4fb55931b843f0cca64f3e1"></script>
+//     <script>
+//         var container = document.getElementById('map');
+//         var options = {
+//             center: new daum.maps.LatLng(33.450701, 126.570667),
+//             level: 3
+//         };
+//
+//         var map = new daum.maps.Map(container, options);
+//     </script>
+// </body>
+//
+// </html>`
+//         res.send(output);
+//       });
+
+
+
+    //map
+    var map = require('./routes/map')(app);   //app은 app도쓰겟다 //경로
+    app.use('', map); //앞에 붙이는거 통일하는느낌
     //로그아웃모듈
     var authlogout = require('./routes/authlogout')(app);   //auth모듈불러오기 app은 app도쓰겟다 //경로
     app.use('/auth', authlogout); //앞에 붙이는거 통일하는느낌
@@ -154,10 +191,17 @@ if (cluster.isMaster) { //클러스터설정
     // app.set('view engine', 'jade'); //jade 템플릿엔진사용
     // app.set('views', './views');//jade 파일디렉토리
 
-    app.set('views','/views');  //ejs파일디렉토리
-    app.set('view engine', 'ejs');  //ejs템플릿엔진사용
-    app.engine('html', require('ejs').renderFile);
-
+    // app.set('views','./views');  //ejs파일디렉토리
+    // app.set('view engine', 'ejs');  //ejs템플릿엔진사용
+    // app.engine('html', require('ejs').renderFile);
+  //
+  //   app.get('/template', function(req, res){
+  //    res.render('temp', {time:Date()});  //date옆에 , title:'jade'
+  //  }) //render는 temp라는파일을 불러온다 /time넣기
+  //
+  //  app.get('/index', function(req, res){
+  //   res.render('index', {time:Date()});  //date옆에 , title:'jade'
+  // }) //render는 temp라는파일을 불러온다 /time넣기
 
 
     //정적인파일이 위치할디렉토리위치
