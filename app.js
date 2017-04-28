@@ -134,7 +134,7 @@ if (cluster.isMaster) { //클러스터설정
     ));
 
 
-//       //지도api
+//       //다음지도api
 //       app.get('/map', function(req, res){
 //         var output=`
 //         <!DOCTYPE html>
@@ -191,18 +191,10 @@ if (cluster.isMaster) { //클러스터설정
     // app.set('view engine', 'jade'); //jade 템플릿엔진사용
     // app.set('views', './views');//jade 파일디렉토리
 
-    // app.set('views','./views');  //ejs파일디렉토리
-    // app.set('view engine', 'ejs');  //ejs템플릿엔진사용
+    //ejs추가
+    app.set('views','./views');  //ejs파일디렉토리
+    app.set('view engine', 'ejs');  //ejs템플릿엔진사용
     // app.engine('html', require('ejs').renderFile);
-  //
-  //   app.get('/template', function(req, res){
-  //    res.render('temp', {time:Date()});  //date옆에 , title:'jade'
-  //  }) //render는 temp라는파일을 불러온다 /time넣기
-  //
-  //  app.get('/index', function(req, res){
-  //   res.render('index', {time:Date()});  //date옆에 , title:'jade'
-  // }) //render는 temp라는파일을 불러온다 /time넣기
-
 
     //정적인파일이 위치할디렉토리위치
     app.use(express.static('public'));

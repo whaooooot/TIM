@@ -50,24 +50,7 @@ module.exports = function(app){
 
   //회원가입
   route.get('/register', function(req, res){
-    var output = `
-    <h1>TIM 회원가입</h1>
-    <form action="/auth/register" method="post">
-      <p>
-        <input type="text" name="username" placeholder="아이디를 입력하세요">
-      </p>
-      <p>
-        <input type="password" name="password" placeholder="비밀번호를 입력하세요">
-      </p>
-      <p>
-        <input type="text" name="displayName" placeholder="이름">
-      </p>
-      <p>
-        <input type = "submit">
-      </p>
-    </form>
-    `;
-    res.send(output);
+    res.render('register');
   });
 
 

@@ -8,9 +8,8 @@ module.exports = function(app){
   //라우터객체생성
   var route = express.Router();
 
-
-  //로그인받아서 인증하는부분
-  route.post('/login',
+  //로그인받아서 인증하는부분  //post부분이 저거면ejs에서 폼도 저거여야함
+  route.post('/authlogin',
   passport.authenticate(  //저런 미들웨어로받는다
     'local',  //local전략을 실행 내꺼
     {
@@ -46,23 +45,8 @@ module.exports = function(app){
 
 
   //세션로그인
-  route.get('/login', function(req, res){
-    var output = `
-    <h1>TIM 로그인</h1>
-    <form action="/auth/login"method="post">
-      <p>
-        <input type="text" name="username" placeholder="아이디를 입력하세요">
-      </p>
-      <p>
-        <input type="password" name="password" placeholder="비밀번호를 입력하세요">
-      </p>
-      <p>
-        <input type = "submit">
-      </p>
-    </form>
-    <a href="/auth/facebook">facebook</a>
-    `;
-    res.send(output);
+  route.get('/login', function(req, res){ //url
+    res.render('login'); //불러오는템플릿앞에 views가자동으로붙음
   });
 
   return route;
