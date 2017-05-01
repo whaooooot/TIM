@@ -134,37 +134,9 @@ if (cluster.isMaster) { //클러스터설정
     ));
 
 
-//       //다음지도api
-//       app.get('/map', function(req, res){
-//         var output=`
-//         <!DOCTYPE html>
-// <html>
-//
-// <head>
-//     <meta charset="utf-8" />
-//     <title>Daum 지도 시작하기</title>
-// </head>
-//
-// <body>
-//     <div id="map" style="width:500px;height:400px;"></div>
-//     <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=24baf278d4fb55931b843f0cca64f3e1"></script>
-//     <script>
-//         var container = document.getElementById('map');
-//         var options = {
-//             center: new daum.maps.LatLng(33.450701, 126.570667),
-//             level: 3
-//         };
-//
-//         var map = new daum.maps.Map(container, options);
-//     </script>
-// </body>
-//
-// </html>`
-//         res.send(output);
-//       });
-
-
-
+    //map
+    var map2 = require('./routes/map2')(app);   //app은 app도쓰겟다 //경로
+    app.use('', map2); //앞에 붙이는거 통일하는느낌
     //map
     var map = require('./routes/map')(app);   //app은 app도쓰겟다 //경로
     app.use('', map); //앞에 붙이는거 통일하는느낌
@@ -181,8 +153,8 @@ if (cluster.isMaster) { //클러스터설정
     var authregister = require('./routes/authregister')(app);
     app.use('/auth', authregister);
     //메인페이지
-    var home = require('./routes/home')(app);
-    app.use('', home);
+    var test = require('./routes/test')(app);
+    app.use('', test);
 
     var main = require('./routes/main')(app);//ejs예시
     app.use('', main);
