@@ -30,7 +30,9 @@ module.exports = function(app){
         username:req.body.username,
         password:hash,
         salt:salt,
-        displayName:req.body.displayName
+        displayName:req.body.displayName,
+        phonenum:req.body.phonenum,
+        email:req.body.email
       };
       var sql = 'INSERT INTO users SET ?'; //회원가입sql
       pool.query(sql, user, function(err, results){ //pool이니까pool로해줌
