@@ -13,7 +13,7 @@ if (cluster.isMaster) { //클러스터설정
     var mysql      = require('mysql'); //mysql모듈불러오기
     var ejs = require('ejs');
     var http = require('http');
-
+    var fs = require('fs');
 
 
     //var sha256 = require('sha256'); //sha512 보안모듈가져오기 안씀
@@ -39,6 +39,9 @@ if (cluster.isMaster) { //클러스터설정
       database : 'test1',
       debug    :  false
     });
+
+
+
 
     //세션연결
     app.use(session({
@@ -159,6 +162,9 @@ if (cluster.isMaster) { //클러스터설정
     var main = require('./routes/main')(app);//ejs예시
     app.use('', main);
 
+    var list = require('./routes/list')(app);//ejs예시
+    app.use('', list);
+
     // app.locals.pretty = true; //jade코드이쁘게만들기
     // app.set('view engine', 'jade'); //jade 템플릿엔진사용
     // app.set('views', './views');//jade 파일디렉토리
@@ -167,6 +173,9 @@ if (cluster.isMaster) { //클러스터설정
     app.set('views','./views');  //ejs파일디렉토리
     app.set('view engine', 'ejs');  //ejs템플릿엔진사용
     // app.engine('html', require('ejs').renderFile);
+
+
+
 
     //정적인파일이 위치할디렉토리위치
     app.use(express.static('public'));

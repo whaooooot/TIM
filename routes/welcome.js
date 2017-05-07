@@ -11,7 +11,7 @@ route.get('/welcome', function(req, res){
         <h1>Hello, ${req.user.displayName}</h1>
         <a href="/auth/logout">logout</a><br>
         <a href="/map2">map</a>
-        <a href="/test">test</a>
+        <a href="/list">회원수정</a>
         `);
     }else{
     res.send(`

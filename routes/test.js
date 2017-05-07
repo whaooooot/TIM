@@ -5,7 +5,7 @@ module.exports = function(app){
   var route = express.Router();
 
   //구글지도 api
-   app.get('/test', function(req, res){
+   route.get('/test', function(req, res){
          res.render('test');
       });
 
