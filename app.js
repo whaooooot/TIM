@@ -162,8 +162,11 @@ if (cluster.isMaster) { //클러스터설정
     var main = require('./routes/main')(app);//ejs예시
     app.use('', main);
 
-    var list = require('./routes/list')(app);//ejs예시
-    app.use('', list);
+    var mlist = require('./routes/mlist')(app);//ejs예시
+    app.use('', mlist);
+
+    var board = require('./routes/board')(app);//ejs예시
+    app.use('/board', board);
 
     // app.locals.pretty = true; //jade코드이쁘게만들기
     // app.set('view engine', 'jade'); //jade 템플릿엔진사용

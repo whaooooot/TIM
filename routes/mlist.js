@@ -19,8 +19,8 @@ module.exports = function(app){
 
 
   //list접속하면 list.ejs보여준다
-  route.get( '/list', function(req, res){
-   fs.readFile('views/list.ejs', 'utf8', function(error, data){
+  route.get( '/mlist', function(req, res){
+   fs.readFile('views/mlist.ejs', 'utf8', function(error, data){
       if(error){
           console.log('readFile Error');
       }else{
@@ -47,13 +47,13 @@ module.exports = function(app){
       console.log('delete Error');
     }else{
       console.log('delete id = %d', req.params.id);
-      res.redirect('/list');
+      res.redirect('/mlist');
     }
   });
 });
 
 //수정  localhost:3000/delete/3같은 거에서 id=3인 row 수정
-route.get( '/edit/:id', function(req, res){
+route.get('/edit/:id', function(req, res){
    fs.readFile('views/edit.ejs', 'utf8', function(error, data){
       pool.query('select * from users where id = ?', [req.params.id],
           function(error, result){
@@ -79,7 +79,7 @@ route.post('/edit/:id', function(req, res){
             if(error){
                 console.log('update error : ', error.message );
             }else{
-                res.redirect('/list'); //업데이트 완료 후 메인화면으로 이동한다.(변경사항 확인)
+                res.redirect('/mlist'); //업데이트 완료 후 메인화면으로 이동한다.(변경사항 확인)
             }
    });
 });

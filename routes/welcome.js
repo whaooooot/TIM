@@ -11,13 +11,15 @@ route.get('/welcome', function(req, res){
         <h1>Hello, ${req.user.displayName}</h1>
         <a href="/auth/logout">logout</a><br>
         <a href="/map2">map</a>
-        <a href="/list">회원수정</a>
+        <a href="/mlist">회원수정</a>
+        <a href="/board">게시판</a>
         `);
     }else{
     res.send(`
       <h1>Hello, ${req.user.displayName}</h1>
       <a href="/auth/logout">logout</a><br>
       <a href="/map2">map</a>
+      <a href="/board">게시판</a>
       `);
   }
   } else{
