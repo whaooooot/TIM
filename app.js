@@ -60,6 +60,10 @@ if (cluster.isMaster) { //클러스터설정
     //로그인성공했을때일로오고 done함수를실행
     passport.serializeUser(function(user, done) {//done아래LocalStrategy  done과다른거다
       console.log('serializeUser',user);
+      console.log('userididid@@@@'+user.username);
+      pool.query('update user set user_id=? where idx=1',user.username,function(rows,fields){
+        console.log('success!!!');
+      });
       done(null, user.authId);  //user.id로해서 다른사람들이랑안겹치게끔만들수이ㅆ음 varusers에넣어야함 세션에저장됨
     });
     //재접속했을때는

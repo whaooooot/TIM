@@ -3,6 +3,46 @@
 <head>
     <script src="/javascripts/jquery-1.11.2.min.js"></script>
     <title><%= title %></title>
+    <script>
+        function onWriteSubmit()
+        {
+            if ( $("#creator_id").val().trim() == "" )
+            {
+                var message = "아이디를 입력해 주세요";
+                $("#creator_id").val("");
+                $("#creator_id").focus();
+                alert(message);
+                return false;
+            }
+
+            if ( $("#title").val().trim() == "" )
+            {
+                var message = "제목을 입력해 주세요";
+                $("#title").val("");
+                $("#title").focus();
+                alert(message);
+                return false;
+            }
+
+            if ( $("#content").val().trim() == "" )
+            {
+                var message = "본문 내용을 입력해 주세요";
+                $("#content").val("");
+                $("#content").focus();
+                alert(message);
+                return false;
+            }
+
+            if ( $("#passwd").val().trim() == "" )
+            {
+                var message = "패스워드를 입력해 주세요";
+                $("#passwd").val("");
+                $("#passwd").focus();
+                alert(message);
+                return false;
+            }
+        }
+    </script>
     <link rel='stylesheet' href='/stylesheets/style.css'/>
 </head>
 <body>
@@ -13,7 +53,7 @@
 
         <tr>
             <td>작성자</td>
-            <td><input type="text" name="creator_id" id="creator_id" required/></td>
+            <td><input type="text" name="user_id" id="creator_id" value="<%=req.body.user_id%>" required/></td>
         </tr>
         <tr>
             <td>제목</td>
@@ -36,46 +76,7 @@
     </table>
 </form>
 
-<script>
-    function onWriteSubmit()
-    {
-        if ( $("#creator_id").val().trim() == "" )
-        {
-            var message = "아이디를 입력해 주세요";
-            $("#creator_id").val("");
-            $("#creator_id").focus();
-            alert(message);
-            return false;
-        }
 
-        if ( $("#title").val().trim() == "" )
-        {
-            var message = "제목을 입력해 주세요";
-            $("#title").val("");
-            $("#title").focus();
-            alert(message);
-            return false;
-        }
-
-        if ( $("#content").val().trim() == "" )
-        {
-            var message = "본문 내용을 입력해 주세요";
-            $("#content").val("");
-            $("#content").focus();
-            alert(message);
-            return false;
-        }
-
-        if ( $("#passwd").val().trim() == "" )
-        {
-            var message = "패스워드를 입력해 주세요";
-            $("#passwd").val("");
-            $("#passwd").focus();
-            alert(message);
-            return false;
-        }
-    }
-</script>
 
 </body>
 </html>

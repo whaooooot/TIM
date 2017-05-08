@@ -45,6 +45,16 @@ route.get('/blist/:page', function(req,res,next){
 // 글쓰기 화면 표시 GET
 route.get('/write', function(req,res,next){
     res.render('write',{title : "게시판 글 쓰기"});
+    var sql = "select * from user where idx=?";
+      pool.query(sql, '1',function (err, results){
+        if(err){
+            console.log('error : ', error.message);
+        }else{
+          console.log("id33@@@@@"+results[0].user_id);
+            //조회결과를 'prodList' 변수에 할당한 후 'list.ejs' 에 전달한다.
+        }
+
+    });
 });
 
 
@@ -85,6 +95,12 @@ route.get('/read/:idx',function(req,res,next)
         //var sql2 = "update board set hit = hit + 1 WHERE idx = ?";
         connection.query(sql, [idx], function(err,row)
         {
+
+            console.log("idx@@@@@"+idx);
+            var sql2 = connection.query("update board set hit = hit + 1 WHERE idx = ?", idx,function(err, rows, fields){
+              console.log('ok?');
+
+                        });
             if(err) console.error(err);
             console.log("1개 글 조회 결과 확인 : ",row);
             res.render('read', {title:"글 조회", row:row[0]});

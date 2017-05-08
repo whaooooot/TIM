@@ -76,8 +76,8 @@ app.use(bodyParser.urlencoded({extended:true}));
 //'edit.ejs' 에서 POST 방식으로 전달되는 변경된 데이타를 MySQL에 업데이트한다.
 route.post('/edit/:id', function(req, res){
   var id = req.body.id;
-  console.log("id@@@@@"+id);
-   pool.query('update users set phonenum=?, email=? where id=?',
+  console.log("id@@@@@"+req.body.id);
+   pool.query('update users set phonenum=?, email=? where username=?',
        [req.body.phonenum, req.body.email, req.body.id ],
         function(error, result){
             if(error){
