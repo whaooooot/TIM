@@ -13,6 +13,7 @@
 
 <table border="1">
     <tr>
+        <td>글삭제</td>
         <td>번호</td>
         <td>작성자</td>
         <td>제목</td>
@@ -26,6 +27,7 @@
         var oneItem = rows[i];
 %>
     <tr>
+        <td><a href='/board/delete/<%=oneItem.idx%>'>Delete</a></td>
         <td><%=oneItem.idx%></td>
         <td><%=oneItem.creator_id%></td>
         <td><a href="/board/read/<%=oneItem.idx%>"><%=oneItem.title%></a></td>

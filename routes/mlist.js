@@ -6,6 +6,7 @@ module.exports = function(app){
   var fs = require('fs');
   var mysql      = require('mysql'); //mysql모듈불러오기
   var ejs = require('ejs');
+  var bodyParser = require('body-parser');
 
   //mysql연결
   var pool      =    mysql.createPool({
@@ -61,7 +62,7 @@ route.get('/edit/:id', function(req, res){
                 console.log('readFile Error');
              }else{
                 res.send( ejs.render(data, {
-                    prodList : result}
+                    product : result}
                   ));
              }
           }
@@ -69,12 +70,15 @@ route.get('/edit/:id', function(req, res){
    })
 });
 
+
+app.use(bodyParser.urlencoded({extended:true}));
+
 //'edit.ejs' 에서 POST 방식으로 전달되는 변경된 데이타를 MySQL에 업데이트한다.
 route.post('/edit/:id', function(req, res){
-   var body = req.body;
-
-   pool.query( 'update users set phonenum=?, email=? where id=?',
-       [ body.phonenum, body.email, body.id ],
+  var id = req.body.id;
+  console.log("id@@@@@"+id);
+   pool.query('update users set phonenum=?, email=? where id=?',
+       [req.body.phonenum, req.body.email, req.body.id ],
         function(error, result){
             if(error){
                 console.log('update error : ', error.message );
@@ -83,9 +87,6 @@ route.post('/edit/:id', function(req, res){
             }
    });
 });
-
-
-
     return route;
 
 };

@@ -20,6 +20,7 @@ var pool      =    mysql.createPool({
 
 /* GET users listing. */
 route.get('/', function(req, res, next) {
+
     // 그냥 board/ 로 접속할 경우 전체 목록 표시로 리다이렉팅
     res.redirect('/board/blist/1');
 });
@@ -30,13 +31,13 @@ route.get('/blist/:page', function(req,res,next){
         // Use the connection
         var boardselect = "SELECT idx, creator_id, title, date_format(modidate,'%Y-%m-%d %H:%i:%s') modidate,hit FROM board";
         connection.query(boardselect, function (err, rows) {
-            if (err) console.error("err : " + err);
+            if (err){ console.error("err : " + err);}
+            else{
             console.log("rows : " + JSON.stringify(rows));
-
             res.render('blist', {title: ' 게시판 전체 글 조회', rows: rows});
             connection.release();
 
-            // Don't use the connection here, it has been returned to the pool.
+          }
         });
     });
 });
@@ -45,6 +46,7 @@ route.get('/blist/:page', function(req,res,next){
 route.get('/write', function(req,res,next){
     res.render('write',{title : "게시판 글 쓰기"});
 });
+
 
 route.post('/write', function(req,res,next){
 
@@ -80,18 +82,17 @@ route.get('/read/:idx',function(req,res,next)
     pool.getConnection(function(err,connection)
     {
         var sql = "select idx, creator_id, title, content, date_format(modidate,'%Y-%m-%d %H:%i:%s') modidate, hit from board where idx=?";
+        //var sql2 = "update board set hit = hit + 1 WHERE idx = ?";
         connection.query(sql, [idx], function(err,row)
         {
             if(err) console.error(err);
             console.log("1개 글 조회 결과 확인 : ",row);
             res.render('read', {title:"글 조회", row:row[0]});
             connection.release();
-        });
-
+        })
     });
 });
 
-//var sql2 = "update board set hit = hit + 1 WHERE idx = ?;"
 
 
 
@@ -147,7 +148,18 @@ route.post('/update',function(req,res,next)
     });
 });
 
-
+//게시판삭제  localhost:3000/board/delete/3같은 거에서 idx=3인 row 삭제
+route.get('/delete/:idx',function(req, res){
+  pool.query('delete from board where idx = ?', [req.params.idx],
+function(error, results){
+  if(error){
+    console.log('delete Error');
+  }else{
+    console.log('delete idx = %d', req.params.idx);
+    res.redirect('/board');
+  }
+});
+});
 
 return route;
 

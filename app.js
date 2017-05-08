@@ -40,9 +40,6 @@ if (cluster.isMaster) { //클러스터설정
       debug    :  false
     });
 
-
-
-
     //세션연결
     app.use(session({
       secret: '0987654321~!@#$%^&*()_+',  //암호화
