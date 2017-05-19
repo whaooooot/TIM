@@ -2,7 +2,7 @@
 <html>
 <head>
     <script src="/javascripts/jquery-1.11.2.min.js"></script>
-    <title><%= title %></title>
+    <title>글쓰기</title>
     <script>
         function onWriteSubmit()
         {
@@ -46,15 +46,16 @@
     <link rel='stylesheet' href='/stylesheets/style.css'/>
 </head>
 <body>
-<h1><%= title %></h1>
+<h1>글쓰기</h1>
 
 <form action="/board/write" method="post" onsubmit="return onWriteSubmit()">
     <table border="1">
+      <div>
 
         <tr>
             <td>작성자</td>
-            <td><input type="text" name="user_id" id="creator_id" value="<%=req.body.user_id%>" required/></td>
-        </tr>
+            <td><input type="text" name="creator_id" id="creator_id" value=<%=u_id%> readonly ></td>
+        </tr></div>
         <tr>
             <td>제목</td>
             <td><input type="text" name="title" id="title" required/></td>

@@ -7,7 +7,7 @@ module.exports = function(app){
   route.get('/logout', function(req, res){ //router끝날때 지정해줘서 /auth지워도됨
     req.logout(); //logout함수
     req.session.save(function(){
-      res.redirect('/welcome');
+      res.redirect('/test');
     });
   });
 

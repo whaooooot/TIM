@@ -61,6 +61,7 @@ if (cluster.isMaster) { //클러스터설정
     passport.serializeUser(function(user, done) {//done아래LocalStrategy  done과다른거다
       console.log('serializeUser',user);
       console.log('userididid@@@@'+user.username);
+      console.log('userididid@@@@'+user.displayName);
       pool.query('update user set user_id=? where idx=1',user.username,function(rows,fields){
         console.log('success!!!');
       });
