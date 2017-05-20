@@ -18,10 +18,11 @@
      crossorigin="anonymous"></script>
 
    <script>
-   //http://openAPI.seoul.go.kr:8088/66444f756573756f3130346973716f69/json/ListLostArticleService/1/5/t2/
 
       $(function(){
-         console.log("ready");
+         //console.log("ready");
+
+
 
          $.ajax({
             type:'get',
@@ -60,7 +61,10 @@
          "<p id='demo' class='demo'></p>스토리:" + story['content']+
          "<p id='demo' class='demo'></p>포스터:" + thumbnail['content']+
          "<p id='demo' class='demo'></p>예고편:" + video['link']
+         
                );
+
+
 
                //for(count in actor){
                //   console.log(actor[count].content);
