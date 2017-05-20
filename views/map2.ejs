@@ -8,8 +8,8 @@
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
-        width : 70%;
-        height: 70%;
+        width : 90%;
+        height: 80%;
         background-color: grey;
       }
       /* Optional: Makes the sample page fill the window. */
@@ -29,8 +29,8 @@
         //지도위치경도위도
         var icn = {lat: 37.53, lng: 126.70};
         map = new google.maps.Map(document.getElementById('map'), {//지도나타내는 map클래스
-          center: new google.maps.LatLng(-33.91722, 151.23064),//{lat: -34.397, lng: 150.644}, //위도경도 ,icn
-          zoom: 13 //높을수록 확대
+          center: new google.maps.LatLng(37.4562557, 126.70520620000002),//{lat: -34.397, lng: 150.644}, //위도경도 ,icn
+          zoom: 10 //높을수록 확대
         });
 
 
@@ -57,10 +57,10 @@
        //여러마크자료
        var features = [
           {
-            position: new google.maps.LatLng(-33.91721, 151.22630),
+            position: new google.maps.LatLng(37.5273289, 126.93496019999998),  //한강
             type: 'tim'
           }, {
-            position: new google.maps.LatLng(-33.91539, 151.22820),
+            position: new google.maps.LatLng(37.565784, 126.93857200000002), //연대
             type: 'tim'
           }];
 
@@ -82,15 +82,19 @@
             '</div>';
 
 
+
+
         //정보부르기
         var infowindow = new google.maps.InfoWindow({
           content: contentString
+
         });
+
 
 
         //지도에위치찍기
         var marker = new google.maps.Marker({
-          position: new google.maps.LatLng(-33.91722, 151.23064),  //위치 위도경도넣어도됨icn,
+          position: new google.maps.LatLng(37.4562557, 126.70520620000002),  //위치 위도경도넣어도됨icn,
           map: map,
           draggable: false,//드래그가능하게
           animation: google.maps.Animation.DROP //움직이는 마크
@@ -100,6 +104,7 @@
         marker.addListener('click', function() {
           infowindow.open(map, marker);
         });
+
 
         //떨어지는마크
          marker.addListener('click', toggleBounce);

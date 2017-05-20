@@ -21,7 +21,6 @@ var pool      =    mysql.createPool({
 
 /* GET users listing. */
 route.get('/', function(req, res, next) {
-
     // 그냥 board/ 로 접속할 경우 전체 목록 표시로 리다이렉팅
     res.redirect('/board/blist/1');
 });
@@ -42,28 +41,7 @@ route.get('/blist/:page', function(req,res,next){
         });
     });
 });
-//
-// //list접속하면 list.ejs보여준다
-// route.get( '/write', function(req, res){
-//  fs.readFile('views/write.ejs', 'utf8', function(error, data){
-//     if(error){
-//         console.log('readFile Error');
-//     }else{
-//         //전제 데이타를 조회한 후 결과를 'results' 매개변수에 저장한다.
-//         pool.query('select * from user where idx = ?', function(error, results){
-//             if(error){
-//                 console.log('error : ', error.message);
-//             }else{
-//                 console.log("id33@@@@@"+results[0].user_id);
-//                 //조회결과를 'prodList' 변수에 할당한 후 'list.ejs' 에 전달한다.
-//                 res.send( ejs.render(data, {
-//                     boardList : results }
-//                 ));
-//             }
-//         });
-//     }
-//  })
-// });
+
 
 app.use(bodyParser.urlencoded({extended:true}));
 

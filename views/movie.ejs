@@ -1,0 +1,82 @@
+<html>
+<head>
+<meta http-equiv="Content-type: application/json">
+</head>
+<body>
+
+  <h1>Tim homepage 영화페이지</h1>
+
+   <h1>Hello, 영화정보페이지</h1>
+
+   <div id="add"></div>
+   <!--<p id="demo" class="demo"></p>
+   <p id="demo" class="demo"></p>-->
+
+   <script
+     src="https://code.jquery.com/jquery-3.2.1.js"
+     integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+     crossorigin="anonymous"></script>
+
+   <script>
+   //http://openAPI.seoul.go.kr:8088/66444f756573756f3130346973716f69/json/ListLostArticleService/1/5/t2/
+
+      $(function(){
+         console.log("ready");
+
+         $.ajax({
+            type:'get',
+            url:'https://apis.daum.net/contents/movie?apikey=24baf278d4fb55931b843f0cca64f3e1&q=Thehost&output=json',
+            dataType:'jsonp',
+            success:function(data){
+
+            var actor = data['channel']['item']['1'];
+       var open_info = data['channel']['item']['1']['open_info'];
+
+       var director = data['channel']['item']['1']['director']['0'];
+       var eng_title = data['channel']['item']['1']['eng_title']['0'];
+       var genre = data['channel']['item']['1']['genre']['0'];
+       var grades = data['channel']['item']['1']['grades']['0'];
+       var nation = data['channel']['item']['1']['nation']['0'];
+       var photo_info = data['channel']['item']['1']['photo_info']['0'];
+       var photo1 = data['channel']['item']['1']['photo1'];
+       var story = data['channel']['item']['1']['story']['0'];
+       var thumbnail = data['channel']['item']['1']['thumbnail']['0'];
+       var title = data['channel']['item']['1']['title']['0'];
+       var video = data['channel']['item']['1']['video']['0'];
+
+               $('#add').append(
+         "<p id='demo' class='demo'></p>제목:" + title['content']+
+         "<p id='demo' class='demo'></p>영어제목:" + eng_title['content']+
+         "<p id='demo' class='demo'></p>개봉날짜:" + open_info['0']['content']+
+         "<p id='demo' class='demo'></p>감독:" + director['content']+
+         "<p id='demo' class='demo'></p>배우:" + actor['actor']['0']['content']+
+         "<p id='demo' class='demo'></p>장르:" + genre['content']+
+         "<p id='demo' class='demo'></p>관람등급:" + open_info['1']['content']+
+         "<p id='demo' class='demo'></p>러닝타임:" + open_info['2']['content']+
+         "<p id='demo' class='demo'></p>별등급:" + grades['content']+
+         "<p id='demo' class='demo'></p>국가:" + nation['content']+
+         "<p id='demo' class='demo'></p>포토목록:" + photo_info['link']+
+         "<p id='demo' class='demo'></p>포토1:" + photo1['content']+
+         "<p id='demo' class='demo'></p>스토리:" + story['content']+
+         "<p id='demo' class='demo'></p>포스터:" + thumbnail['content']+
+         "<p id='demo' class='demo'></p>예고편:" + video['link']
+               );
+
+               //for(count in actor){
+               //   console.log(actor[count].content);
+              // }
+
+        // console.log(mchannel);
+
+              //console.log(mchannel.audience['0']['content']);
+
+              //console.log(mchannel.actor['0']['content']);
+
+            }
+         });
+      });
+
+   </script>
+
+   </body>
+   </html>

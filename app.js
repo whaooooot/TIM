@@ -170,6 +170,12 @@ if (cluster.isMaster) { //클러스터설정
     var board = require('./routes/board')(app);//ejs예시
     app.use('/board', board);
 
+    var movie = require('./routes/movie')(app);//ejs예시
+    app.use('', movie);
+
+    var map3 = require('./routes/map3')(app);//ejs예시
+    app.use('', map3);
+
     // app.locals.pretty = true; //jade코드이쁘게만들기
     // app.set('view engine', 'jade'); //jade 템플릿엔진사용
     // app.set('views', './views');//jade 파일디렉토리
