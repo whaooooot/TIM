@@ -20,9 +20,6 @@
    <script>
 
       $(function(){
-         //console.log("ready");
-
-
 
          $.ajax({
             type:'get',
@@ -30,7 +27,7 @@
             dataType:'jsonp',
             success:function(data){
 
-            var actor = data['channel']['item']['1'];
+       var actor = data['channel']['item']['1'];
        var open_info = data['channel']['item']['1']['open_info'];
 
        var director = data['channel']['item']['1']['director']['0'];
@@ -38,12 +35,23 @@
        var genre = data['channel']['item']['1']['genre']['0'];
        var grades = data['channel']['item']['1']['grades']['0'];
        var nation = data['channel']['item']['1']['nation']['0'];
-       var photo_info = data['channel']['item']['1']['photo_info']['0'];
-       var photo1 = data['channel']['item']['1']['photo1'];
+       var photo1 = data['channel']['item']['1']['photo1']['content'];
+       var photo2 = data['channel']['item']['1']['photo2']['content'];
+       var photo3 = data['channel']['item']['1']['photo3']['content'];
+       var photo4 = data['channel']['item']['1']['photo4']['content'];
        var story = data['channel']['item']['1']['story']['0'];
-       var thumbnail = data['channel']['item']['1']['thumbnail']['0'];
+       var thumbnail = data['channel']['item']['1']['thumbnail']['0']['content'];
        var title = data['channel']['item']['1']['title']['0'];
-       var video = data['channel']['item']['1']['video']['0'];
+       var video = data['channel']['item']['1']['video']['0']['link'];
+
+       $('#qq').append("<img src= "+thumbnail+" >"+
+                       "<p id='demo' class='demo'></p>예고편:" + "<embed src= "+video+" ></embed>"+
+                       "<p id='demo' class='demo'></p>스틸컷:" + "<img src= "+photo1+" >"+
+                       "<p id='demo' class='demo'></p>스틸컷:" + "<img src= "+photo2+" >"+
+                       "<p id='demo' class='demo'></p>스틸컷:" + "<img src= "+photo3+" >"+
+                       "<p id='demo' class='demo'></p>스틸컷:" + "<img src= "+photo4+" >"
+                     );
+
 
                $('#add').append(
          "<p id='demo' class='demo'></p>제목:" + title['content']+
@@ -51,25 +59,25 @@
          "<p id='demo' class='demo'></p>개봉날짜:" + open_info['0']['content']+
          "<p id='demo' class='demo'></p>감독:" + director['content']+
          "<p id='demo' class='demo'></p>배우:" + actor['actor']['0']['content']+
+         "<p id='demo' class='demo'></p>배우:" + actor['actor']['1']['content']+
+         "<p id='demo' class='demo'></p>배우:" + actor['actor']['2']['content']+
+         "<p id='demo' class='demo'></p>배우:" + actor['actor']['3']['content']+
+         "<p id='demo' class='demo'></p>배우:" + actor['actor']['4']['content']+
          "<p id='demo' class='demo'></p>장르:" + genre['content']+
          "<p id='demo' class='demo'></p>관람등급:" + open_info['1']['content']+
          "<p id='demo' class='demo'></p>러닝타임:" + open_info['2']['content']+
          "<p id='demo' class='demo'></p>별등급:" + grades['content']+
          "<p id='demo' class='demo'></p>국가:" + nation['content']+
-         "<p id='demo' class='demo'></p>포토목록:" + photo_info['link']+
-         "<p id='demo' class='demo'></p>포토1:" + photo1['content']+
-         "<p id='demo' class='demo'></p>스토리:" + story['content']+
-         "<p id='demo' class='demo'></p>포스터:" + thumbnail['content']+
-         "<p id='demo' class='demo'></p>예고편:" + video['link']
-         
+         //"<p id='demo' class='demo'></p>포토1:" + photo2+
+         "<p id='demo' class='demo'></p>스토리:" + story['content']
+         //"<p id='demo' class='demo'></p>포스터:" + thumbnail+
+         //"<p id='demo' class='demo'></p>예고편:" + video
+
                );
-
-
 
                //for(count in actor){
                //   console.log(actor[count].content);
               // }
-
         // console.log(mchannel);
 
               //console.log(mchannel.audience['0']['content']);
@@ -82,5 +90,9 @@
 
    </script>
 
+   <div id =qq>   </div>
+
+
+   <audio src="./music/1.mp3" autoplay="true">
    </body>
    </html>
