@@ -45,13 +45,18 @@
        var video = data['channel']['item']['1']['video']['0']['link'];
 
        $('#qq').append("<img src= "+thumbnail+" >"+
-                       "<p id='demo' class='demo'></p>예고편:" + "<embed src= "+video+" ></embed>"+
-                       //"<iframe width="100%" height="600" src="+video+" frameborder="0" allowfullscreen></iframe>"+
+                       //"<p id='demo' class='demo'></p>예고편:" + "<embed src= "+video+" ></embed>"+
+                       //"<iframe></iframe>",{'src':video , 'id' :'demo', 'class':'demo'}+
+                       //$('.tt').append($('<iframe></iframe>',{'src':video,'id':'video-player','width':'350','height':'220','controls':'controls', 'preload':'metadata','frameborder':0, 'scrolling':'auto', 'allowfullscreen': true})).css({'margin':'2px'});
+
                        "<p id='demo' class='demo'></p>스틸컷:" + "<img src= "+photo1+" >"+
                        "<p id='demo' class='demo'></p>스틸컷:" + "<img src= "+photo2+" >"+
                        "<p id='demo' class='demo'></p>스틸컷:" + "<img src= "+photo3+" >"+
                        "<p id='demo' class='demo'></p>스틸컷:" + "<img src= "+photo4+" >"
                      );
+
+
+
 
 
                $('#add').append(
@@ -92,8 +97,9 @@
    </script>
 
    <div id =qq>   </div>
+      <div id =tt>   </div>
 
 
-   <audio src="./music/1.mp3" autoplay="true">
+   <audio src="./music/괴물.mp3" autoplay="true">
    </body>
    </html>

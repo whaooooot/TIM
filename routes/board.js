@@ -8,21 +8,38 @@ var mysql      = require('mysql'); //mysql모듈불러오기
 var ejs = require('ejs');
   var bodyParser = require('body-parser');
 
+
+
+    // //mysql연결
+    // var pool      =    mysql.createPool({
+    //   connectionLimit : 10, //pool에담을수있는최대인자수
+    //   host     : 'localhost',
+    //   user     : 'a',
+    //   password : '1234',
+    //   database : 'test1',
+    //   debug    :  false
+    // });
+
 //mysql연결
 var pool      =    mysql.createPool({
   connectionLimit : 10, //pool에담을수있는최대인자수
-  host     : 'localhost',
-  user     : 'a',
-  password : '1234',
-  database : 'test1',
+  host     : '210.123.254.249',
+  user     : 'ahn',
+  password : '12341234',
+  database : 'ahn',
   debug    :  false
 });
 
 
 /* GET users listing. */
 route.get('/', function(req, res, next) {
-    // 그냥 board/ 로 접속할 경우 전체 목록 표시로 리다이렉팅
-    res.redirect('/board/blist/1');
+  if(req.user && req.user.displayName){ //정보불러옴
+    if(req.user.username == 'admin'){
+      res.redirect('/board/blist/1');
+    }else{
+      res.redirect('/board/blistuser/1');
+  }
+  }
 });
 
 route.get('/blist/:page', function(req,res,next){
@@ -171,6 +188,30 @@ function(error, results){
   }
 });
 });
+
+
+////////////////////////////////////////////////////////////////user꺼
+
+route.get('/blistuser/:page', function(req,res,next){
+
+    pool.getConnection(function (err, connection) {
+        // Use the connection
+        var boardselect = "SELECT idx, creator_id, title, date_format(modidate,'%Y-%m-%d %H:%i:%s') modidate,hit FROM board";
+        connection.query(boardselect, function (err, rows) {
+            if (err){ console.error("err : " + err);}
+            else{
+            console.log("rows : " + JSON.stringify(rows));
+            res.render('blistuser', {title: ' 게시판 전체 글 조회', rows: rows});
+            connection.release();
+
+          }
+        });
+    });
+});
+
+
+
+
 
 return route;
 

@@ -30,15 +30,39 @@ if (cluster.isMaster) { //클러스터설정
     app.use(bodyParser.urlencoded({extended:false}));
 
 
+    // //mysql연결
+    // var pool      =    mysql.createPool({
+    //   connectionLimit : 10, //pool에담을수있는최대인자수
+    //   host     : 'localhost',
+    //   user     : 'a',
+    //   password : '1234',
+    //   database : 'test1',
+    //   debug    :  false
+    // });
+
     //mysql연결
     var pool      =    mysql.createPool({
       connectionLimit : 10, //pool에담을수있는최대인자수
-      host     : 'localhost',
-      user     : 'a',
-      password : '1234',
-      database : 'test1',
+      host     : '210.123.254.249',
+      user     : 'ahn',
+      password : '12341234',
+      database : 'ahn',
       debug    :  false
     });
+
+    // //세션연결
+    // app.use(session({
+    //   secret: '0987654321~!@#$%^&*()_+',  //암호화
+    //   resave: false,
+    //   saveUninitialized: true,
+    //   store:new MySQLStore({  //MySQLStore 옵션추가
+    //     host:'localhost',
+    //     port:3306,
+    //     user:'a',
+    //     password:'1234',
+    //     database:'test1'
+    //   })
+    // }));
 
     //세션연결
     app.use(session({
@@ -46,11 +70,11 @@ if (cluster.isMaster) { //클러스터설정
       resave: false,
       saveUninitialized: true,
       store:new MySQLStore({  //MySQLStore 옵션추가
-        host:'localhost',
+        host:'210.123.254.249',
         port:3306,
-        user:'a',
-        password:'1234',
-        database:'test1'
+        user:'ahn',
+        password:'12341234',
+        database:'ahn'
       })
     }));
 

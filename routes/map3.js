@@ -11,16 +11,25 @@ module.exports = function(app){
   var mysql      = require('mysql'); //mysql모듈불러오기
 
 
+    // //mysql연결
+    // var pool      =    mysql.createPool({
+    //   connectionLimit : 10, //pool에담을수있는최대인자수
+    //   host     : 'localhost',
+    //   user     : 'a',
+    //   password : '1234',
+    //   database : 'test1',
+    //   debug    :  false
+    // });
+
     //mysql연결
     var pool      =    mysql.createPool({
       connectionLimit : 10, //pool에담을수있는최대인자수
-      host     : 'localhost',
-      user     : 'a',
-      password : '1234',
-      database : 'test1',
+      host     : '210.123.254.249',
+      user     : 'ahn',
+      password : '12341234',
+      database : 'ahn',
       debug    :  false
     });
-
 
   //다음지도 api
    route.get('/map3', function(req, res){
@@ -35,7 +44,7 @@ module.exports = function(app){
                 }
             });
       });
-      
+
   return route;
 
 };
