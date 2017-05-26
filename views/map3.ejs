@@ -1,213 +1,157 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title>Tim map</title>
-    <style>
-html, body {width:80%;height:1000%;margin:30;padding:0;}
-.map_wrap {position:relative;overflow:hidden;width:100%;height:700px;}
-.radius_border{border:1px solid #919191;border-radius:5px;}
-.custom_typecontrol {position:absolute;top:10px;right:10px;overflow:hidden;width:130px;height:30px;margin:0;padding:0;z-index:1;font-size:12px;font-family:'Malgun Gothic', '맑은 고딕', sans-serif;}
-.custom_typecontrol span {display:block;width:65px;height:30px;float:left;text-align:center;line-height:30px;cursor:pointer;}
-.custom_typecontrol .btn {background:#fff;background:linear-gradient(#fff,  #e6e6e6);}
-.custom_typecontrol .btn:hover {background:#f5f5f5;background:linear-gradient(#f5f5f5,#e3e3e3);}
-.custom_typecontrol .btn:active {background:#e6e6e6;background:linear-gradient(#e6e6e6, #fff);}
-.custom_typecontrol .selected_btn {color:#fff;background:#425470;background:linear-gradient(#425470, #5b6d8a);}
-.custom_typecontrol .selected_btn:hover {color:#fff;}
-.custom_zoomcontrol {position:absolute;top:50px;right:10px;width:36px;height:80px;overflow:hidden;z-index:1;background-color:#f5f5f5;}
-.custom_zoomcontrol span {display:block;width:36px;height:40px;text-align:center;cursor:pointer;}
-.custom_zoomcontrol span img {width:15px;height:15px;padding:12px 0;border:none;}
-.custom_zoomcontrol span:first-child{border-bottom:1px solid #bfbfbf;}
-</style>
+	<title>test</title>
+	<meta charset="utf-8">
+	<meta name="author" content="pixelhint.com">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.1.2/css/material-design-iconic-font.min.css">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous">	<script type="text/javascript"></script>
+
+  </script>
+  <style>
+	html, body {height:100%}</style>
+
 </head>
 <body>
-<div class="map_wrap">
-    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
-    <!-- 지도타입 컨트롤 div 입니다 -->
-    <div class="custom_typecontrol radius_border">
-        <span id="btnRoadmap" class="selected_btn" onclick="setMapType('roadmap')">지도</span>
-        <span id="btnSkyview" class="btn" onclick="setMapType('skyview')">스카이뷰</span>
-    </div>
-    <!-- 지도 확대, 축소 컨트롤 div 입니다 -->
-    <div class="custom_zoomcontrol radius_border">
-        <span onclick="zoomIn()"><img src="http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/ico_plus.png" alt="확대"></span>
-        <span onclick="zoomOut()"><img src="http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/ico_minus.png" alt="축소"></span>
-    </div>
-</div>
-
-<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=24baf278d4fb55931b843f0cca64f3e1"></script>
-<script>
-var mapContainer = document.getElementById('map'), // 지도를 표시할 div
-    mapOption = {
-        center: new daum.maps.LatLng(37.6487485,127.06431989999999), // 지도의 중심좌표
-        level: 6 // 지도의 확대 레벨
-    };
-
-var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-
-// HTML5의 geolocation으로 사용할 수 있는지 확인합니다  현재위치
-if (navigator.geolocation) {
-
-    // GeoLocation을 이용해서 접속 위치를 얻어옵니다
-    navigator.geolocation.getCurrentPosition(function(position) {
-
-        var lat = position.coords.latitude, // 위도
-            lon = position.coords.longitude; // 경도
-
-        var locPosition = new daum.maps.LatLng(lat, lon), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
-            message = '<div style="padding:6px;"><h4>현재위치 입니다!</h4><br><a href="http://map.daum.net/link/map/현 위치!, locPosition" style="color:blue" target="_blank">큰지도보기</a> <a href="http://map.daum.net/link/to/현 위치!,locPosition" style="color:brown" target="_blank">길찾기</a></div>'; // 인포윈도우에 표시될 내용입니다
-
-        // 마커와 인포윈도우를 표시합니다
-        displayMarker(locPosition, message);
-
-      });
-
-} else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
-
-    var locPosition = new daum.maps.LatLng(37.6487485, 127.06431989999999), //성서대위치
-        message = '현재위치를 찾을 수가 없어요 다시 시도해주세요...'
-
-    displayMarker(locPosition, message);
-}//현재위치끝
-
-// 지도에 마커와 인포윈도우를 표시하는 함수입니다
-function displayMarker(locPosition, message) {
-
-    // 마커를 생성합니다
-    var marker = new daum.maps.Marker({
-        map: map,
-        position: locPosition
-    });
-
-    var iwContent = message, // 인포윈도우에 표시할 내용
-        iwRemoveable = true;
-
-    // 인포윈도우를 생성합니다
-    var infowindow = new daum.maps.InfoWindow({
-        content : iwContent,
-        removable : iwRemoveable
-    });
-
-    // 인포윈도우를 마커위에 표시합니다
-    infowindow.open(map, marker);
-
-    // 지도 중심좌표를 접속위치로 변경합니다
-    map.setCenter(locPosition);
-}    ///////////////현재위치리얼끝
 
 
-// 마커를 표시할 위치와 내용을 가지고 있는 객체 배열입니다
-var positions = [
-    {
-        content: '<div style="padding:5px;">곡성 <br><a href="http://map.daum.net/link/map/Hello World!,33.450701,126.570667" style="color:blue" target="_blank">큰지도보기</a> <a href="http://map.daum.net/link/to/Hello World!,33.450701,126.570667" style="color:blue" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
-        latlng: new daum.maps.LatLng(35.2819553, 127.29191749999995)
+		<br>
 
-    },
-    {
-      content: '<div style="padding:5px;">서울역 - 부산행</div>',
-     latlng: new daum.maps.LatLng(37.5547125, 126.97078779999993)
-    },
-    {
-      content: '<div style="padding:5px;">연세대학교 - 클래식</div>',
-        latlng: new daum.maps.LatLng(37.565784, 126.93857200000002)
-    },
-    {
-      content: '<div id="content">'+
-   '<div id="siteNotice">'+'<div style="padding:5px;>'+
-   '</div>'+
-   '<h1 id="firstHeading" class="firstHeading">괴물</h1>'+
-   '<div id="bodyContent">'+
-   '<p><b>한강</b>, 한강촬영지다 <b>한강뚝섬!!!</b> ' +
-   '여행지정보게시판연결도'+
-   'ㅇㅋ</p>'+
-   '<p>영화정보: <a href="./movie">'+
-   '영화</a> </p>'+
-   '</div>'+
-   '</div>',
-     latlng: new daum.maps.LatLng(37.531537, 127.06669099999999)
-    }
-];
+		<table align="center">
+			<div id="map" style="width:100%;height:70%;"></div>
 
-for (var i = 0; i < positions.length; i ++) {
-var imageSrc = "/timmarker.png";
-var marker2 = new Array();
-var info2 = new Array();
-  for (var i = 0; i < positions.length; i ++) {
-      var imageSize = new daum.maps.Size(25, 30);
-(function(i){
-      var markerImage = new daum.maps.MarkerImage(imageSrc, imageSize);
-      var tempmarker = new daum.maps.Marker({
-          map: map,
-          position: positions[i].latlng,
-          title : positions[i].title,
-          image : markerImage
-      });
-marker2.push(tempmarker);
-var tempinfo = new daum.maps.InfoWindow({
-		position: marker2[i].getPosition(),
-    		 content: positions[i].content,
-    		 removable: true,
-    		 disableAutoPan: true
-    	 });
-info2.push(tempinfo);
-      daum.maps.event.addListener(marker2[i], "click", function(){
-    	 info2[i].open(map, marker2[i]);
-      });
-})(i);
-  }
+			<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=24baf278d4fb55931b843f0cca64f3e1"></script>
+			<script>
+			var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+					mapOption = {
+							center: new daum.maps.LatLng(37.649158, 127.063841), // 지도의 중심좌표
+							level: 5 // 지도의 확대 레벨
+					};
 
-}
-// 아래 코드는 위의 마커를 생성하는 코드에서 clickable: true 와 같이
-// 마커를 클릭했을 때 지도의 클릭 이벤트가 발생하지 않도록 설정합니다
-// marker.setClickable(true);
+			var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+			// HTML5의 geolocation으로 사용할 수 있는지 확인합니다
 
-// 마커를 지도에 표시합니다.
-marker.setMap(map);
+			if (navigator.geolocation) {
+					// GeoLocation를 통한 현재접속위치 파악
+					navigator.geolocation.getCurrentPosition(function(position) {
 
-// for (var i = 0; i < positions.length; i ++) {
-// var iwRemoveable = true; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
-// // 인포윈도우를 생성합니다
-// var infowindow = new daum.maps.InfoWindow({
-//     content : positions[i].content,
-//     removable : iwRemoveable
-// });
-//
-// }
+						   var lat = position.coords.latitude, // 위도
+							  lon = position.coords.longitude; // 경도
+							console.log(lat);
+							console.log(lon);
+							var locPosition = new daum.maps.LatLng(lat, lon),
+
+									message =  '<div style="padding:6px;"><h4>현재위치 입니다!</h4><br><a href="http://map.daum.net/link/map/현 위치!, locPosition" style="color:brown" target="_blank">큰지도보기</a> <a href="http://map.daum.net/link/to/현 위치!,locPosition" style="color:brown" target="_blank">길찾기</a></div>'; // 인포윈도우에 표시될 내용입니다
+							// 마커와 인포윈도우를 표시합니다
+							displayMarker(locPosition, message);
+						});
+						function setCenter() {
+								// 이동할 위도 경도 위치를 생성합니다
+								navigator.geolocation.getCurrentPosition(function(position) {
+
+									   var lat = position.coords.latitude, // 위도
+										  lon = position.coords.longitude; // 경도
+								 console.log(lat);
+
+								var moveLatLon = new daum.maps.LatLng(lat, lon);
+								// 지도 중심을 이동 시킵니다
+								map.setCenter(moveLatLon);
+							});
+						}
+			} else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
+
+					var locPosition = new daum.maps.LatLng(37.649158, 127.063841),
+							message = 'geolocation을 사용할수 없습니다.'
+
+					displayMarker(locPosition, message);
+			}
+
+			// 지도에 마커와 인포윈도우를 표시하는 함수입니다
+			function displayMarker(locPosition, message) {
+
+					// 마커를 생성합니다
+					var marker = new daum.maps.Marker({
+							map: map,
+							position: locPosition,
+					});
+
+					var iwContent = message, // 인포윈도우에 표시할 내용
+							iwRemoveable = true;
+
+					// 인포윈도우를 생성합니다
+					var infowindow = new daum.maps.InfoWindow({
+							content : iwContent,
+							removable : iwRemoveable
+					});
+					// 인포윈도우를 마커위에 표시합니다
+					infowindow.open(map, marker);
+					// 지도 중심좌표를 접속위치로 변경합니다
+					map.setCenter(locPosition);
+			}
+
+			$(function(){
+				var positions = new Array();
+				var iwContent = new Array();
+
+				var test = <%-json%>;
+				for(count in test){
+						 positions[count] = {
+										title: test[count].location,
+										latlng: new daum.maps.LatLng(test[count].zzlat, test[count].zzlon)
+						};
+						iwContent[count] = '<div style="padding:5px;">'+test[count].location+' <br> <a href="http://map.daum.net/link/to/tim여행지,'+test[count].zzlat+','+test[count].zzlon+'" style= target="_blank">길찾기</a></div>';
+			};
+
+			var imageSrc = "/timmarker.png";
+			var marker2 = new Array();
+			var info2 = new Array();
+				for (var i = 0; i <positions.length; i ++) {
+						var imageSize = new daum.maps.Size(24, 24);
+			(function(i){
+						var markerImage = new daum.maps.MarkerImage(imageSrc, imageSize);
+
+						var tempmarker = new daum.maps.Marker({
+								map: map,
+								position: positions[i].latlng,
+								title : positions[i].title,
+								image : markerImage
+						});
+
+			marker2.push(tempmarker);
+			var tempinfo = new daum.maps.InfoWindow({
+							 position: marker2[i].getPosition(),
+							 content: iwContent[i],
+							 removable: true,
+							 disableAutoPan: true
+						 });
+
+			info2.push(tempinfo);
+						daum.maps.event.addListener(marker2[i], "click", function(){
+						 info2[i].open(map, marker2[i]);
+						});
+			})(i);
+				}
+			});
+			// 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
+			var mapTypeControl = new daum.maps.MapTypeControl();
+
+			// 지도에 컨트롤을 추가해야 지도위에 표시됩니다
+			// daum.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
+			map.addControl(mapTypeControl, daum.maps.ControlPosition.TOPRIGHT);
+
+			// 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
+			var zoomControl = new daum.maps.ZoomControl();
+			map.addControl(zoomControl, daum.maps.ControlPosition.RIGHT);
+
+					</script>
+					<span id ="result"> </span>
+					<span id ="result12"> </span>
+					<button  onclick="setCenter()">현재위치</button>
+		</table>
 
 
-// 마커에 클릭이벤트를 등록합니다
-daum.maps.event.addListener(marker, 'click', function() {
-      // 마커 위에 인포윈도우를 표시합니다
-      infowindow.open(map, marker);
-});
 
-
-// 지도타입 컨트롤의 지도 또는 스카이뷰 버튼을 클릭하면 호출되어 지도타입을 바꾸는 함수입니다
-function setMapType(maptype) {
-    var roadmapControl = document.getElementById('btnRoadmap');
-    var skyviewControl = document.getElementById('btnSkyview');
-    if (maptype === 'roadmap') {
-        map.setMapTypeId(daum.maps.MapTypeId.ROADMAP);
-        roadmapControl.className = 'selected_btn';
-        skyviewControl.className = 'btn';
-    } else {
-        map.setMapTypeId(daum.maps.MapTypeId.HYBRID);
-        skyviewControl.className = 'selected_btn';
-        roadmapControl.className = 'btn';
-    }
-}
-
-// 지도 확대, 축소 컨트롤에서 확대 버튼을 누르면 호출되어 지도를 확대하는 함수입니다
-function zoomIn() {
-    map.setLevel(map.getLevel() - 1);
-}
-
-// 지도 확대, 축소 컨트롤에서 축소 버튼을 누르면 호출되어 지도를 확대하는 함수입니다
-function zoomOut() {
-    map.setLevel(map.getLevel() + 1);
-}
-
-
-</script>
 </body>
 </html>

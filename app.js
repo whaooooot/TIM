@@ -83,7 +83,6 @@ if (cluster.isMaster) { //클러스터설정
 
     //로그인성공했을때일로오고 done함수를실행
     passport.serializeUser(function(user, done) {//done아래LocalStrategy  done과다른거다
-      console.log('serializeUser',user);
       console.log('userididid@@@@'+user.username);
       console.log('userididid@@@@'+user.displayName);
       pool.query('update user set user_id=? where idx=1',user.username,function(rows,fields){
@@ -93,7 +92,6 @@ if (cluster.isMaster) { //클러스터설정
     });
     //재접속했을때는
     passport.deserializeUser(function(id, done) {
-      console.log('deserializeUser', id);
       var sql = 'SELECT * FROM users WHERE authId=?';
       pool.query(sql, [id], function(err, results){ //첫인자 err, 둘째인자results
         if(err){

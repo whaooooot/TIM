@@ -1,123 +1,204 @@
-<!DOCTYPE html> <!--html5선언-->
-<html>
-  <head>
-    <title>TIM Map</title>
-    <meta name="viewport" content="initial-scale=1.0">
-    <meta charset="utf-8">
-    <style>
-      /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-      #map {
-        width : 90%;
-        height: 80%;
-        background-color: grey;
-      }
-      /* Optional: Makes the sample page fill the window. */
-      html, body {
-        height: 100%;
-        margin: 100; /*옆에간격*/
-        padding: 0;
-      }
-    </style>
-  </head>
-  <body>
-    <h1>Tim Google Map</h1>
-    <div id="map"></div>
-    <script>
-      var map;
-      function initMap() {
-        //지도위치경도위도
-        var icn = {lat: 37.53, lng: 126.70};
-        map = new google.maps.Map(document.getElementById('map'), {//지도나타내는 map클래스
-          center: new google.maps.LatLng(37.4562557, 126.70520620000002),//{lat: -34.397, lng: 150.644}, //위도경도 ,icn
-          zoom: 10 //높을수록 확대
-        });
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Heart On</title>
+	<meta charset="utf-8">
+	<meta name="author" content="pixelhint.com">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.1.2/css/material-design-iconic-font.min.css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous">	<script type="text/javascript" src="../bootstrap/js/jquery.js"></script>
+
+  <style>
+	html, body {height:100%}</style>
+
+</head>
+<body>
+
+		<header>
+
+		<br>
+
+		<table align="center">
+			<div id="map" style="width:100%;height:70%;"></div>
+
+			<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=24baf278d4fb55931b843f0cca64f3e1"></script>
+
+			<script>
+			var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+					mapOption = {
+							center: new daum.maps.LatLng(37.649158, 127.063841), // 지도의 중심좌표
+							level: 3 // 지도의 확대 레벨
+					};
+
+			var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+			// HTML5의 geolocation으로 사용할 수 있는지 확인합니다
+
+			if (navigator.geolocation) {
+					// GeoLocation를 통한 현재접속위치 파악
+					navigator.geolocation.getCurrentPosition(function(position) {
+
+						   var lat = position.coords.latitude, // 위도
+							  lon = position.coords.longitude; // 경도
+							console.log(lat);
+							console.log(lon);
+							var locPosition = new daum.maps.LatLng(lat, lon),
+
+									message = '<div style="padding:5px; width:100%; background-color:blue;">현재위치!</div>';
+
+							// 마커와 인포윈도우를 표시합니다
+							displayMarker(locPosition, message);
+						});
+						function setCenter() {
+								// 이동할 위도 경도 위치를 생성합니다
+								navigator.geolocation.getCurrentPosition(function(position) {
+
+									   var lat = position.coords.latitude, // 위도
+										  lon = position.coords.longitude; // 경도
+								 console.log(lat);
+
+								var moveLatLon = new daum.maps.LatLng(lat, lon);
+								// 지도 중심을 이동 시킵니다
+								map.setCenter(moveLatLon);
+							});
+						}
+			} else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
+
+					var locPosition = new daum.maps.LatLng(37.649158, 127.063841),
+							message = 'geolocation을 사용할수 없어요..'
+
+					displayMarker(locPosition, message);
+			}
+
+			// 지도에 마커와 인포윈도우를 표시하는 함수입니다
+			function displayMarker(locPosition, message) {
+
+					// 마커를 생성합니다
+					var marker = new daum.maps.Marker({
+							map: map,
+							position: locPosition,
+					});
+
+					var iwContent = message, // 인포윈도우에 표시할 내용
+							iwRemoveable = true;
+
+					// 인포윈도우를 생성합니다
+					var infowindow = new daum.maps.InfoWindow({
+							content : iwContent,
+							removable : iwRemoveable
+					});
+					// 인포윈도우를 마커위에 표시합니다
+					infowindow.open(map, marker);
+					// 지도 중심좌표를 접속위치로 변경합니다
+					map.setCenter(locPosition);
+			}
+
+			$(function(){
+				var positions = new Array();
+				var iwContent = new Array();
+
+				var test = <%-json%>;
+				for(count in test){
+						 positions[count] = {
+										title: test[count].location,
+										latlng: new daum.maps.LatLng(test[count].lat, test[count].lon)
+						};
+						iwContent[count] = '<div style="padding:5px;">'+test[count].location+' <br> <a href="http://map.daum.net/link/to/FINDAED,'+test[count].lat+','+test[count].lon+'" style="color:blue" target="_blank">길찾기</a></div>';
+			}
+							// 지도가 이동, 확대, 축소로 인해 중심좌표가 변경되면 마지막 파라미터로 넘어온 함수를 호출하도록 이벤트를 등록합니다
+				daum.maps.event.addListener(map, 'center_changed', function() {
+
+				    // 지도의 중심좌표를 얻어옵니다
+				    var latlng = map.getCenter();
+				    var message = '<p>중심 좌표는 위도 ' + latlng.getLat() + ', 경도 ' + latlng.getLng() + '입니다</p>';
+				    var resultDiv = document.getElementById('result');
+				    resultDiv.innerHTML = message;
+
+				var lat1 = latlng.getLat();
+				var lon1 = latlng.getLng();
+				var test11 = new Array();
+				for(var i = 0; i<positions.length; i++){
+					var lat2 = test[i].lat;
+					var lon2 = test[i].lon;
+					var name = test[i].location;
+
+			function calcDistance(lat1, lon1, lat2, lon2)
+		      {
+		        var theta = lon1 - lon2;
+		        dist = Math.sin(deg2rad(lat1)) * Math.sin(deg2rad(lat2)) + Math.cos(deg2rad(lat1))
+		              * Math.cos(deg2rad(lat2)) * Math.cos(deg2rad(theta));
+		        dist = Math.acos(dist);
+		        dist = rad2deg(dist);
+		        dist = dist * 60 * 1.1515;
+		        dist = dist * 1.609344;
+		        return Number(dist*1000).toFixed(2);
+		      }
+					var resultDiv = document.getElementById('result12');
+					resultDiv.innerHTML = calcDistance(lat1, lon1, lat2, lon2)/1000 +name;
+					console.log(calcDistance(lat1, lon1, lat2, lon2)/1000 +name);
+		      function deg2rad(deg) {
+		        return (deg * Math.PI / 180);
+		      }
+		      function rad2deg(rad) {
+		        return (rad * 180 / Math.PI);
+		      }
+			}
+	});
+
+			var imageSrc = "/timmarker.png";
+			var marker2 = new Array();
+			var info2 = new Array();
+				for (var i = 0; i <positions.length; i ++) {
+						var imageSize = new daum.maps.Size(24, 24);
+			(function(i){
+						var markerImage = new daum.maps.MarkerImage(imageSrc, imageSize);
+
+						var tempmarker = new daum.maps.Marker({
+								map: map,
+								position: positions[i].latlng,
+								title : positions[i].title,
+								image : markerImage
+						});
+
+			marker2.push(tempmarker);
+			var tempinfo = new daum.maps.InfoWindow({
+							 position: marker2[i].getPosition(),
+							 content: iwContent[i],
+							 removable: true,
+							 disableAutoPan: true
+						 });
+
+			info2.push(tempinfo);
+						daum.maps.event.addListener(marker2[i], "click", function(){
+						 info2[i].open(map, marker2[i]);
+						});
+			})(i);
+				}
+			});
+			// 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
+			var mapTypeControl = new daum.maps.MapTypeControl();
+
+			// 지도에 컨트롤을 추가해야 지도위에 표시됩니다
+			// daum.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
+			map.addControl(mapTypeControl, daum.maps.ControlPosition.TOPRIGHT);
+
+			// 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
+			var zoomControl = new daum.maps.ZoomControl();
+			map.addControl(zoomControl, daum.maps.ControlPosition.RIGHT);
+
+					</script>
+					<span id ="result"> </span>
+					<span id ="result12"> </span>
+					</table>
 
 
-        //마커이미지
-        var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
-        var icons = {
-          tim: {
-            icon: '/timmarker.png'
-          },
-          info: {
-            icon: iconBase + 'info-i_maps.png'
-          }
-        };
-
-        //여러개마크찍기
-        function addMarker(feature) {
-         var marker = new google.maps.Marker({
-           position: feature.position,
-           icon: icons[feature.type].icon,
-           map: map
-         });
-       }
-
-       //여러마크자료
-       var features = [
-          {
-            position: new google.maps.LatLng(37.5273289, 126.93496019999998),  //한강
-            type: 'tim'
-          }, {
-            position: new google.maps.LatLng(37.565784, 126.93857200000002), //연대
-            type: 'tim'
-          }];
-
-          for (var i = 0, feature; feature = features[i]; i++) {
-          addMarker(feature);
-        }
+	<footer>
 
 
-        //정보넣기
-        var contentString = '<div id="content">'+
-            '<div id="siteNotice">'+
-            '</div>'+
-            '<h1 id="firstHeading" class="firstHeading">인천</h1>'+
-            '<div id="bodyContent">'+
-            '<p><b>인천</b>, </p>'+
-            '<p>인첩입니다: 인천, '+
-            '</p>'+
-            '</div>'+
-            '</div>';
+		<div class="copyrights wrapper">
+			Copyright © 2017. All Rights Reserved.
+		</div>
+	</footer><!--  end footer  -->
 
-
-
-
-        //정보부르기
-        var infowindow = new google.maps.InfoWindow({
-          content: contentString
-
-        });
-
-
-
-        //지도에위치찍기
-        var marker = new google.maps.Marker({
-          position: new google.maps.LatLng(37.4562557, 126.70520620000002),  //위치 위도경도넣어도됨icn,
-          map: map,
-          draggable: false,//드래그가능하게
-          animation: google.maps.Animation.DROP //움직이는 마크
-        });
-
-        //누르면정보보기
-        marker.addListener('click', function() {
-          infowindow.open(map, marker);
-        });
-
-
-        //떨어지는마크
-         marker.addListener('click', toggleBounce);
-         function toggleBounce() {
-           if (marker.getAnimation() !== null) {
-             marker.setAnimation(null);
-           } else {
-             marker.setAnimation(google.maps.Animation.BOUNCE);
-           }
-         }
-      }
-    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDq-v531pl0t0Ttfz8ABn3nckwT373jaRA&callback=initMap"
-    async defer></script>
-  </body>
+</body>
 </html>

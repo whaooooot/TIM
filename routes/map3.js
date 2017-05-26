@@ -33,7 +33,7 @@ module.exports = function(app){
 
   //다음지도 api
    route.get('/map3', function(req, res){
-      pool.query('select * from map', function(error, rows, fields){
+      pool.query('SELECT * FROM map', function(error, rows, fields){
         if(error){
           console.log('error : ', error.message);
         }else{
