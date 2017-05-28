@@ -1,12 +1,178 @@
 <html>
+
 <head>
-<meta http-equiv="Content-type: application/json">
+    <meta charset="utf-8">
+    <!-- This file has been downloaded from Bootsnipp.com. Enjoy! -->
+    <title>Simple User Profile  - Bootsnipp.com</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
+
+    <style type="text/css">
+        .user-row {
+    margin-bottom: 14px;
+}
+
+.user-row:last-child {
+    margin-bottom: 0;
+}
+
+.dropdown-user {
+    margin: 13px 0;
+    padding: 5px;
+    height: 100%;
+}
+
+.dropdown-user:hover {
+    cursor: pointer;
+}
+
+.table-user-information > tbody > tr {
+    border-top: 1px solid rgb(221, 221, 221);
+}
+
+.table-user-information > tbody > tr:first-child {
+    border-top: 0;
+}
+
+
+.table-user-information > tbody > tr > td {
+    border-top: 0;
+}
+.toppad
+{margin-top:20px;
+}
+
+.row > .column {
+padding: 0 8px;
+}
+
+.row:after {
+content: "";
+display: table;
+clear: both;
+}
+
+.column {
+float: left;
+width: 25%;
+}
+
+/* The Modal (background) */
+.modal {
+display: none;
+position: fixed;
+z-index: 1;
+padding-top: 1000x;
+left: 0;
+top: 0;
+width: 100%;
+height: 100%;
+overflow: auto;
+background-color: black;
+}
+
+/* Modal Content */
+.modal-content {
+position: relative;
+background-color: #fefefe;
+margin: auto;
+padding: 0;
+width: 90%;
+max-width: 1200px;
+}
+
+/* The Close Button */
+.close {
+color: blue;
+position: absolute;
+top: 10px;
+right: 25px;
+font-size: 35px;
+font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+color: #999;
+text-decoration: none;
+cursor: pointer;
+}
+
+.mySlides {
+display: none;
+}
+
+/* Next & previous buttons */
+.prev,
+.next {
+cursor: pointer;
+position: absolute;
+top: 50%;
+width: auto;
+padding: 16px;
+margin-top: -50px;
+color: white;
+font-weight: bold;
+font-size: 20px;
+transition: 0.6s ease;
+border-radius: 0 3px 3px 0;
+user-select: none;
+-webkit-user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+right: 0;
+border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover,
+.next:hover {
+background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+color: #121212;
+font-size: 20px;
+padding: 8px 12px;
+position: absolute;
+top: 0;
+}
+
+.caption-container {
+text-align: center;
+background-color: black;
+padding: 2px 16px;
+color: white;
+}
+
+img.demo {
+opacity: 0.6;
+}
+
+.active,
+.demo:hover {
+opacity: 1;
+}
+
+img.hover-shadow {
+transition: 0.3s
+}
+
+.hover-shadow:hover {
+box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
+}
+</style>
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
 </head>
+
 <body>
 
   <h1>Tim homepage 영화페이지</h1>
-
-   <h1>Hello, 영화정보페이지</h1>
 
    <div id="add"></div>
    <!--<p id="demo" class="demo"></p>
@@ -39,47 +205,45 @@
        var photo2 = data['channel']['item']['1']['photo2']['content'];
        var photo3 = data['channel']['item']['1']['photo3']['content'];
        var photo4 = data['channel']['item']['1']['photo4']['content'];
+       var photo5 = data['channel']['item']['1']['photo5']['content'];
        var story = data['channel']['item']['1']['story']['0'];
        var thumbnail = data['channel']['item']['1']['thumbnail']['0']['content'];
        var title = data['channel']['item']['1']['title']['0'];
        var video = data['channel']['item']['1']['video']['0']['link'];
 
-       $('#qq').append("<img src= "+thumbnail+" >"+
-                       //"<p id='demo' class='demo'></p>예고편:" + "<embed src= "+video+" ></embed>"+
-                       //"<iframe></iframe>",{'src':video , 'id' :'demo', 'class':'demo'}+
-                       //$('.tt').append($('<iframe></iframe>',{'src':video,'id':'video-player','width':'350','height':'220','controls':'controls', 'preload':'metadata','frameborder':0, 'scrolling':'auto', 'allowfullscreen': true})).css({'margin':'2px'});
+      //  $('#qq').append(//"<img src= "+thumbnail+" >"+
+      //                  //"<p id='demo' class='demo'></p>예고편:" + "<embed src= "+video+" ></embed>"+
+      //                  //"<iframe></iframe>",{'src':video , 'id' :'demo', 'class':'demo'}+
+      //                  //$('.tt').append($('<iframe></iframe>',{'src':video,'id':'video-player','width':'350','height':'220','controls':'controls', 'preload':'metadata','frameborder':0, 'scrolling':'auto', 'allowfullscreen': true})).css({'margin':'2px'});
+       //
+      //                  "<p id='demo' class='demo'></p>스틸컷:" + "<img src= "+photo1+" >"+
+      //                  "<p id='demo' class='demo'></p>스틸컷:" + "<img src= "+photo2+" >"+
+      //                  "<p id='demo' class='demo'></p>스틸컷:" + "<img src= "+photo3+" >"+
+      //                  "<p id='demo' class='demo'></p>스틸컷:" + "<img src= "+photo4+" >"
+      //                  +"<table>"+"<tr>"+"<td>"+"</td>"+"</tr>"   +    "</table>"
+      //                );
 
-                       "<p id='demo' class='demo'></p>스틸컷:" + "<img src= "+photo1+" >"+
-                       "<p id='demo' class='demo'></p>스틸컷:" + "<img src= "+photo2+" >"+
-                       "<p id='demo' class='demo'></p>스틸컷:" + "<img src= "+photo3+" >"+
-                       "<p id='demo' class='demo'></p>스틸컷:" + "<img src= "+photo4+" >"
-                     );
-
-
-
-
-
-               $('#add').append(
-         "<p id='demo' class='demo'></p>제목:" + title['content']+
-         "<p id='demo' class='demo'></p>영어제목:" + eng_title['content']+
-         "<p id='demo' class='demo'></p>개봉날짜:" + open_info['0']['content']+
-         "<p id='demo' class='demo'></p>감독:" + director['content']+
-         "<p id='demo' class='demo'></p>배우:" + actor['actor']['0']['content']+
-         "<p id='demo' class='demo'></p>배우:" + actor['actor']['1']['content']+
-         "<p id='demo' class='demo'></p>배우:" + actor['actor']['2']['content']+
-         "<p id='demo' class='demo'></p>배우:" + actor['actor']['3']['content']+
-         "<p id='demo' class='demo'></p>배우:" + actor['actor']['4']['content']+
-         "<p id='demo' class='demo'></p>장르:" + genre['content']+
-         "<p id='demo' class='demo'></p>관람등급:" + open_info['1']['content']+
-         "<p id='demo' class='demo'></p>러닝타임:" + open_info['2']['content']+
-         "<p id='demo' class='demo'></p>별등급:" + grades['content']+
-         "<p id='demo' class='demo'></p>국가:" + nation['content']+
-         //"<p id='demo' class='demo'></p>포토1:" + photo2+
-         "<p id='demo' class='demo'></p>스토리:" + story['content']
-         //"<p id='demo' class='demo'></p>포스터:" + thumbnail+
-         //"<p id='demo' class='demo'></p>예고편:" + video
-
-               );
+        //        $('#add').append(
+        //  //"<p id='demo' class='demo'></p>제목:" + title['content']+
+        //  "<p id='demo' class='demo'></p>영어제목:" + eng_title['content']+
+        //  "<p id='demo' class='demo'></p>개봉날짜:" + open_info['0']['content']+
+        //  "<p id='demo' class='demo'></p>감독:" + director['content']+
+        //  "<p id='demo' class='demo'></p>배우:" + actor['actor']['0']['content']+
+        //  "<p id='demo' class='demo'></p>배우:" + actor['actor']['1']['content']+
+        //  "<p id='demo' class='demo'></p>배우:" + actor['actor']['2']['content']+
+        //  "<p id='demo' class='demo'></p>배우:" + actor['actor']['3']['content']+
+        //  "<p id='demo' class='demo'></p>배우:" + actor['actor']['4']['content']+
+        //  "<p id='demo' class='demo'></p>장르:" + genre['content']+
+        //  "<p id='demo' class='demo'></p>관람등급:" + open_info['1']['content']+
+        //  "<p id='demo' class='demo'></p>러닝타임:" + open_info['2']['content']+
+        //  "<p id='demo' class='demo'></p>별등급:" + grades['content']+
+        //  "<p id='demo' class='demo'></p>국가:" + nation['content']+
+        //  //"<p id='demo' class='demo'></p>포토1:" + photo2+
+        //  "<p id='demo' class='demo'></p>스토리:" + story['content']
+        //  //"<p id='demo' class='demo'></p>포스터:" + thumbnail+
+        //  //"<p id='demo' class='demo'></p>예고편:" + video
+         //
+        //        );
 
                //for(count in actor){
                //   console.log(actor[count].content);
@@ -90,16 +254,250 @@
 
               //console.log(mchannel.actor['0']['content']);
 
+              $(".poster").append("<img src= "+thumbnail+" >");
+              $(".title").append(title['content']);
+              $(".eng_title").append(eng_title['content']);
+              $(".open_info").append(open_info['0']['content']);
+              $(".director").append(director['content']);
+              $(".actor").append(actor['actor']['0']['content']+","+actor['actor']['1']['content']+","+actor['actor']['2']['content']+","+actor['actor']['3']['content']+","+actor['actor']['4']['content']);
+              $(".genre").append(genre['content']);
+              $(".grade").append(open_info['1']['content']);
+              $(".time").append(open_info['2']['content']);
+              $(".star").append(grades['content']);
+              $(".nation").append(nation['content']);
+              $(".story").append(story['content']);
+              $(".p1").append("<img src= "+photo1+" >");
+              $(".p2").append("<img src= "+photo2+" >");
+              $(".p3").append("<img src= "+photo3+" >");
+              $(".p4").append("<img src= "+photo4+" >");
+              $(".p5").append("<img src= "+photo5+" >");
+
             }
          });
       });
 
    </script>
 
-   <div id =qq>   </div>
-      <div id =tt>   </div>
+
+
+   <!-- <div id =qq>   </div>
+      <div id =tt>   </div> -->
+
+
+
+            <div class="row">
+
+              <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
+
+
+                <div width=1000px class="panel panel-info">
+                  <div class="panel-heading">
+                    <h3 class="panel-title">영화정보</h3>
+                  </div>
+                  <div class="panel-body">
+                    <div class="row">
+                      <div  class="poster" align="center">  </div>
+                      <br>
+
+                        <table class="table table-user-information">
+                          <tbody>
+                            <tr>
+                              <th width=300px>제목:</th>
+                              <td class="title"></td>
+                            </tr>
+                            <tr>
+                              <th>영어 제목:</th>
+                              <td class="eng_title"></td>
+                            </tr>
+                            <tr>
+                              <th>개봉 날짜:</th>
+                              <td class="open_info"></td>
+                            </tr>
+                             <tr>
+                                     <th>감독:</th>
+                                     <td class="director"></td>
+                            </tr>
+                              <tr>
+                                <th>배우:</th>
+                                <td class="actor"></td>
+                            </tr>
+                            <tr>
+                              <<th>장르:</th>
+                              <td class="genre"></td>
+                            </tr>
+                            <tr>
+                            <th>관람등급:</th>
+                            <td class="grade"></td>
+                          </tr>
+                          <tr>
+                          <th>러닝타임:</th>
+                          <td class="time"></td>
+                        </tr>
+                        <tr>
+                        <th>평점:</th>
+                        <td class="star"></td>
+                      </tr>
+                      <tr>
+                      <th>국가:</th>
+                      <td class="nation"></td>
+                    </tr>
+                    <tr>
+                    <th>줄거리:</th>
+                    <td  width=2000px class="story"></td>
+                  </tr>
+
+                          </tbody>
+                        </table>
+
+                        <a href="#" class="btn btn-primary">미정</a>
+                        <br>
+
+
+                    </div>
+                  </div>
+                       <div class="panel-footer">
+                              <a data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary">미정</a>
+                              <span class="pull-right">
+                                  <a href="edit.html" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i>  여행지</a>
+                                  <a href="/test" data-original-title="Remove this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger">뒤로가기</a>
+                              </span>
+                          </div>
+
+                </div>
+              </div>
+            </div>
+
+<h4 align="center">스틸컷</h4>
+
+          <div class="container">
+              <div class="row">
+            <div class="column">
+              <div  width=200px height=200px class="p1"  onclick="openModal();currentSlide(1)"class="hover-shadow">
+              </div>
+            </div>
+            <div class="column">
+              <div  width=200px height=200px class="p2"  onclick="openModal();currentSlide(2)"class="hover-shadow">
+              </div>
+            </div>
+            <div class="column">
+              <div  width=200px height=200px class="p3"  onclick="openModal();currentSlide(3)"class="hover-shadow">
+              </div>
+              </div>
+            <div class="column">
+              <div  width=200px height=200px class="p4"  onclick="openModal();currentSlide(4)"class="hover-shadow">
+              </div>
+            </div>
+
+          </div>
+
+
+          <div id="myModal" class="modal">
+            <span class="close cursor" onclick="closeModal()">×</span>
+            <div class="modal-content" align="center">
+
+              <div class="mySlides">
+                <div class="numbertext">1 / 4</div>
+                <div class="p1" style="width:100%">
+                </div>
+              </div>
+
+              <div class="mySlides">
+                <div class="numbertext">2 / 4</div>
+                <div class="p2" style="width:100%">
+                </div>          </div>
+
+              <div class="mySlides">
+                <div class="numbertext">3 / 4</div>
+                <div class="p3" style="width:100%">
+                </div>            </div>
+
+              <div class="mySlides">
+                <div class="numbertext">4 / 4</div>
+                <div class="p4" style="width:100%">
+                </div>            </div>
+
+
+              <a class="prev"  onclick="plusSlides(-1)">❮</a>
+              <a class="next"  onclick="plusSlides(1)">❯</a>
+
+              <div class="caption-container">
+                <p id="caption"></p>
+              </div>
+
+              <div class="column">
+                <div class="p1" style="width:100px;" onclick="currentSlide(1)">
+                </div>
+              </div>
+
+              <div class="column">
+                <div class="p2" style="width:200px;" onclick="currentSlide(2)">
+                </div>  </div>
+
+              <div class="column">
+                <div class="p3" style="width:300px;" onclick="currentSlide(3)">
+                </div>  </div>
+
+              <div class="column">
+                <div class="p4" style="width:100%;" onclick="currentSlide(4)">
+                </div>  </div>
+            </div>
+          </div>
+          </div>
+
+          <script type="text/javascript">
+          function openModal() {
+            document.getElementById('myModal').style.display = "block";
+          }
+
+          function closeModal() {
+            document.getElementById('myModal').style.display = "none";
+          }
+
+          var slideIndex = 1;
+          showSlides(slideIndex);
+
+          function plusSlides(n) {
+            showSlides(slideIndex += n);
+          }
+
+          function currentSlide(n) {
+            showSlides(slideIndex = n);
+          }
+
+          function showSlides(n) {
+            var i;
+            var slides = document.getElementsByClassName("mySlides");
+            var dots = document.getElementsByClassName("demo");
+            var captionText = document.getElementById("caption");
+            if (n > slides.length) {slideIndex = 1}
+            if (n < 1) {slideIndex = slides.length}
+            for (i = 0; i < slides.length; i++) {
+              slides[i].style.display = "none";
+            }
+            for (i = 0; i < dots.length; i++) {
+              dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slides[slideIndex-1].style.display = "block";
+            dots[slideIndex-1].className += " active";
+            captionText.innerHTML = dots[slideIndex-1].alt;
+          }
+          </script>
+
+      </body>
+
 
 
    <audio src="./music/괴물.mp3" autoplay="true">
+
+
+
+
+
+
+
+
+
+
+
    </body>
    </html>

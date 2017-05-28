@@ -161,12 +161,7 @@ if (cluster.isMaster) { //클러스터설정
     ));
 
 
-    //map
-    var map2 = require('./routes/map2')(app);   //app은 app도쓰겟다 //경로
-    app.use('', map2); //앞에 붙이는거 통일하는느낌
-    //map
-    var map = require('./routes/map')(app);   //app은 app도쓰겟다 //경로
-    app.use('', map); //앞에 붙이는거 통일하는느낌
+
     //로그아웃모듈
     var authlogout = require('./routes/authlogout')(app);   //auth모듈불러오기 app은 app도쓰겟다 //경로
     app.use('/auth', authlogout); //앞에 붙이는거 통일하는느낌
