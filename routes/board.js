@@ -42,8 +42,10 @@ route.get('/', function(req, res, next) {
   }
 });
 
+
 route.get('/blist/:page', function(req,res,next){
 
+    var page = req.params.page;
     pool.getConnection(function (err, connection) {
         // Use the connection
         var boardselect = "SELECT idx, creator_id, title, date_format(modidate,'%Y-%m-%d %H:%i:%s') modidate,hit FROM board";
@@ -51,7 +53,28 @@ route.get('/blist/:page', function(req,res,next){
             if (err){ console.error("err : " + err);}
             else{
             console.log("rows : " + JSON.stringify(rows));
-            res.render('blist', {title: ' 게시판 전체 글 조회', rows: rows});
+
+            res.render('blist', {title: '게시판 전체 글 조회', rows: rows, page: page, leng : Object.keys(rows).length-1, page_num:8, pass: true });
+            connection.release();
+
+          }
+        });
+    });
+});
+
+
+route.get('/blistuser/:page', function(req,res,next){
+
+    var page = req.params.page;
+    pool.getConnection(function (err, connection) {
+        // Use the connection
+        var boardselect = "SELECT idx, creator_id, title, date_format(modidate,'%Y-%m-%d %H:%i:%s') modidate,hit FROM board";
+        connection.query(boardselect, function (err, rows) {
+            if (err){ console.error("err : " + err);}
+            else{
+            console.log("rows : " + JSON.stringify(rows));
+
+            res.render('blistuser', {title: '게시판 전체 글 조회', rows: rows, page: page, leng : Object.keys(rows).length-1, page_num:8, pass: true });
             connection.release();
 
           }
@@ -96,6 +119,8 @@ route.post('/write', function(req,res,next){
 });
 
 
+
+
 //글 조회
 route.get('/read/:idx',function(req,res,next)
 {
@@ -115,7 +140,14 @@ route.get('/read/:idx',function(req,res,next)
                         });
             if(err) console.error(err);
             console.log("1개 글 조회 결과 확인 : ",row);
+            
+            if(req.user && req.user.displayName){ //정보불러옴
+              if(req.user.username == 'admin'){
             res.render('read', {title:"글 조회", row:row[0]});
+            }else{
+            res.render('readuser', {title:"글 조회", row:row[0]});
+            }
+          }
             connection.release();
         })
     });

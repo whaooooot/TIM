@@ -86,8 +86,6 @@ used to vertically center elements, may need modification if you're not using de
                   <div class="col col-xs-6 text-right">
 
                     <a href="/welcome"  class="btn btn-sm btn-primary btn-create">뒤로가기</a>
-
-                    <a href="/board/write"  class="btn btn-sm btn-primary btn-create">글쓰기</a>
                   </div>
                 </div>
               </div>
@@ -106,9 +104,14 @@ used to vertically center elements, may need modification if you're not using de
 
                   <tbody>
                     <%
-                         for(var i=0; i<rows.length; i++)
+                         for(var i=leng-((page*page_num)-page_num); i>leng-(page*page_num); i--)
                          {
-                            var oneItem = rows[i];
+                           if(i<0){
+                             break;
+                           }else{
+                               var oneItem = rows[i];
+
+
                     %>
                           <tr>
                             <td><%=oneItem.idx%></td>
@@ -119,30 +122,36 @@ used to vertically center elements, may need modification if you're not using de
                           </tr>
                           <%
                                }
+                             }
                           %>
                         </tbody>
                 </table>
 
               </div>
               <div class="panel-footer">
+
                 <div class="row">
-                  <div class="col col-xs-4">Page 1
+
+                  <div class="col col-xs-4">Page
                   </div>
+
                   <div class="col col-xs-8">
+                    <%
+                    for(var j=0;j<rows.length/8;j++){%>
                     <ul class="pagination hidden-xs pull-right">
-                      <li><a href="#">1</a></li>
-                      <!--<li><a href="#">2</a></li>
-                      <li><a href="#">3</a></li>
-                      <li><a href="#">4</a></li>
-                      <li><a href="#">5</a></li>-->
+                      <li><a href="/board/blistuser/<%=j+1%>"><%=j+1 %></a></li>
                     </ul>
+                    <%  }
+                      %>
                     <ul class="pagination visible-xs pull-right">
                         <li><a href="#">&laquo;</a></li>
                         <li><a href="#">&raquo;</a></li>
                     </ul>
 
                   </div>
+
                 </div>
+
               </div>
             </div>
 

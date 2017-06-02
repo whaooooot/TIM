@@ -185,11 +185,13 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
 
    <script>
 
-      $(function(){
+      $(function(datas){
 
          $.ajax({
+
+
             type:'get',
-            url:'https://apis.daum.net/contents/movie?apikey=24baf278d4fb55931b843f0cca64f3e1&q=Thehost&output=json',
+            url:'https://apis.daum.net/contents/movie?apikey=24baf278d4fb55931b843f0cca64f3e1&q= +"Monster"+ &output=json',
             dataType:'jsonp',
             success:function(data){
 
@@ -349,7 +351,7 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
                           </tbody>
                         </table>
 
-                        <a href="#" class="btn btn-primary">미정</a>
+                         <a href="#" class="btn btn-primary">미정</a>
                         <br>
 
 
@@ -397,23 +399,23 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
 
               <div class="mySlides">
                 <div class="numbertext">1 / 4</div>
-                <div class="p1" style="width:100%">
+                <div class="p1" >
                 </div>
               </div>
 
               <div class="mySlides">
                 <div class="numbertext">2 / 4</div>
-                <div class="p2" style="width:100%">
+                <div class="p2" >
                 </div>          </div>
 
               <div class="mySlides">
                 <div class="numbertext">3 / 4</div>
-                <div class="p3" style="width:100%">
+                <div class="p3" >
                 </div>            </div>
 
               <div class="mySlides">
                 <div class="numbertext">4 / 4</div>
-                <div class="p4" style="width:100%">
+                <div class="p4" >
                 </div>            </div>
 
 
@@ -425,20 +427,20 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
               </div>
 
               <div class="column">
-                <div class="p1" style="width:100px;" onclick="currentSlide(1)">
+                <div class="p1"  onclick="currentSlide(1)">
                 </div>
               </div>
 
               <div class="column">
-                <div class="p2" style="width:200px;" onclick="currentSlide(2)">
+                <div class="p2" onclick="currentSlide(2)">
                 </div>  </div>
 
               <div class="column">
-                <div class="p3" style="width:300px;" onclick="currentSlide(3)">
+                <div class="p3"  onclick="currentSlide(3)">
                 </div>  </div>
 
               <div class="column">
-                <div class="p4" style="width:100%;" onclick="currentSlide(4)">
+                <div class="p4"  onclick="currentSlide(4)">
                 </div>  </div>
             </div>
           </div>
