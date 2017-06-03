@@ -1,157 +1,245 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>test</title>
 	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	<title>Tim map</title>
+
+	<!-- Bootstrap -->
+	<link href="../register/css/bootstrap.min.css" rel="stylesheet">
+	<!-- font awesome -->
+	<link href="../register/css/font-awesome.min.css" rel="stylesheet">
+	<!-- Custom Style -->
+	<link href="../register/css/style.css" rel="stylesheet">
+
+	<meta name="description" content="This is a free Bootstrap landing page theme created for BootstrapZero. Feature video background and one page design." />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="generator" content="Codeply">
+	<link rel="stylesheet" href="../landing-zero-theme/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="../landing-zero-theme/css/animate.min.css" />
+	<link rel="stylesheet" href="../landing-zero-theme/css/ionicons.min.css" />
+	<link rel="stylesheet" href="../landing-zero-theme/css/styles.css" />
+
 	<meta name="author" content="pixelhint.com">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.1.2/css/material-design-iconic-font.min.css">
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous">	<script type="text/javascript"></script>
-
   </script>
   <style>
 	html, body {height:100%}</style>
 
 </head>
-<body>
 
+	<body>
+		<nav id="topNav" class="navbar navbar-default navbar-fixed-top">
+				<div class="container-fluid">
+						<div class="navbar-header">
+								<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar">
+										<span class="sr-only">Toggle navigation</span>
+										<span class="icon-bar"></span>
+										<span class="icon-bar"></span>
+										<span class="icon-bar"></span>
+								</button>
+									<div class="navbar-collapse collapse" id="bs-navbar">
+										<ul class="nav navbar-nav">
+										<li>
+											<a class="navbar-brand page-scroll" href="./welcome">
+												<li>
+												<img src="timmarker.png" class="img-responsive" width="40" height="40">
+												</li>
+										<!--  <i class="ion-ios-analytics-outline"></i> -->               Travel In Movie</a>
 
-		<br>
+										</li>
+								</ul>
+							</div>
+					</div>
 
-		<table align="center">
-			<div id="map" style="width:100%;height:70%;"></div>
+						<div class="navbar-collapse collapse" id="bs-navbar">
+								<ul class="nav navbar-nav">
+										<li>
+												<a class="page-scroll" href="/board">Notice</a>
+										</li>
+										<li>
+												<a class="page-scroll" href="/map3">map</a>
+										</li>
+										<li>
+												<a class="page-scroll" href="#last">MOVIE</a>
+										</li>
+										<li>
+												<a class="page-scroll" href="#last">TRAVEL</a>
+										</li>
+								</ul>
+								<ul class="nav navbar-nav navbar-right">
+										<li>
+												<a class="page-scroll" data-toggle="modal" title="A free Bootstrap video landing theme" href="/mlist">회원정보수정</a>
+												</li>
+												<li>
+												<a class="page-scroll" data-toggle="modal" title="A free Bootstrap video landing theme">반갑습니다, <%=u_id%> 님 </a>
+										</li>
+										<li>
+										<a class="page-scroll" data-toggle="modal" title="A free Bootstrap video landing theme" href="/auth/logout">logout</a>
+								</li>
+								</ul>
+						</div>
+				</div>
+		</nav>
+    <br><br><br>
+		    <div class="container">
+		      <div class="row">
+		        <div class="page-header">
+		          <h2>Tim Map</h2>
+		        </div>
+		        </div>
 
-			<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=24baf278d4fb55931b843f0cca64f3e1"></script>
-			<script>
-			var mapContainer = document.getElementById('map'), // 지도를 표시할 div
-					mapOption = {
-							center: new daum.maps.LatLng(37.649158, 127.063841), // 지도의 중심좌표
-							level: 5 // 지도의 확대 레벨
+		      </div>
+		    </div>
+
+				<table align="center">
+					<div id="map" style="width:80%;height:70%; margin-left:10%;"></div>
+
+					<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=24baf278d4fb55931b843f0cca64f3e1"></script>
+					<script>
+					var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+							mapOption = {
+									center: new daum.maps.LatLng(37.649158, 127.063841), // 지도의 중심좌표
+									level: 5 // 지도의 확대 레벨
+							};
+
+					var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+					// HTML5의 geolocation으로 사용할 수 있는지 확인합니다
+
+					if (navigator.geolocation) {
+							// GeoLocation를 통한 현재접속위치 파악
+							navigator.geolocation.getCurrentPosition(function(position) {
+
+								   var lat = position.coords.latitude, // 위도
+									  lon = position.coords.longitude; // 경도
+									console.log(lat);
+									console.log(lon);
+									var locPosition = new daum.maps.LatLng(lat, lon),
+
+											message =  '<div style="padding:6px;"><h4>현재위치 입니다!</h4><br><a href="http://map.daum.net/link/map/현 위치!, locPosition" style="color:brown" target="_blank">큰지도보기</a> <a href="http://map.daum.net/link/to/현 위치!,locPosition" style="color:brown" target="_blank">길찾기</a></div>'; // 인포윈도우에 표시될 내용입니다
+									// 마커와 인포윈도우를 표시합니다
+									displayMarker(locPosition, message);
+								});
+								function setCenter() {
+										// 이동할 위도 경도 위치를 생성합니다
+										navigator.geolocation.getCurrentPosition(function(position) {
+
+											   var lat = position.coords.latitude, // 위도
+												  lon = position.coords.longitude; // 경도
+										 console.log(lat);
+
+										var moveLatLon = new daum.maps.LatLng(lat, lon);
+										// 지도 중심을 이동 시킵니다
+										map.setCenter(moveLatLon);
+									});
+								}
+					} else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
+
+							var locPosition = new daum.maps.LatLng(37.649158, 127.063841),
+									message = 'geolocation을 사용할수 없습니다.'
+
+							displayMarker(locPosition, message);
+					}
+
+					// 지도에 마커와 인포윈도우를 표시하는 함수입니다
+					function displayMarker(locPosition, message) {
+
+							// 마커를 생성합니다
+							var marker = new daum.maps.Marker({
+									map: map,
+									position: locPosition,
+							});
+
+							var iwContent = message, // 인포윈도우에 표시할 내용
+									iwRemoveable = true;
+
+							// 인포윈도우를 생성합니다
+							var infowindow = new daum.maps.InfoWindow({
+									content : iwContent,
+									removable : iwRemoveable
+							});
+							// 인포윈도우를 마커위에 표시합니다
+							infowindow.open(map, marker);
+							// 지도 중심좌표를 접속위치로 변경합니다
+							map.setCenter(locPosition);
+					}
+
+					$(function(){
+						var positions = new Array();
+						var iwContent = new Array();
+
+						var test = <%-json%>;
+						for(count in test){
+								 positions[count] = {
+												title: test[count].location,
+												latlng: new daum.maps.LatLng(test[count].zzlat, test[count].zzlon)
+								};
+								iwContent[count] = '<div style="padding:5px;">'+test[count].location+' <br> <a href="http://map.daum.net/link/to/tim여행지,'+test[count].zzlat+','+test[count].zzlon+'" style= target="_blank">길찾기</a></div>';
 					};
 
-			var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-			// HTML5의 geolocation으로 사용할 수 있는지 확인합니다
+					var imageSrc = "/timmarker.png";
+					var marker2 = new Array();
+					var info2 = new Array();
+						for (var i = 0; i <positions.length; i ++) {
+								var imageSize = new daum.maps.Size(24, 24);
+					(function(i){
+								var markerImage = new daum.maps.MarkerImage(imageSrc, imageSize);
 
-			if (navigator.geolocation) {
-					// GeoLocation를 통한 현재접속위치 파악
-					navigator.geolocation.getCurrentPosition(function(position) {
+								var tempmarker = new daum.maps.Marker({
+										map: map,
+										position: positions[i].latlng,
+										title : positions[i].title,
+										image : markerImage
+								});
 
-						   var lat = position.coords.latitude, // 위도
-							  lon = position.coords.longitude; // 경도
-							console.log(lat);
-							console.log(lon);
-							var locPosition = new daum.maps.LatLng(lat, lon),
+					marker2.push(tempmarker);
+					var tempinfo = new daum.maps.InfoWindow({
+									 position: marker2[i].getPosition(),
+									 content: iwContent[i],
+									 removable: true,
+									 disableAutoPan: true
+								 });
 
-									message =  '<div style="padding:6px;"><h4>현재위치 입니다!</h4><br><a href="http://map.daum.net/link/map/현 위치!, locPosition" style="color:brown" target="_blank">큰지도보기</a> <a href="http://map.daum.net/link/to/현 위치!,locPosition" style="color:brown" target="_blank">길찾기</a></div>'; // 인포윈도우에 표시될 내용입니다
-							// 마커와 인포윈도우를 표시합니다
-							displayMarker(locPosition, message);
-						});
-						function setCenter() {
-								// 이동할 위도 경도 위치를 생성합니다
-								navigator.geolocation.getCurrentPosition(function(position) {
-
-									   var lat = position.coords.latitude, // 위도
-										  lon = position.coords.longitude; // 경도
-								 console.log(lat);
-
-								var moveLatLon = new daum.maps.LatLng(lat, lon);
-								// 지도 중심을 이동 시킵니다
-								map.setCenter(moveLatLon);
-							});
+					info2.push(tempinfo);
+								daum.maps.event.addListener(marker2[i], "click", function(){
+								 info2[i].open(map, marker2[i]);
+								});
+					})(i);
 						}
-			} else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
-
-					var locPosition = new daum.maps.LatLng(37.649158, 127.063841),
-							message = 'geolocation을 사용할수 없습니다.'
-
-					displayMarker(locPosition, message);
-			}
-
-			// 지도에 마커와 인포윈도우를 표시하는 함수입니다
-			function displayMarker(locPosition, message) {
-
-					// 마커를 생성합니다
-					var marker = new daum.maps.Marker({
-							map: map,
-							position: locPosition,
 					});
+					// 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
+					var mapTypeControl = new daum.maps.MapTypeControl();
 
-					var iwContent = message, // 인포윈도우에 표시할 내용
-							iwRemoveable = true;
+					// 지도에 컨트롤을 추가해야 지도위에 표시됩니다
+					// daum.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
+					map.addControl(mapTypeControl, daum.maps.ControlPosition.TOPRIGHT);
 
-					// 인포윈도우를 생성합니다
-					var infowindow = new daum.maps.InfoWindow({
-							content : iwContent,
-							removable : iwRemoveable
-					});
-					// 인포윈도우를 마커위에 표시합니다
-					infowindow.open(map, marker);
-					// 지도 중심좌표를 접속위치로 변경합니다
-					map.setCenter(locPosition);
-			}
+					// 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
+					var zoomControl = new daum.maps.ZoomControl();
+					map.addControl(zoomControl, daum.maps.ControlPosition.RIGHT);
 
-			$(function(){
-				var positions = new Array();
-				var iwContent = new Array();
-
-				var test = <%-json%>;
-				for(count in test){
-						 positions[count] = {
-										title: test[count].location,
-										latlng: new daum.maps.LatLng(test[count].zzlat, test[count].zzlon)
-						};
-						iwContent[count] = '<div style="padding:5px;">'+test[count].location+' <br> <a href="http://map.daum.net/link/to/tim여행지,'+test[count].zzlat+','+test[count].zzlon+'" style= target="_blank">길찾기</a></div>';
-			};
-
-			var imageSrc = "/timmarker.png";
-			var marker2 = new Array();
-			var info2 = new Array();
-				for (var i = 0; i <positions.length; i ++) {
-						var imageSize = new daum.maps.Size(24, 24);
-			(function(i){
-						var markerImage = new daum.maps.MarkerImage(imageSrc, imageSize);
-
-						var tempmarker = new daum.maps.Marker({
-								map: map,
-								position: positions[i].latlng,
-								title : positions[i].title,
-								image : markerImage
-						});
-
-			marker2.push(tempmarker);
-			var tempinfo = new daum.maps.InfoWindow({
-							 position: marker2[i].getPosition(),
-							 content: iwContent[i],
-							 removable: true,
-							 disableAutoPan: true
-						 });
-
-			info2.push(tempinfo);
-						daum.maps.event.addListener(marker2[i], "click", function(){
-						 info2[i].open(map, marker2[i]);
-						});
-			})(i);
-				}
-			});
-			// 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
-			var mapTypeControl = new daum.maps.MapTypeControl();
-
-			// 지도에 컨트롤을 추가해야 지도위에 표시됩니다
-			// daum.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
-			map.addControl(mapTypeControl, daum.maps.ControlPosition.TOPRIGHT);
-
-			// 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
-			var zoomControl = new daum.maps.ZoomControl();
-			map.addControl(zoomControl, daum.maps.ControlPosition.RIGHT);
-
-					</script>
-					<span id ="result"> </span>
-					<span id ="result12"> </span>
-					<button  onclick="setCenter()">현재위치</button>
-		</table>
+							</script>
+							<span id ="result"> </span>
+							<span id ="result12"> </span>
+							<button style="margin-left:10%;" onclick="setCenter()">현재위치</button>
+				</table>
 
 
 
+
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<!-- Include all compiled plugins (below), or include individual files as needed -->
+		<script src="../register/js/bootstrap.min.js"></script>
+		<!--scripts loaded here -->
+		<script src="../landing-zero-theme/js/jquery.min.js"></script>
+		<script src="../landing-zero-theme/js/bootstrap.min.js"></script>
+		<script src="../landing-zero-theme/js/jquery.easing.min.js"></script>
+		<script src="../landing-zero-theme/js/wow.js"></script>
+		<script src="../landing-zero-theme/js/scripts.js"></script>
 </body>
 </html>

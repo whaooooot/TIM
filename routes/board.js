@@ -43,8 +43,11 @@ route.get('/', function(req, res, next) {
 });
 
 
-route.get('/blist/:page', function(req,res,next){
 
+
+route.get('/blist/:page', function(req,res,next){
+  if(req.user && req.user.displayName){ //정보불러옴
+    var u_id = req.user.username;
     var page = req.params.page;
     pool.getConnection(function (err, connection) {
         // Use the connection
@@ -54,17 +57,19 @@ route.get('/blist/:page', function(req,res,next){
             else{
             console.log("rows : " + JSON.stringify(rows));
 
-            res.render('blist', {title: '게시판 전체 글 조회', rows: rows, page: page, leng : Object.keys(rows).length-1, page_num:8, pass: true });
+            res.render('blist', {title: '게시판 전체 글 조회', u_id:u_id,rows: rows, page: page, leng : Object.keys(rows).length-1, page_num:8, pass: true });
             connection.release();
 
           }
         });
     });
+}
 });
 
 
 route.get('/blistuser/:page', function(req,res,next){
-
+  if(req.user && req.user.displayName){ //정보불러옴
+    var u_id = req.user.username;
     var page = req.params.page;
     pool.getConnection(function (err, connection) {
         // Use the connection
@@ -74,12 +79,13 @@ route.get('/blistuser/:page', function(req,res,next){
             else{
             console.log("rows : " + JSON.stringify(rows));
 
-            res.render('blistuser', {title: '게시판 전체 글 조회', rows: rows, page: page, leng : Object.keys(rows).length-1, page_num:8, pass: true });
+            res.render('blistuser', {title: '게시판 전체 글 조회', u_id:u_id,rows: rows, page: page, leng : Object.keys(rows).length-1, page_num:8, pass: true });
             connection.release();
 
           }
         });
     });
+}
 });
 
 
@@ -123,7 +129,8 @@ route.post('/write', function(req,res,next){
 
 //글 조회
 route.get('/read/:idx',function(req,res,next)
-{
+{  if(req.user && req.user.displayName){ //정보불러옴
+    var u_id = req.user.username;
     var idx = req.params.idx;
 
     pool.getConnection(function(err,connection)
@@ -140,17 +147,18 @@ route.get('/read/:idx',function(req,res,next)
                         });
             if(err) console.error(err);
             console.log("1개 글 조회 결과 확인 : ",row);
-            
+
             if(req.user && req.user.displayName){ //정보불러옴
               if(req.user.username == 'admin'){
-            res.render('read', {title:"글 조회", row:row[0]});
+            res.render('read', {title:"글 조회", u_id:u_id,row:row[0]});
             }else{
-            res.render('readuser', {title:"글 조회", row:row[0]});
+            res.render('readuser', {title:"글 조회", u_id:u_id,row:row[0]});
             }
           }
             connection.release();
         })
     });
+}
 });
 
 
@@ -160,6 +168,8 @@ route.get('/read/:idx',function(req,res,next)
 route.get('/update',function(req,res,next)
 
 {
+  if(req.user && req.user.displayName){ //정보불러옴
+      var u_id = req.user.username;
     var idx = req.query.idx;
 
     pool.getConnection(function(err,connection)
@@ -171,12 +181,12 @@ route.get('/update',function(req,res,next)
         {
             if(err) console.error(err);
             console.log("update에서 1개 글 조회 결과 확인 : ",rows);
-            res.render('update', {title:"글 수정", row:rows[0]});
+            res.render('update', {title:"글 수정", row:rows[0],u_id:u_id});
             connection.release();
         });
     });
 
-});
+}});
 
 route.post('/update',function(req,res,next)
 {

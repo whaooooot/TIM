@@ -31,6 +31,8 @@ module.exports = function(app){
 
   //list접속하면 list.ejs보여준다
   route.get( '/mlist', function(req, res){
+    if(req.user && req.user.displayName){ //정보불러옴
+        var u_id = req.user.username;
    fs.readFile('views/mlist.ejs', 'utf8', function(error, data){
       if(error){
           console.log('readFile Error');
@@ -42,13 +44,14 @@ module.exports = function(app){
               }else{
                   //조회결과를 'prodList' 변수에 할당한 후 'list.ejs' 에 전달한다.
                   res.send( ejs.render(data, {
-                      prodList : results }
+                      prodList : results ,u_id:u_id}
                   ));
               }
           });
       }
    })
-  });
+ }
+});
 
   //삭제  localhost:3000/delete/3같은 거에서 id=3인 row 삭제
   route.get('/delete/:id',function(req, res){
@@ -65,6 +68,8 @@ module.exports = function(app){
 
 //수정  localhost:3000/delete/3같은 거에서 id=3인 row 수정
 route.get('/edit/:id', function(req, res){
+  if(req.user && req.user.displayName){ //정보불러옴
+      var u_id = req.user.username;
    fs.readFile('views/edit.ejs', 'utf8', function(error, data){
       pool.query('select * from users where id = ?', [req.params.id],
           function(error, result){
@@ -72,12 +77,13 @@ route.get('/edit/:id', function(req, res){
                 console.log('readFile Error');
              }else{
                 res.send( ejs.render(data, {
-                    product : result}
+                    product : result, u_id:u_id}
                   ));
              }
           }
       );
    })
+}
 });
 
 

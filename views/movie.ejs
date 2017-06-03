@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <!-- This file has been downloaded from Bootsnipp.com. Enjoy! -->
-    <title>Simple User Profile  - Bootsnipp.com</title>
+<title class= "title"></title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
 
@@ -183,17 +183,25 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
      integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
      crossorigin="anonymous"></script>
 
-   <script>
+ <script>
+
+
+
+
+
+   var a = 'https://apis.daum.net/contents/movie?apikey=24baf278d4fb55931b843f0cca64f3e1&q= "+<%=rows[1].moviek%>+" &output=json'
 
       $(function(datas){
 
          $.ajax({
 
-
-            type:'get',
-            url:'https://apis.daum.net/contents/movie?apikey=24baf278d4fb55931b843f0cca64f3e1&q= +"Monster"+ &output=json',
+            type:'post',
+            url:a,
             dataType:'jsonp',
+            async:false, //ajax변수 전역변수로사용
             success:function(data){
+
+
 
        var actor = data['channel']['item']['1'];
        var open_info = data['channel']['item']['1']['open_info'];
@@ -279,15 +287,7 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
       });
 
    </script>
-
-
-
-   <!-- <div id =qq>   </div>
-      <div id =tt>   </div> -->
-
-
-
-            <div class="row">
+          <div class="row">
 
               <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
 
@@ -490,16 +490,6 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
 
 
    <audio src="./music/괴물.mp3" autoplay="true">
-
-
-
-
-
-
-
-
-
-
 
    </body>
    </html>

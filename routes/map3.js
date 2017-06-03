@@ -33,6 +33,8 @@ module.exports = function(app){
 
   //다음지도 api
    route.get('/map3', function(req, res){
+     if(req.user && req.user.displayName){ //정보불러옴
+       var u_id = req.user.username;
       pool.query('SELECT * FROM map', function(error, rows, fields){
         if(error){
           console.log('error : ', error.message);
@@ -40,10 +42,11 @@ module.exports = function(app){
           console.log('디비값', rows);
                   var json = JSON.stringify(rows);
                   //var sessionid = req.user.
-                     res.render('map3', {json});
+                     res.render('map3', {json, u_id : u_id});
                 }
             });
-      });
+      }
+    });
 
   return route;
 

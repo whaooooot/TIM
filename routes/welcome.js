@@ -18,7 +18,7 @@ route.get('/welcome', function(req, res){
       res.render('./welcomeuser',{u_id : u_id, u_faceid : u_faceid});
   }
   } else{
-    res.render('welcomex');
+    res.render('/welcome');
   }
 });
 

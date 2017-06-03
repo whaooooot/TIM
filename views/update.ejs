@@ -1,11 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Bootstrap -->
+  <link href="/register/css/bootstrap.min.css" rel="stylesheet">
+  <!-- font awesome -->
+  <link href="/register/css/font-awesome.min.css" rel="stylesheet">
+  <!-- Custom Style -->
+  <link href="/register/css/style.css" rel="stylesheet">
+
+  <meta name="description" content="This is a free Bootstrap landing page theme created for BootstrapZero. Feature video background and one page design." />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="Codeply">
+  <link rel="stylesheet" href="/landing-zero-theme/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="/landing-zero-theme/css/animate.min.css" />
+  <link rel="stylesheet" href="/landing-zero-theme/css/ionicons.min.css" />
+  <link rel="stylesheet" href="/landing-zero-theme/css/styles.css" />
+
     <meta charset="utf-8">
     <!-- This file has been downloaded from Bootsnipp.com. Enjoy! -->
-    <title>Styled Table - Bootsnipp.com</title>
+    <title>Tim 글쓰기</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
     <script>
         function onWriteSubmit()
         {
@@ -47,6 +61,59 @@
         }
     </script>
     <style type="text/css">
+    .panel-table .panel-body{
+  padding:0;
+  }
+
+  .panel-table .panel-body .table-bordered{
+  border-style: none;
+  margin:0;
+  }
+
+  .panel-table .panel-body .table-bordered > thead > tr > th:first-of-type {
+  text-align:center;
+  width: 100px;
+  }
+
+  .panel-table .panel-body .table-bordered > thead > tr > th:last-of-type,
+  .panel-table .panel-body .table-bordered > tbody > tr > td:last-of-type {
+  border-right: 0px;
+  }
+
+  .panel-table .panel-body .table-bordered > thead > tr > th:first-of-type,
+  .panel-table .panel-body .table-bordered > tbody > tr > td:first-of-type {
+  border-left: 0px;
+  }
+
+  .panel-table .panel-body .table-bordered > tbody > tr:first-of-type > td{
+  border-bottom: 0px;
+  }
+
+  .panel-table .panel-body .table-bordered > thead > tr:first-of-type > th{
+  border-top: 0px;
+  }
+
+  .panel-table .panel-footer .pagination{
+  margin:0;
+  }
+
+  /*
+  used to vertically center elements, may need modification if you're not using default sizes.
+  */
+  .panel-table .panel-footer .col{
+  line-height: 34px;
+  height: 34px;
+  }
+
+  .panel-table .panel-heading .col h3{
+  line-height: 30px;
+  height: 30px;
+  }
+
+  .panel-table .panel-body .table-bordered > tbody > tr > td{
+  line-height: 34px;
+  }
+
         .table-bordered {
 border: 1px solid #dddddd;
 border-collapse: separate;
@@ -57,7 +124,7 @@ border-radius: 4px;
 }
 
 .table {
-width: 100%;
+width: 70%;
 margin-bottom: 20px;
 background-color: transparent;
 border-collapse: collapse;
@@ -129,13 +196,14 @@ border-color: inherit;
 .widget .widget-header h3 {
 top: 2px;
 position: relative;
-left: 10px;
+left: 8px;
+bottom:2px;
 display: inline-block;
 margin-right: 3em;
-font-size: 14px;
+font-size: 20px;
 font-weight: 600;
 color: #555;
-line-height: 18px;
+line-height: 1px;
 text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
 }
 
@@ -161,10 +229,74 @@ td.alignRight {
     <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
 </head>
 <body>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
+<nav id="topNav" class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+              <div class="navbar-collapse collapse" id="bs-navbar">
+                <ul class="nav navbar-nav">
+                <li>
+                  <a class="navbar-brand page-scroll" href="/welcome">
+                    <li>
+                    <img src="/timmarker.png" class="img-responsive" width="40" height="40">
+                    </li>
+                <!--  <i class="ion-ios-analytics-outline"></i> -->               Travel In Movie</a>
 
+                </li>
+            </ul>
+          </div>
+      </div>
+
+        <div class="navbar-collapse collapse" id="bs-navbar">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a class="page-scroll" href="/board">Notice</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="/map3">map</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#last">MOVIE</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#last">TRAVEL</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a class="page-scroll" data-toggle="modal" title="A free Bootstrap video landing theme" href="/mlist">회원정보수정</a>
+                    </li>
+                    <li>
+                    <a class="page-scroll" data-toggle="modal" title="A free Bootstrap video landing theme">반갑습니다, <%=u_id%> 님 </a>
+                </li>
+                <li>
+                <a class="page-scroll" data-toggle="modal" title="A free Bootstrap video landing theme" href="/auth/logout">logout</a>
+            </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<br><br><br>
+    <div class="container">
+      <div class="row">
+        <div class="page-header">
+          <h2>Tim 공지사항</h2>
+        </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
 <div class="span7">
 <div class="widget stacked widget-table action-table">
-  <h1>공지사항</h1>
+
 				<div  class="widget-header">
 					<i class="icon-th-list"></i>
 
@@ -180,43 +312,58 @@ td.alignRight {
     <input type="hidden" name="idx" value="<%=row.idx%>"/>
         <thead>
 							<tr>
-								<th>작성자</th>
+								<th>&nbsp;&nbsp;&nbsp;&nbsp;작성자</th>
                 <td><input type="text" name="creator_id" id="creator_id" value="<%=row.creator_id%>" readonly="readonly" required/></text></td>
-          </tr>
+
+                <tr>
+                  <td><br></td>
+                </tr></tr>
 
 						</thead>
 						<tbody>
 							<tr>
-								<th width="80px">제목</th>
+								<th width="80px">&nbsp;&nbsp;&nbsp;&nbsp;제목</th>
                 <td><input style="width:500px;"  type="text" name="title" id="title" value="<%=row.title%>" required/></td>
-							</tr>
+
+                <tr>
+                  <td><br></td>
+                </tr></tr>
 
 							<tr>
-                <th>내용</th>
+                <th>&nbsp;&nbsp;&nbsp;&nbsp;내용</th>
                 <td><textarea  style="width:500px;"  name="content" id="content" cols="30" rows="10" required><%=row.content%></textarea></td>
-
+                <tr>
+                  <td><br></td>
+                </tr>
 							</tr>
 
               <tr>
-                <th>비밀번호</th>
+                <th>&nbsp;&nbsp;&nbsp;&nbsp;비밀번호</th>
                 <td><input type="password" name="passwd" id="passwd" required/></td>
-
+                <tr>
+                  <td><br></td>
+                </tr>
               </tr>
 
 							<tr>
 								<td>									   </td>
 							<td  class="alignRight">
-                <button class="btn btn-small btn-primary" type="submit">글 수정완료</button>
-              	<a href="/board" class="btn btn-small">글 목록
+                <button class="btn btn-success" type="submit">글 수정완료</button>
+              	<a href="/board" class="btn btn-warning">글 목록
 
 									</a>
 								</td>
 							</tr>
+
+              <tr>
+                <td><br></td>
+              </tr>
 							</tbody>
 						</table>
 
               </form>
-
+</div>
+</div>
 				</div> <!-- /widget-content -->
 
 			</div> <!-- /widget -->
@@ -225,5 +372,16 @@ td.alignRight {
 
 </script>
   </form>
+
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="/register/js/bootstrap.min.js"></script>
+  <!--scripts loaded here -->
+  <script src="/landing-zero-theme/js/jquery.min.js"></script>
+  <script src="/landing-zero-theme/js/bootstrap.min.js"></script>
+  <script src="/landing-zero-theme/js/jquery.easing.min.js"></script>
+  <script src="/landing-zero-theme/js/wow.js"></script>
+  <script src="/landing-zero-theme/js/scripts.js"></script>
+
 </body>
 </html>
