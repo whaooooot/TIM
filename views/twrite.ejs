@@ -17,12 +17,104 @@
   <link rel="stylesheet" href="/landing-zero-theme/css/ionicons.min.css" />
   <link rel="stylesheet" href="/landing-zero-theme/css/styles.css" />
 
-
     <meta charset="utf-8">
     <!-- This file has been downloaded from Bootsnipp.com. Enjoy! -->
-    <title>Tim 글조회</title>
+    <title>Tim 글쓰기</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script>
+        function onWriteSubmit()
+        {
+            if ( $("#creator_id").val().trim() == "" )
+            {
+                var message = "아이디를 입력해 주세요";
+                $("#creator_id").val("");
+                $("#creator_id").focus();
+                alert(message);
+                return false;
+            }
+
+            if ( $("#title").val().trim() == "" )
+            {
+                var message = "제목을 입력해 주세요";
+                $("#title").val("");
+                $("#title").focus();
+                alert(message);
+                return false;
+            }
+
+            if ( $("#content").val().trim() == "" )
+            {
+                var message = "본문 내용을 입력해 주세요";
+                $("#content").val("");
+                $("#content").focus();
+                alert(message);
+                return false;
+            }
+
+            if ( $("#passwd").val().trim() == "" )
+            {
+                var message = "패스워드를 입력해 주세요";
+                $("#passwd").val("");
+                $("#passwd").focus();
+                alert(message);
+                return false;
+            }
+        }
+    </script>
     <style type="text/css">
+    .panel-table .panel-body{
+  padding:0;
+  }
+
+  .panel-table .panel-body .table-bordered{
+  border-style: none;
+  margin:0;
+  }
+
+  .panel-table .panel-body .table-bordered > thead > tr > th:first-of-type {
+  text-align:center;
+  width: 100px;
+  }
+
+  .panel-table .panel-body .table-bordered > thead > tr > th:last-of-type,
+  .panel-table .panel-body .table-bordered > tbody > tr > td:last-of-type {
+  border-right: 0px;
+  }
+
+  .panel-table .panel-body .table-bordered > thead > tr > th:first-of-type,
+  .panel-table .panel-body .table-bordered > tbody > tr > td:first-of-type {
+  border-left: 0px;
+  }
+
+  .panel-table .panel-body .table-bordered > tbody > tr:first-of-type > td{
+  border-bottom: 0px;
+  }
+
+  .panel-table .panel-body .table-bordered > thead > tr:first-of-type > th{
+  border-top: 0px;
+  }
+
+  .panel-table .panel-footer .pagination{
+  margin:0;
+  }
+
+  /*
+  used to vertically center elements, may need modification if you're not using default sizes.
+  */
+  .panel-table .panel-footer .col{
+  line-height: 34px;
+  height: 34px;
+  }
+
+  .panel-table .panel-heading .col h3{
+  line-height: 30px;
+  height: 30px;
+  }
+
+  .panel-table .panel-body .table-bordered > tbody > tr > td{
+  line-height: 34px;
+  }
+
         .table-bordered {
 border: 1px solid #dddddd;
 border-collapse: separate;
@@ -33,7 +125,7 @@ border-radius: 4px;
 }
 
 .table {
-width: 100%;
+width: 70%;
 margin-bottom: 20px;
 background-color: transparent;
 border-collapse: collapse;
@@ -84,7 +176,7 @@ text-shadow: 0 1px 0 #fff;
 border-radius: 5px 5px 0 0;
 box-shadow: 0 2px 5px rgba(0,0,0,0.1),inset 0 1px 0 white,inset 0 -1px 0 rgba(255,255,255,0.7);
 border-bottom: 1px solid #bababa;
-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ooooo', endColorstr='#E9E9E9');
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FAFAFA', endColorstr='#E9E9E9');
 -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#FAFAFA', endColorstr='#E9E9E9')";
 border: 1px solid #D5D5D5;
 -webkit-border-top-left-radius: 4px;
@@ -138,7 +230,6 @@ td.alignRight {
     <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
 <nav id="topNav" class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
@@ -175,7 +266,7 @@ td.alignRight {
                     <a class="page-scroll" href="#last">MOVIE</a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="/travelboard">TRAVEL</a>
+                    <a class="page-scroll" href="#/travelboard">TRAVEL</a>
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
@@ -196,76 +287,96 @@ td.alignRight {
     <div class="container">
       <div class="row">
         <div class="page-header">
-          <h2>Tim 공지사항</h2>
+          <h2>Tim 여행지
+          </h2>
         </div>
         </div>
 
       </div>
     </div>
-    <div class="container">
-      <div class="row">
-<div class="span7">
-<div class="widget stacked widget-table">
 
+<div class="span7">
+<div class="widget stacked widget-table action-table">
+  <div class="container">
+    <div class="row">
 				<div  class="widget-header">
 					<i class="icon-th-list"></i>
-					<h3>글 조회 </h3>
+					<h3>글쓰기</h3>
+
 				</div> <!-- /widget-header -->
 
+				<div class="widget-content">
 
+          <form action="/travelboard/twrite" method="post" onsubmit="return onWriteSubmit()">
+<br>
 
-
-          <form action="/board/update" method="get">
-
-
-					<table class="table table-bordered">
-            <input type="hidden" name="idx" value="<%=row.idx%>"/>
-						<thead>
+<table>
+        <thead>
 							<tr>
-								<th>작성자</th>
-								<th><%=row.creator_id%></th>
-
-							</tr>
+								<th>&nbsp;&nbsp;&nbsp;&nbsp;작성자</th>
+								<td><input type="text" name="creator_id" id="creator_id" value=<%=u_id%> readonly  > </td>
+						</tr>
+            <tr>
+              <td><br></td>
+            </tr>
 
 						</thead>
 						<tbody>
 							<tr>
-								<td width="80px">제목</td>
-								<td ><%=row.title%></td>
+								<th width="80px">&nbsp;&nbsp;&nbsp;&nbsp;제목</th>
+								<td ><input   style="width:500px;" type="text" name="title" id="title" required/></td>
 
 							</tr>
+              <tr>
+                <td><br></td>
+              </tr>
+
 							<tr>
-								<td>작성일</td>
-								<td><%=row.modidate%></td>
-							</tr>
-							<tr>
-                <td>조회수</td>
-								<td><%=row.hit%></td>
+                <th>&nbsp;&nbsp;&nbsp;&nbsp;내용</th>
+								<td><textarea  style="width:500px;" name="content" id="content" cols="100" rows="15" required></textarea></td>
 
 							</tr>
-							<tr>
-                <td>내용</td>
-								<td><%=row.content%></td>
+              <tr>
+                <td><br></td>
+              </tr>
+              <tr>
+								<th width="80px">&nbsp;&nbsp;이미지주소</th>
+								<td ><input  style="width:500px;" type="text" name="img" id="img" required/></td>
 							</tr>
+              <tr>
+                <td><br></td>
+              </tr>
+
+
+
 							<tr>
 								<td>									   </td>
 							<td  class="alignRight">
-
-              	<a href="/board" class="btn btn-warning">글 목록
+                <button class="btn btn-success" type="submit">글 작성</button>
+              	<a href="/travelboard" class="btn btn-warning">글 목록
 
 									</a>
 								</td>
 							</tr>
+
+              <tr>
+                <td><br></td>
+              </tr>
 							</tbody>
 						</table>
-          </div>
-        </div>
+
+              </form>
 
 				</div> <!-- /widget-content -->
 
 			</div> <!-- /widget -->
             </div>
+          </div>
+          </div>
   </form>
+
+
+
 
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -276,5 +387,6 @@ td.alignRight {
   <script src="/landing-zero-theme/js/jquery.easing.min.js"></script>
   <script src="/landing-zero-theme/js/wow.js"></script>
   <script src="/landing-zero-theme/js/scripts.js"></script>
+
 </body>
 </html>

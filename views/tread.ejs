@@ -196,7 +196,7 @@ td.alignRight {
     <div class="container">
       <div class="row">
         <div class="page-header">
-          <h2>Tim 공지사항</h2>
+          <h2>Tim 여행지게시판</h2>
         </div>
         </div>
 
@@ -215,7 +215,7 @@ td.alignRight {
 
 
 
-          <form action="/board/update" method="get">
+          <form action="/travelboard/tupdate" method="get">
 
 
 					<table class="table table-bordered">
@@ -247,11 +247,17 @@ td.alignRight {
                 <td>내용</td>
 								<td><%=row.content%></td>
 							</tr>
+              <tr>
+                <td>사진</td>
+								<td><img src="<%=row.img%>"></td>
+							</tr>
+
+
 							<tr>
 								<td>									   </td>
 							<td  class="alignRight">
-
-              	<a href="/board" class="btn btn-warning">글 목록
+                <button class="btn btn-success" type="submit">글 수정</button>
+              	<a href="/travelboard" class="btn btn-warning">글 목록
 
 									</a>
 								</td>

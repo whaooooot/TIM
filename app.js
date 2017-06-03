@@ -190,6 +190,9 @@ if (cluster.isMaster) { //클러스터설정
     var board = require('./routes/board')(app);//ejs예시
     app.use('/board', board);
 
+    var board = require('./routes/travelboard')(app);//ejs예시
+    app.use('/travelboard', board);
+
     var movie = require('./routes/movie')(app);//ejs예시
     app.use('', movie);
 
