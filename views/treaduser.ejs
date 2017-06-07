@@ -172,7 +172,7 @@ td.alignRight {
                     <a class="page-scroll" href="/map3">map</a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="#last">MOVIE</a>
+                    <a class="page-scroll" href="/movieboard">MOVIE</a>
                 </li>
                 <li>
                     <a class="page-scroll" href="/travelboard">TRAVEL</a>
@@ -231,9 +231,13 @@ td.alignRight {
 						<tbody>
 							<tr>
 								<td width="80px">제목</td>
-								<td ><%=row.title%></td>
+								<td ><%=row.title%>        </td>
 
 							</tr>
+              <tr>
+              <td width="80px">관련영화</td>
+              <td ><%=row.moviek%></td>
+            </tr>
 							<tr>
 								<td>작성일</td>
 								<td><%=row.modidate%></td>
@@ -247,7 +251,12 @@ td.alignRight {
                 <td>내용</td>
 								<td><%=row.content%></td>
 							</tr>
+              <tr>
+                <td>사진</td>
+								<td><img src="<%=row.img%>"></td>
+							</tr>
 							<tr>
+
 								<td>									   </td>
 							<td  class="alignRight">
 

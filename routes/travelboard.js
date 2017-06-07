@@ -52,7 +52,7 @@ route.get('/tlist/:page', function(req,res,next){
     var page = req.params.page;
     pool.getConnection(function (err, connection) {
         // Use the connection
-        var boardselect = "SELECT idx, creator_id, title, content, date_format(modidate,'%Y-%m-%d %H:%i:%s') modidate,hit,img FROM travel";
+        var boardselect = "SELECT idx, creator_id, title, content, date_format(modidate,'%Y-%m-%d %H:%i:%s') modidate,hit,img,moviek FROM travel";
         connection.query(boardselect, function (err, rows) {
             if (err){ console.error("err : " + err);}
             else{
@@ -74,7 +74,7 @@ route.get('/tlistuser/:page', function(req,res,next){
     var page = req.params.page;
     pool.getConnection(function (err, connection) {
         // Use the connection
-        var boardselect = "SELECT idx, creator_id, title, content, date_format(modidate,'%Y-%m-%d %H:%i:%s') modidate,hit,img FROM travel";
+        var boardselect = "SELECT idx, creator_id, title, content, date_format(modidate,'%Y-%m-%d %H:%i:%s') modidate,hit,img,moviek FROM travel";
         connection.query(boardselect, function (err, rows) {
             if (err){ console.error("err : " + err);}
             else{
@@ -106,12 +106,13 @@ route.post('/twrite', function(req,res,next){
     var title = req.body.title;
     var content = req.body.content;
     var img = req.body.img;
-    var datas = [creator_id,title,content,img];
+    var moviek = req.body.moviek;
+    var datas = [creator_id,title,content,img,moviek];
 
     pool.getConnection(function (err, connection)
     {
         // Use the connection
-        var boardinsert = "insert into travel(creator_id, title, content, img) values(?,?,?,?)";
+        var boardinsert = "insert into travel(creator_id, title, content, img, moviek) values(?,?,?,?,?)";
         connection.query(boardinsert,datas, function (err, rows) {
             if (err) console.error("err : " + err);
             console.log("rows : " + JSON.stringify(rows));
@@ -136,7 +137,7 @@ route.get('/tread/:idx',function(req,res,next)
 
     pool.getConnection(function(err,connection)
     {
-        var sql = "select idx, creator_id, title, content, date_format(modidate,'%Y-%m-%d %H:%i:%s') modidate, hit,img from travel where idx=?";
+        var sql = "select idx, creator_id, title, content, date_format(modidate,'%Y-%m-%d %H:%i:%s') modidate, hit,img,moviek from travel where idx=?";
         //var sql2 = "update board set hit = hit + 1 WHERE idx = ?";
         connection.query(sql, [idx], function(err,row)
         {
@@ -177,7 +178,7 @@ route.get('/tupdate',function(req,res,next)
     {
         if(err) console.error("커넥션 객체 얻어오기 에러 : ",err);
 
-        var sql = "select idx, creator_id, title, content, date_format(modidate,'%Y-%m-%d %H:%i:%s') modidate, hit,img from travel where idx=?";
+        var sql = "select idx, creator_id, title, content, date_format(modidate,'%Y-%m-%d %H:%i:%s') modidate, hit,img,moviek from travel where idx=?";
         connection.query(sql, [idx], function(err,rows)
         {
             if(err) console.error(err);
@@ -195,12 +196,13 @@ route.post('/tupdate',function(req,res,next)
     var title = req.body.title;
     var content = req.body.content;
     var img = req.body.img;
-    var datas = [creator_id,title,content,img];
+    var moviek = req.body.moviek;
+    var datas = [creator_id,title,content,img,moviek];
 
     pool.getConnection(function(err,connection)
     {
-        var sql = "update travel set creator_id=? , title=?,content=?, regdate=now(),img=? where idx=? ";
-        connection.query(sql,[creator_id,title,content,img,idx],function(err,result)
+        var sql = "update travel set creator_id=? , title=?,content=?, regdate=now(),img=?,moviek=? where idx=? ";
+        connection.query(sql,[creator_id,title,content,img,idx,moviek],function(err,result)
         {
             console.log(result);
             if(err) console.error("글 수정 중 에러 발생 err : ",err);

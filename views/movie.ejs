@@ -1,6 +1,27 @@
 <html>
 
 <head>
+
+  <head>
+
+    <!-- Bootstrap -->
+    <link href="/register/css/bootstrap.min.css" rel="stylesheet">
+    <!-- font awesome -->
+    <link href="/register/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Custom Style -->
+    <link href="/register/css/style.css" rel="stylesheet">
+
+    <meta name="description" content="This is a free Bootstrap landing page theme created for BootstrapZero. Feature video background and one page design." />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Codeply">
+    <link rel="stylesheet" href="/landing-zero-theme/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/landing-zero-theme/css/animate.min.css" />
+    <link rel="stylesheet" href="/landing-zero-theme/css/ionicons.min.css" />
+    <link rel="stylesheet" href="/landing-zero-theme/css/styles.css" />
+      <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+
+
+
     <meta charset="utf-8">
     <!-- This file has been downloaded from Bootsnipp.com. Enjoy! -->
 <title class= "title"></title>
@@ -174,14 +195,78 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
 
   <h1>Tim homepage 영화페이지</h1>
 
+
+   <!--
    <div id="add"></div>
-   <!--<p id="demo" class="demo"></p>
+   <p id="demo" class="demo"></p>
    <p id="demo" class="demo"></p>-->
 
    <script
      src="https://code.jquery.com/jquery-3.2.1.js"
      integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
      crossorigin="anonymous"></script>
+
+     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
+   <nav id="topNav" class="navbar navbar-default navbar-fixed-top">
+       <div class="container-fluid">
+           <div class="navbar-header">
+               <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar">
+                   <span class="sr-only">Toggle navigation</span>
+                   <span class="icon-bar"></span>
+                   <span class="icon-bar"></span>
+                   <span class="icon-bar"></span>
+               </button>
+                 <div class="navbar-collapse collapse" id="bs-navbar">
+                   <ul class="nav navbar-nav">
+                   <li>
+                     <a class="navbar-brand page-scroll" href="/welcome">
+                       <li>
+                       <img src="/timmarker.png" class="img-responsive" width="40" height="40">
+                       </li>
+                   <!--  <i class="ion-ios-analytics-outline"></i> -->               Travel In Movie</a>
+
+                   </li>
+               </ul>
+             </div>
+         </div>
+
+           <div class="navbar-collapse collapse" id="bs-navbar">
+               <ul class="nav navbar-nav">
+                   <li>
+                       <a class="page-scroll" href="/board">Notice</a>
+                   </li>
+                   <li>
+                       <a class="page-scroll" href="/map3">map</a>
+                   </li>
+                   <li>
+                       <a class="page-scroll" href="/movieboard">MOVIE</a>
+                   </li>
+                   <li>
+                       <a class="page-scroll" href="/travelboard">TRAVEL</a>
+                   </li>
+               </ul>
+               <ul class="nav navbar-nav navbar-right">
+                   <li>
+                       <a class="page-scroll" data-toggle="modal" title="A free Bootstrap video landing theme" href="/mlist">회원정보수정</a>
+                       </li>
+                       <li>
+                       <a class="page-scroll" data-toggle="modal" title="A free Bootstrap video landing theme">반갑습니다, <%=u_id%> 님 </a>
+                   </li>
+                   <li>
+                   <a class="page-scroll" data-toggle="modal" title="A free Bootstrap video landing theme" href="/auth/logout">logout</a>
+               </li>
+               </ul>
+           </div>
+       </div>
+   </nav>
+       <div class="container">
+         <div class="row">
+           <div class="page-header">
+             <h2>Tim 영화 상세정보</h2>
+           </div>
+           </div>
+
+         </div>
 
  <script>
 
@@ -276,6 +361,8 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
               $(".p3").append("<img src= "+photo3+" >");
               $(".p4").append("<img src= "+photo4+" >");
               $(".p5").append("<img src= "+photo5+" >");
+              $(".purl").append(""+thumbnail+" ");
+
 
             }
          });
@@ -283,10 +370,7 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
 
    </script>
           <div class="row">
-
-              <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
-
-
+              <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">
                 <div width=1000px class="panel panel-info">
                   <div class="panel-heading">
                     <h3 class="panel-title">영화정보</h3>
@@ -295,7 +379,6 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
                     <div class="row">
                       <div  class="poster" align="center">  </div>
                       <br>
-
                         <table class="table table-user-information">
                           <tbody>
                             <tr>
@@ -342,8 +425,7 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
                     <th>줄거리:</th>
                     <td  width=2000px class="story"></td>
                   </tr>
-
-                          </tbody>
+                                        </tbody>
                         </table>
 
                         <br>
@@ -355,7 +437,7 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
                               <a data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary">미정</a>
                               <span class="pull-right">
                                   <a href="/travelboard" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i>  여행지</a>
-                                  <a href="/test" data-original-title="Remove this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger">뒤로가기</a>
+                                  <a href="/movieboard" data-original-title="Remove this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger">뒤로가기</a>
                               </span>
                           </div>
 
@@ -385,6 +467,8 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
             </div>
 
           </div>
+
+          <h4>포스터url: </h4><div class="purl"></div>
 
 
           <div id="myModal" class="modal">
@@ -438,6 +522,7 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
                 </div>  </div>
             </div>
           </div>
+
           </div>
 
           <script type="text/javascript">
@@ -479,8 +564,18 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
           }
           </script>
 
-      </body>
 
+
+      </body>
+      <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+      <script src="/register/js/bootstrap.min.js"></script>
+      <!--scripts loaded here -->
+      <script src="/landing-zero-theme/js/jquery.min.js"></script>
+      <script src="/landing-zero-theme/js/bootstrap.min.js"></script>
+      <script src="/landing-zero-theme/js/jquery.easing.min.js"></script>
+      <script src="/landing-zero-theme/js/wow.js"></script>
+      <script src="/landing-zero-theme/js/scripts.js"></script>
 
 
    <audio src="./music/괴물.mp3" autoplay="true">

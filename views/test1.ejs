@@ -1,123 +1,584 @@
-
-<!DOCTYPE html>
 <html>
+
+<head>
+
   <head>
+
+    <!-- Bootstrap -->
+    <link href="/register/css/bootstrap.min.css" rel="stylesheet">
+    <!-- font awesome -->
+    <link href="/register/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Custom Style -->
+    <link href="/register/css/style.css" rel="stylesheet">
+
+    <meta name="description" content="This is a free Bootstrap landing page theme created for BootstrapZero. Feature video background and one page design." />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Codeply">
+    <link rel="stylesheet" href="/landing-zero-theme/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/landing-zero-theme/css/animate.min.css" />
+    <link rel="stylesheet" href="/landing-zero-theme/css/ionicons.min.css" />
+    <link rel="stylesheet" href="/landing-zero-theme/css/styles.css" />
+      <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+
+
+
     <meta charset="utf-8">
-    <title>AED관리</title>
-    <style>
-        body{
-          padding:20px 20px;
-        }
+    <!-- This file has been downloaded from Bootsnipp.com. Enjoy! -->
+<title class= "title"></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
 
-        .results tr[visible='false'],
-        .no-result{
-          display:none;
-        }
+    <style type="text/css">
+        .user-row {
+    margin-bottom: 14px;
+}
 
-        .results tr[visible='true']{
-          display:table-row;
-        }
+.user-row:last-child {
+    margin-bottom: 0;
+}
 
-        .counter{
-          padding:8px;
-          color:#ccc;
-        }
-    </style>
-  </head>
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-  <script>
-   $(document).ready(function() {
-     $(".search").keyup(function () {
-      var searchTerm = $(".search").val();
-      var listItem = $('.results tbody').children('tr');
-      var searchSplit = searchTerm.replace(/ /g, "'):containsi('")
+.dropdown-user {
+    margin: 13px 0;
+    padding: 5px;
+    height: 100%;
+}
 
-     $.extend($.expr[':'], {'containsi': function(elem, i, match, array){
-         return (elem.textContent || elem.innerText || '').toLowerCase().indexOf((match[3] || "").toLowerCase()) >= 0;
-      }
-     });
+.dropdown-user:hover {
+    cursor: pointer;
+}
 
-     $(".results tbody tr").not(":containsi('" + searchSplit + "')").each(function(e){
-      $(this).attr('visible','false');
-     });
+.table-user-information > tbody > tr {
+    border-top: 1px solid rgb(221, 221, 221);
+}
 
-     $(".results tbody tr:containsi('" + searchSplit + "')").each(function(e){
-      $(this).attr('visible','true');
-     });
+.table-user-information > tbody > tr:first-child {
+    border-top: 0;
+}
 
-     var jobCount = $('.results tbody tr[visible="true"]').length;
-      $('.counter').text(jobCount + ' item');
 
-     if(jobCount == '0') {$('.no-result').show();}
-      else {$('.no-result').hide();}
-           });
-   });
+.table-user-information > tbody > tr > td {
+    border-top: 0;
+}
+.toppad
+{margin-top:20px;
+}
+
+.row > .column {
+padding: 0 8px;
+}
+
+.row:after {
+content: "";
+display: table;
+clear: both;
+}
+
+.column {
+float: left;
+width: 25%;
+}
+
+/* The Modal (background) */
+.modal {
+display: none;
+position: fixed;
+z-index: 1;
+padding-top: 1000x;
+left: 0;
+top: 0;
+width: 100%;
+height: 100%;
+overflow: auto;
+background-color: black;
+}
+
+/* Modal Content */
+.modal-content {
+position: relative;
+background-color: #fefefe;
+margin: auto;
+padding: 0;
+width: 90%;
+max-width: 1200px;
+}
+
+/* The Close Button */
+.close {
+color: blue;
+position: absolute;
+top: 10px;
+right: 25px;
+font-size: 35px;
+font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+color: #999;
+text-decoration: none;
+cursor: pointer;
+}
+
+.mySlides {
+display: none;
+}
+
+/* Next & previous buttons */
+.prev,
+.next {
+cursor: pointer;
+position: absolute;
+top: 50%;
+width: auto;
+padding: 16px;
+margin-top: -50px;
+color: white;
+font-weight: bold;
+font-size: 20px;
+transition: 0.6s ease;
+border-radius: 0 3px 3px 0;
+user-select: none;
+-webkit-user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+right: 0;
+border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover,
+.next:hover {
+background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+color: #121212;
+font-size: 20px;
+padding: 8px 12px;
+position: absolute;
+top: 0;
+}
+
+.caption-container {
+text-align: center;
+background-color: black;
+padding: 2px 16px;
+color: white;
+}
+
+img.demo {
+opacity: 0.6;
+}
+
+.active,
+.demo:hover {
+opacity: 1;
+}
+
+img.hover-shadow {
+transition: 0.3s
+}
+
+.hover-shadow:hover {
+box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
+}
+</style>
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+  <h1>Tim homepage 영화페이지</h1>
+
+
+   <!--
+   <div id="add"></div>
+   <p id="demo" class="demo"></p>
+   <p id="demo" class="demo"></p>-->
+
+   <script
+     src="https://code.jquery.com/jquery-3.2.1.js"
+     integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+     crossorigin="anonymous"></script>
+
+     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
+   <nav id="topNav" class="navbar navbar-default navbar-fixed-top">
+       <div class="container-fluid">
+           <div class="navbar-header">
+               <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar">
+                   <span class="sr-only">Toggle navigation</span>
+                   <span class="icon-bar"></span>
+                   <span class="icon-bar"></span>
+                   <span class="icon-bar"></span>
+               </button>
+                 <div class="navbar-collapse collapse" id="bs-navbar">
+                   <ul class="nav navbar-nav">
+                   <li>
+                     <a class="navbar-brand page-scroll" href="/welcome">
+                       <li>
+                       <img src="/timmarker.png" class="img-responsive" width="40" height="40">
+                       </li>
+                   <!--  <i class="ion-ios-analytics-outline"></i> -->               Travel In Movie</a>
+
+                   </li>
+               </ul>
+             </div>
+         </div>
+
+           <div class="navbar-collapse collapse" id="bs-navbar">
+               <ul class="nav navbar-nav">
+                   <li>
+                       <a class="page-scroll" href="/board">Notice</a>
+                   </li>
+                   <li>
+                       <a class="page-scroll" href="/map3">map</a>
+                   </li>
+                   <li>
+                       <a class="page-scroll" href="/movieboard">MOVIE</a>
+                   </li>
+                   <li>
+                       <a class="page-scroll" href="/travelboard">TRAVEL</a>
+                   </li>
+               </ul>
+               <ul class="nav navbar-nav navbar-right">
+                   <li>
+                       <a class="page-scroll" data-toggle="modal" title="A free Bootstrap video landing theme" href="/mlist">회원정보수정</a>
+                       </li>
+                       <li>
+                       <a class="page-scroll" data-toggle="modal" title="A free Bootstrap video landing theme">반갑습니다, <%=u_id%> 님 </a>
+                   </li>
+                   <li>
+                   <a class="page-scroll" data-toggle="modal" title="A free Bootstrap video landing theme" href="/auth/logout">logout</a>
+               </li>
+               </ul>
+           </div>
+       </div>
+   </nav>
+       <div class="container">
+         <div class="row">
+           <div class="page-header">
+             <h2>Tim 여행지게시판</h2>
+           </div>
+           </div>
+
+         </div>
+
+ <script>
+
+   var a = 'https://apis.daum.net/contents/movie?apikey=24baf278d4fb55931b843f0cca64f3e1&q= "+<%=rows[0].moviee%>+" &output=json'
+
+      $(function(datas){
+
+         $.ajax({
+
+            type:'post',
+            url:a,
+            dataType:'jsonp',
+            async:false, //ajax변수 전역변수로사용
+            success:function(data){
+
+
+       var actor = data['channel']['item']['1'];
+       var open_info = data['channel']['item']['1']['open_info'];
+       var director = data['channel']['item']['1']['director']['0'];
+       var eng_title = data['channel']['item']['1']['eng_title']['0'];
+       var genre = data['channel']['item']['1']['genre']['0'];
+       var grades = data['channel']['item']['1']['grades']['0'];
+       var nation = data['channel']['item']['1']['nation']['0'];
+       var photo1 = data['channel']['item']['1']['photo1']['content'];
+       var photo2 = data['channel']['item']['1']['photo2']['content'];
+       var photo3 = data['channel']['item']['1']['photo3']['content'];
+       var photo4 = data['channel']['item']['1']['photo4']['content'];
+       var photo5 = data['channel']['item']['1']['photo5']['content'];
+       var story = data['channel']['item']['1']['story']['0'];
+       var thumbnail = data['channel']['item']['1']['thumbnail']['0']['content'];
+       var title = data['channel']['item']['1']['title']['0'];
+       var video = data['channel']['item']['1']['video']['0']['link'];
+/////////////////////
+
+      //  $('#qq').append(//"<img src= "+thumbnail+" >"+
+      //                  //"<p id='demo' class='demo'></p>예고편:" + "<embed src= "+video+" ></embed>"+
+      //                  //"<iframe></iframe>",{'src':video , 'id' :'demo', 'class':'demo'}+
+      //                  //$('.tt').append($('<iframe></iframe>',{'src':video,'id':'video-player','width':'350','height':'220','controls':'controls', 'preload':'metadata','frameborder':0, 'scrolling':'auto', 'allowfullscreen': true})).css({'margin':'2px'});
+       //
+      //                  "<p id='demo' class='demo'></p>스틸컷:" + "<img src= "+photo1+" >"+
+      //                  "<p id='demo' class='demo'></p>스틸컷:" + "<img src= "+photo2+" >"+
+      //                  "<p id='demo' class='demo'></p>스틸컷:" + "<img src= "+photo3+" >"+
+      //                  "<p id='demo' class='demo'></p>스틸컷:" + "<img src= "+photo4+" >"
+      //                  +"<table>"+"<tr>"+"<td>"+"</td>"+"</tr>"   +    "</table>"
+      //                );
+
+        //        $('#add').append(
+        //  //"<p id='demo' class='demo'></p>제목:" + title['content']+
+        //  "<p id='demo' class='demo'></p>영어제목:" + eng_title['content']+
+        //  "<p id='demo' class='demo'></p>개봉날짜:" + open_info['0']['content']+
+        //  "<p id='demo' class='demo'></p>감독:" + director['content']+
+        //  "<p id='demo' class='demo'></p>배우:" + actor['actor']['0']['content']+
+        //  "<p id='demo' class='demo'></p>배우:" + actor['actor']['1']['content']+
+        //  "<p id='demo' class='demo'></p>배우:" + actor['actor']['2']['content']+
+        //  "<p id='demo' class='demo'></p>배우:" + actor['actor']['3']['content']+
+        //  "<p id='demo' class='demo'></p>배우:" + actor['actor']['4']['content']+
+        //  "<p id='demo' class='demo'></p>장르:" + genre['content']+
+        //  "<p id='demo' class='demo'></p>관람등급:" + open_info['1']['content']+
+        //  "<p id='demo' class='demo'></p>러닝타임:" + open_info['2']['content']+
+        //  "<p id='demo' class='demo'></p>별등급:" + grades['content']+
+        //  "<p id='demo' class='demo'></p>국가:" + nation['content']+
+        //  //"<p id='demo' class='demo'></p>포토1:" + photo2+
+        //  "<p id='demo' class='demo'></p>스토리:" + story['content']
+        //  //"<p id='demo' class='demo'></p>포스터:" + thumbnail+
+        //  //"<p id='demo' class='demo'></p>예고편:" + video
+         //
+        //        );
+
+               //for(count in actor){
+               //   console.log(actor[count].content);
+              // }
+        // console.log(mchannel);
+
+              //console.log(mchannel.audience['0']['content']);
+
+              //console.log(mchannel.actor['0']['content']);
+
+              $(".poster").append("<img src= "+thumbnail+" >");
+              $(".title").append(title['content']);
+              $(".eng_title").append(eng_title['content']);
+              $(".open_info").append(open_info['0']['content']);
+              $(".director").append(director['content']);
+              $(".actor").append(actor['actor']['0']['content']+","+actor['actor']['1']['content']+","+actor['actor']['2']['content']+","+actor['actor']['3']['content']+","+actor['actor']['4']['content']);
+              $(".genre").append(genre['content']);
+              $(".grade").append(open_info['1']['content']);
+              $(".time").append(open_info['2']['content']);
+              $(".star").append(grades['content']);
+              $(".nation").append(nation['content']);
+              $(".story").append(story['content']);
+              $(".p1").append("<img src= "+photo1+" >");
+              $(".p2").append("<img src= "+photo2+" >");
+              $(".p3").append("<img src= "+photo3+" >");
+              $(".p4").append("<img src= "+photo4+" >");
+              $(".p5").append("<img src= "+photo5+" >");
+              $(".purl").append(""+thumbnail+" ");
+
+
+            }
+         });
+      });
+
    </script>
-  <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css'>
-  <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous">
-  </script>
-  <body>
-    <h1>영화 정보</h1>
+          <div class="row">
+              <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">
+                <div width=1000px class="panel panel-info">
+                  <div class="panel-heading">
+                    <h3 class="panel-title">영화정보</h3>
+                  </div>
+                  <div class="panel-body">
+                    <div class="row">
+                      <div  class="poster" align="center">  </div>
+                      <br>
+                        <table class="table table-user-information">
+                          <tbody>
+                            <tr>
+                              <th width=300px>제목:</th>
+                              <td class="title"></td>
+                            </tr>
+                            <tr>
+                              <th>영어 제목:</th>
+                              <td class="eng_title"></td>
+                            </tr>
+                            <tr>
+                              <th>개봉 날짜:</th>
+                              <td class="open_info"></td>
+                            </tr>
+                             <tr>
+                                     <th>감독:</th>
+                                     <td class="director"></td>
+                            </tr>
+                              <tr>
+                                <th>배우:</th>
+                                <td class="actor"></td>
+                            </tr>
+                            <tr>
+                              <<th>장르:</th>
+                              <td class="genre"></td>
+                            </tr>
+                            <tr>
+                            <th>관람등급:</th>
+                            <td class="grade"></td>
+                          </tr>
+                          <tr>
+                          <th>러닝타임:</th>
+                          <td class="time"></td>
+                        </tr>
+                        <tr>
+                        <th>평점:</th>
+                        <td class="star"></td>
+                      </tr>
+                      <tr>
+                      <th>국가:</th>
+                      <td class="nation"></td>
+                    </tr>
+                    <tr>
+                    <th>줄거리:</th>
+                    <td  width=2000px class="story"></td>
+                  </tr>
+                                        </tbody>
+                        </table>
 
-    <div class="form-group pull-right">
-        <input type="text" class="search form-control" placeholder="table search...">
-    </div>
-    <span class="counter pull-right"></span>
-
-     <table width="100%" border="1" class="table table-hover table-bordered results">
-       <thead>
-        <tr>
-           <th>영화정보</th>
-           <th>aedidx</th>
-           <th>buildAddress</th>
-           <th>buildPlace</th>
-           <th>gugun</th>
-           <th>wgs84Lat</th>
-           <th>wgs84Lon</th>
-        </tr>
-        <tr class="warning no-result">
-      <td colspan="4"><i class="fa fa-warning"></i> No result</td>
-    </tr>
-  </thead>
-  <tbody>
+                        <br>
 
 
-        <tr>
-           <td><a href='/movie/1' >영화정보</a></td>
-           <th>101</th>
-           <td>화랑로 621 (공릉동)</td>
-           <td>(공릉2동) 중앙현관</td>
-           <td>노원구</td>
-           <td>37.62786685</td>
-           <td>127.0940476</td>
-       </tr>
+                    </div>
+                  </div>
+                       <div class="panel-footer">
+                              <a data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary">미정</a>
+                              <span class="pull-right">
+                                  <a href="/travelboard" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i>  여행지</a>
+                                  <a href="/test" data-original-title="Remove this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger">뒤로가기</a>
+                              </span>
+                          </div>
 
-        <tr>
-           <td><a href='/aeddelete/102' >DELETE</a></td>
-           <th>102</th>
-           <td>공릉동 567-18</td>
-           <td>(공릉1동) 1층소내입구</td>
-           <td>노원구</td>
-           <td>37.62256854</td>
-           <td>127.0745848</td>
-       </tr>
+                </div>
+              </div>
+            </div>
 
-        <tr>
-           <td><a href='/aeddelete/103' >DELETE</a></td>
-           <th>103</th>
-           <td>공릉2동 284-5</td>
-           <td>(공릉2동) B1 대합실 임대상가(dab) 옆</td>
-           <td>노원구</td>
-           <td>37.62031304</td>
-           <td>127.0844236</td>
-       </tr>
+<h4 align="center">스틸컷</h4>
 
-        <tr>
-           <td><a href='/aeddelete/104' >DELETE</a></td>
-           <th>104</th>
-           <td>하계1동 16-38</td>
-           <td>(하계1동) 성실관 1층 보건실 앞</td>
-           <td>노원구</td>
-           <td>37.64061677</td>
-           <td>127.0736579</td>
-       </tr>
+          <div class="container">
+              <div class="row">
+            <div class="column">
+              <div  width=200px height=200px class="p1"  onclick="openModal();currentSlide(1)"class="hover-shadow">
+              </div>
+            </div>
+            <div class="column">
+              <div  width=200px height=200px class="p2"  onclick="openModal();currentSlide(2)"class="hover-shadow">
+              </div>
+            </div>
+            <div class="column">
+              <div  width=200px height=200px class="p3"  onclick="openModal();currentSlide(3)"class="hover-shadow">
+              </div>
+              </div>
+            <div class="column">
+              <div  width=200px height=200px class="p4"  onclick="openModal();currentSlide(4)"class="hover-shadow">
+              </div>
+            </div>
+
+          </div>
+
+          <h4>포스터url: </h4><div class="purl"></div>
+
+
+          <div id="myModal" class="modal">
+            <span class="close cursor" onclick="closeModal()">×</span>
+            <div class="modal-content" align="center">
+
+              <div class="mySlides">
+                <div class="numbertext">1 / 4</div>
+                <div class="p1" >
+                </div>
+              </div>
+
+              <div class="mySlides">
+                <div class="numbertext">2 / 4</div>
+                <div class="p2" >
+                </div>          </div>
+
+              <div class="mySlides">
+                <div class="numbertext">3 / 4</div>
+                <div class="p3" >
+                </div>            </div>
+
+              <div class="mySlides">
+                <div class="numbertext">4 / 4</div>
+                <div class="p4" >
+                </div>            </div>
+
+
+              <a class="prev"  onclick="plusSlides(-1)">❮</a>
+              <a class="next"  onclick="plusSlides(1)">❯</a>
+
+              <div class="caption-container">
+                <p id="caption"></p>
+              </div>
+
+              <div class="column">
+                <div class="p1"  onclick="currentSlide(1)">
+                </div>
+              </div>
+
+              <div class="column">
+                <div class="p2" onclick="currentSlide(2)">
+                </div>  </div>
+
+              <div class="column">
+                <div class="p3"  onclick="currentSlide(3)">
+                </div>  </div>
+
+              <div class="column">
+                <div class="p4"  onclick="currentSlide(4)">
+                </div>  </div>
+            </div>
+          </div>
+
+          </div>
+
+          <script type="text/javascript">
+          function openModal() {
+            document.getElementById('myModal').style.display = "block";
+          }
+
+          function closeModal() {
+            document.getElementById('myModal').style.display = "none";
+          }
+
+          var slideIndex = 1;
+          showSlides(slideIndex);
+
+          function plusSlides(n) {
+            showSlides(slideIndex += n);
+          }
+
+          function currentSlide(n) {
+            showSlides(slideIndex = n);
+          }
+
+          function showSlides(n) {
+            var i;
+            var slides = document.getElementsByClassName("mySlides");
+            var dots = document.getElementsByClassName("demo");
+            var captionText = document.getElementById("caption");
+            if (n > slides.length) {slideIndex = 1}
+            if (n < 1) {slideIndex = slides.length}
+            for (i = 0; i < slides.length; i++) {
+              slides[i].style.display = "none";
+            }
+            for (i = 0; i < dots.length; i++) {
+              dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slides[slideIndex-1].style.display = "block";
+            dots[slideIndex-1].className += " active";
+            captionText.innerHTML = dots[slideIndex-1].alt;
+          }
+          </script>
+
+
+
+      </body>
+      <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+      <script src="/register/js/bootstrap.min.js"></script>
+      <!--scripts loaded here -->
+      <script src="/landing-zero-theme/js/jquery.min.js"></script>
+      <script src="/landing-zero-theme/js/bootstrap.min.js"></script>
+      <script src="/landing-zero-theme/js/jquery.easing.min.js"></script>
+      <script src="/landing-zero-theme/js/wow.js"></script>
+      <script src="/landing-zero-theme/js/scripts.js"></script>
+
+
+   <audio src="./music/괴물.mp3" autoplay="true">
+
+   </body>
+   </html>

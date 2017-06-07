@@ -131,7 +131,7 @@ used to vertically center elements, may need modification if you're not using de
                     <a class="page-scroll" href="/map3">map</a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="#last">MOVIE</a>
+                    <a class="page-scroll" href="/movieboard">MOVIE</a>
                 </li>
                 <li>
                     <a class="page-scroll" href="/travelboard">TRAVEL</a>
@@ -189,6 +189,7 @@ used to vertically center elements, may need modification if you're not using de
                         <th>제목</th>
                         <th>조회수</th>
                         <th>작성일</th>
+                        <th>영화</th>
                     </tr>
                   </thead>
 
@@ -212,6 +213,7 @@ used to vertically center elements, may need modification if you're not using de
                             <td><a href="/travelboard/tread/<%=oneItem.idx%>"><%=oneItem.title%></a></td>
                             <td><%=oneItem.hit%></td>
                             <td><%=oneItem.modidate%></td>
+                            <td><%=oneItem.moviek%></td>
                           </tr>
                           <%
                                }
@@ -301,6 +303,9 @@ used to vertically center elements, may need modification if you're not using de
   <div class="col-md-9">
     <h2 class="titulo-equipo"><a href="/travelboard/tread/<%=oneItem.idx%>"><%=oneItem.title%></a></h2>
   <p class="texto-equipo"><%=oneItem.content%></p>
+  <br>
+  <br>
+  <p align="right" class="texto-equipo">관련영화:<%=oneItem.moviek%></p>
   </div>
 
 </div>

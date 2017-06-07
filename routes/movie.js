@@ -18,6 +18,8 @@ module.exports = function(app){
 
 
     route.get('/movie/:idx', function(req,res,next){
+      if(req.user && req.user.displayName){ //정보불러옴
+        var u_id = req.user.username;
 
     var idx = req.params.idx;
           pool.getConnection(function (err, connection) {
@@ -29,13 +31,14 @@ module.exports = function(app){
                   else{
                   console.log("rows : " + JSON.stringify(rows));
 
-                  res.render('movie', {rows : rows});
+                  res.render('movie', {rows : rows,u_id:u_id});
                   connection.release();
 
                 }
               });
           });
-      });
+      }
+    });
 
 
     route.post('/movie/:idx', function(req,res,next){

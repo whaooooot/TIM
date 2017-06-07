@@ -121,7 +121,6 @@ used to vertically center elements, may need modification if you're not using de
 
             $(".poster").append("<img src= "+thumbnail+" >");
 
-            $('#add').append("<p id='demo' class='demo'></p>포스터: "+thumbnail+" ");
 
           }
        });
@@ -185,7 +184,7 @@ used to vertically center elements, may need modification if you're not using de
     <div class="container">
       <div class="row">
         <div class="page-header">
-          <h2>영화정보게시판</h2>
+          <h2>영화정보 관리자 게시판</h2>
         </div>
         </div>
 
@@ -240,7 +239,7 @@ used to vertically center elements, may need modification if you're not using de
                             <td align="center">
                             <a href='/movieboard/delete/<%=oneItem.idx%>' class="btn btn-danger"><em class="fa fa-trash"></em></a>
                             </td>
-                            <td align="center"><a href='#' class="btn btn-info">상세보기</a>
+                            <td align="center"><a href='/movie/<%=oneItem.idx%>' class="btn btn-info">상세보기</a>
                             </td>
                           </tr>
                           <%
@@ -307,7 +306,7 @@ used to vertically center elements, may need modification if you're not using de
 <div class="container">
   <div class="row">
     <div class="page-header">
-      <h2>Tim 영화정보</h2>
+      <h2>영화정보 사용자뷰</h2>
     </div>
     </div>
 
@@ -325,12 +324,11 @@ used to vertically center elements, may need modification if you're not using de
          var oneItem = rows[i];
     %>
 
-    <div class="add"></div>
 
 <div class="row equipo-item">
 <div class="col-md-3 separador-vertical"><img src="<%=oneItem.poster%>" class="img-responsive center-block"></div>
 <div class="col-md-9">
-<h2 class="titulo-equipo"><a href="/movieboard/mvread/<%=oneItem.idx%>"><%=oneItem.moviek%></a></h2>
+<h2 class="titulo-equipo"><a href="/movie/<%=oneItem.idx%>"><%=oneItem.moviek%></a></h2>
 <p class="texto-equipo">d</p>
 </div>
 

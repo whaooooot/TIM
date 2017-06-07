@@ -9,8 +9,6 @@ var ejs = require('ejs');
   var bodyParser = require('body-parser');
   var multipart = require('multiparty');
 
-
-
     // //mysql연결
     // var pool      =    mysql.createPool({
     //   connectionLimit : 10, //pool에담을수있는최대인자수
@@ -44,21 +42,21 @@ route.get('/', function(req, res, next) {
 });
 
 
-
-
 route.get('/dmlist/:page', function(req,res,next){
   if(req.user && req.user.displayName){ //정보불러옴
     var u_id = req.user.username;
     var page = req.params.page;
     pool.getConnection(function (err, connection) {
+
         // Use the connection
         var mapselect = "SELECT idx, zzlat, zzlon, location, movie FROM map";
         connection.query(mapselect, function (err, rows) {
             if (err){ console.error("err : " + err);}
             else{
             console.log("rows : " + JSON.stringify(rows));
+             var json = JSON.stringify(rows);
 
-            res.render('dmlist', {title: '게시판 전체 글 조회', u_id:u_id,rows: rows, page: page, leng : Object.keys(rows).length-1, page_num:8, pass: true });
+            res.render('dmlist', {title: '게시판 전체 글 조회',json, u_id:u_id,rows: rows, page: page, leng : Object.keys(rows).length-1, page_num:8, pass: true });
             connection.release();
 
           }
