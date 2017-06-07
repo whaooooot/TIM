@@ -114,7 +114,7 @@ used to vertically center elements, may need modification if you're not using de
                     <a class="page-scroll" href="/map3">map</a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="#last">MOVIE</a>
+                    <a class="page-scroll" href="/movieboard">MOVIE</a>
                 </li>
                 <li>
                     <a class="page-scroll" href="/travelboard">TRAVEL</a>
@@ -160,6 +160,8 @@ used to vertically center elements, may need modification if you're not using de
                   </div>
                 </div>
               </div>
+
+
               <div class="panel-heading">
                 <table class="table table-striped table-bordered table-list">
                   <thead>
@@ -214,15 +216,15 @@ used to vertically center elements, may need modification if you're not using de
                   <div class="col col-xs-4">
                     <div class="search">
 
-                      <form action="/board/search" method="get" id="searchAction" name="searchAction">
+                      <form action="/board/blist" method="post">
                         <input type="text" class="search_word" id="searchWord" name="searchWord">
-                        <a href="#" onclick="searchContent();"><div class="btn btn-info">검색</div></a>
+                          <button class="btn btn-info" type="submit">검색</button>  <!--onclick="searchContent();"-->
                    </form>
                     </div>
 
                   </div>
 
-                  <script>
+                  <!-- <script>
                   function searchContent() {
                     if($('#searchWord').val == ''){
                         alert("검색어를 입력해주세요!!!");
@@ -231,7 +233,7 @@ used to vertically center elements, may need modification if you're not using de
                         console.log("");
                       }
                     }
-                  </script>
+                  </script> -->
 
                   <div class="col col-xs-8">
                     <%

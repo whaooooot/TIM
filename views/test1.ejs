@@ -1,115 +1,123 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Tim 로그인</title>
+    <title>AED관리</title>
+    <style>
+        body{
+          padding:20px 20px;
+        }
 
-    <!-- Bootstrap -->
-    <link href="../register/css/bootstrap.min.css" rel="stylesheet">
-    <!-- font awesome -->
-    <link href="../register/css/font-awesome.min.css" rel="stylesheet">
-    <!-- Custom Style -->
-    <link href="../register/css/style.css" rel="stylesheet">
+        .results tr[visible='false'],
+        .no-result{
+          display:none;
+        }
 
-    <meta name="description" content="This is a free Bootstrap landing page theme created for BootstrapZero. Feature video background and one page design." />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="Codeply">
-    <link rel="stylesheet" href="../landing-zero-theme/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="../landing-zero-theme/css/animate.min.css" />
-    <link rel="stylesheet" href="../landing-zero-theme/css/ionicons.min.css" />
-    <link rel="stylesheet" href="../landing-zero-theme/css/styles.css" />
+        .results tr[visible='true']{
+          display:table-row;
+        }
 
+        .counter{
+          padding:8px;
+          color:#ccc;
+        }
+    </style>
   </head>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <script>
+   $(document).ready(function() {
+     $(".search").keyup(function () {
+      var searchTerm = $(".search").val();
+      var listItem = $('.results tbody').children('tr');
+      var searchSplit = searchTerm.replace(/ /g, "'):containsi('")
+
+     $.extend($.expr[':'], {'containsi': function(elem, i, match, array){
+         return (elem.textContent || elem.innerText || '').toLowerCase().indexOf((match[3] || "").toLowerCase()) >= 0;
+      }
+     });
+
+     $(".results tbody tr").not(":containsi('" + searchSplit + "')").each(function(e){
+      $(this).attr('visible','false');
+     });
+
+     $(".results tbody tr:containsi('" + searchSplit + "')").each(function(e){
+      $(this).attr('visible','true');
+     });
+
+     var jobCount = $('.results tbody tr[visible="true"]').length;
+      $('.counter').text(jobCount + ' item');
+
+     if(jobCount == '0') {$('.no-result').show();}
+      else {$('.no-result').hide();}
+           });
+   });
+   </script>
+  <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css'>
+  <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous">
+  </script>
   <body>
-    <nav id="topNav" class="navbar navbar-default navbar-fixed-top">
-        <div class="container-fluid">
-          <div class="navbar-header">
-              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar">
-                  <span class="sr-only">Toggle navigation</span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-              </button>
-                <div class="navbar-collapse collapse" id="bs-navbar">
-                  <ul class="nav navbar-nav">
-                  <li>
-                    <a class="navbar-brand page-scroll" href="/test">
-                      <li>
-                      <img src="../timmarker.png" class="img-responsive" width="40" height="40">
-                      </li>
-                  <!--  <i class="ion-ios-analytics-outline"></i> -->               Travel In Movie</a>
-                  </li>
-              </ul>
-            </div>
-        </div>
+    <h1>영화 정보</h1>
 
-            <div class="navbar-collapse collapse" id="bs-navbar">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a class="page-scroll" href="/auth/login">Login</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="/auth/register">Register</a>
-                    </li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a class="page-scroll" data-toggle="modal" title="A free Bootstrap video landing theme" href="#aboutModal">About</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <br><br>
-
-
-    <div class="container">
-      <div class="row">
-        <div class="page-header">
-          <h2>Tim 로그인</h2>
-        </div>
-        <div class="col-md-3">
-          <div class="login-box well">
-        <form accept-charset="UTF-8" role="form" method="post" action="authlogin">
-            <legend>로그인</legend>
-            <div class="form-group">
-                <label for="username-email">아이디</label>
-                <input name="username" value='' id="username-email" placeholder="아이디를 입력하세요." type="text" class="form-control" />
-            </div>
-            <div class="form-group">
-                <label for="password">비밀번호</label>
-                <input name="password" id="password" value='' placeholder="패스워드를 입력하세요." type="password" class="form-control" />
-            </div>
-            <div class="form-group">
-                <input type="submit" class="btn btn-default btn-login-submit btn-block m-t-md" value="로그인" />
-            </div>
-            <hr />
-            <div class="form-group">
-                <a href="/auth/register" class="btn btn-default btn-block m-t-md"> 회원가입</a>
-            </div>
-            <div class="form-group">
-            <a href="/auth/facebook" class="btn btn-info" ctype="submit">facebook</a>
-              </div>
-            </div>
-        </form>
-          </div>
-        </div>
-      </div>
+    <div class="form-group pull-right">
+        <input type="text" class="search form-control" placeholder="table search...">
     </div>
+    <span class="counter pull-right"></span>
+
+     <table width="100%" border="1" class="table table-hover table-bordered results">
+       <thead>
+        <tr>
+           <th>영화정보</th>
+           <th>aedidx</th>
+           <th>buildAddress</th>
+           <th>buildPlace</th>
+           <th>gugun</th>
+           <th>wgs84Lat</th>
+           <th>wgs84Lon</th>
+        </tr>
+        <tr class="warning no-result">
+      <td colspan="4"><i class="fa fa-warning"></i> No result</td>
+    </tr>
+  </thead>
+  <tbody>
 
 
-  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  <!-- Include all compiled plugins (below), or include individual files as needed -->
-  <script src="../register/js/bootstrap.min.js"></script>
-  <!--scripts loaded here -->
-  <script src="../landing-zero-theme/js/jquery.min.js"></script>
-  <script src="../landing-zero-theme/js/bootstrap.min.js"></script>
-  <script src="../landing-zero-theme/js/jquery.easing.min.js"></script>
-  <script src="../landing-zero-theme/js/wow.js"></script>
-  <script src="../landing-zero-theme/js/scripts.js"></script>
-  </body>
-  </html>
+        <tr>
+           <td><a href='/movie/1' >영화정보</a></td>
+           <th>101</th>
+           <td>화랑로 621 (공릉동)</td>
+           <td>(공릉2동) 중앙현관</td>
+           <td>노원구</td>
+           <td>37.62786685</td>
+           <td>127.0940476</td>
+       </tr>
+
+        <tr>
+           <td><a href='/aeddelete/102' >DELETE</a></td>
+           <th>102</th>
+           <td>공릉동 567-18</td>
+           <td>(공릉1동) 1층소내입구</td>
+           <td>노원구</td>
+           <td>37.62256854</td>
+           <td>127.0745848</td>
+       </tr>
+
+        <tr>
+           <td><a href='/aeddelete/103' >DELETE</a></td>
+           <th>103</th>
+           <td>공릉2동 284-5</td>
+           <td>(공릉2동) B1 대합실 임대상가(dab) 옆</td>
+           <td>노원구</td>
+           <td>37.62031304</td>
+           <td>127.0844236</td>
+       </tr>
+
+        <tr>
+           <td><a href='/aeddelete/104' >DELETE</a></td>
+           <th>104</th>
+           <td>하계1동 16-38</td>
+           <td>(하계1동) 성실관 1층 보건실 앞</td>
+           <td>노원구</td>
+           <td>37.64061677</td>
+           <td>127.0736579</td>
+       </tr>

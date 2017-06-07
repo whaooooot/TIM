@@ -17,13 +17,13 @@ module.exports = function(app){
   });
 
 
-    route.get('/movie', function(req,res,next){
+    route.get('/movie/:idx', function(req,res,next){
 
     var idx = req.params.idx;
           pool.getConnection(function (err, connection) {
               // Use the connection
-              var movie = "SELECT idx, moviek, moviee FROM movie";
-              connection.query(movie,  function (err, rows) {
+              var movie = "SELECT idx, moviek, moviee, poster FROM movie where idx=?";
+              connection.query(movie, [idx],  function (err, rows) {
                 console.log("@@"+idx);
                   if (err){ console.error("err : " + err);}
                   else{
@@ -43,7 +43,7 @@ module.exports = function(app){
     var idx = req.query.idx;
           pool.getConnection(function (err, connection) {
               // Use the connection
-              var movie = "SELECT idx, moviek, moviee FROM movie";
+              var movie = "SELECT idx, moviek, moviee, poster FROM movie";
               connection.query(movie, [idx],  function (err, rows) {
 
                   if (err){ console.error("err : " + err);}

@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-
   <!-- Bootstrap -->
   <link href="/register/css/bootstrap.min.css" rel="stylesheet">
   <!-- font awesome -->
@@ -18,14 +15,28 @@
   <link rel="stylesheet" href="/landing-zero-theme/css/animate.min.css" />
   <link rel="stylesheet" href="/landing-zero-theme/css/ionicons.min.css" />
   <link rel="stylesheet" href="/landing-zero-theme/css/styles.css" />
-
-
-
     <meta charset="utf-8">
     <!-- This file has been downloaded from Bootsnipp.com. Enjoy! -->
-    <title>Tim 공지사항</title>
+    <title>Tim 여행지</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
     <style type="text/css">
+        .separador-vertical{
+  border-right:1px solid #bfbdbd;
+  }
+
+  .titulo-equipo{
+  margin-top:0px;
+
+    }
+
+  .equipo-item{
+    border:	1px solid #D1CFCF ;
+        padding: 10px;
+    border-radius:10px;
+  margin-bottom:25px;
+      }
+
+
         .panel-table .panel-body{
   padding:0;
 }
@@ -85,7 +96,39 @@ used to vertically center elements, may need modification if you're not using de
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
+
+
+  <script
+    src="https://code.jquery.com/jquery-3.2.1.js"
+    integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+    crossorigin="anonymous"></script>
+
+  <script>
+
+  var a = 'https://apis.daum.net/contents/movie?apikey=24baf278d4fb55931b843f0cca64f3e1&q= "+<%=rows[0].moviee%>+" &output=json'
+
+     $(function(datas){
+
+        $.ajax({
+
+           type:'post',
+           url:a,
+           dataType:'jsonp',
+           async:false, //ajax변수 전역변수로사용
+           success:function(data){
+
+            var thumbnail = data['channel']['item']['1']['thumbnail']['0']['content'];
+
+            $(".poster").append("<img src= "+thumbnail+" >");
+
+            $('#add').append("<p id='demo' class='demo'></p>포스터: "+thumbnail+" ");
+
+          }
+       });
+    });
+  </script>
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
 <nav id="topNav" class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -142,26 +185,27 @@ used to vertically center elements, may need modification if you're not using de
     <div class="container">
       <div class="row">
         <div class="page-header">
-          <h2>Tim 공지사항</h2>
+          <h2>영화정보게시판</h2>
         </div>
         </div>
 
       </div>
     </div>
-
-<div class="container">
-    <div class="row">
+    <div class="container">
+      <div class="row">
         <div class="col-md-10 col-md-offset-1">
 
             <div class="panel panel-default panel-table">
               <div class="panel-heading">
                 <div class="row">
                   <div class="col col-xs-6">
-                    <h3 class="panel-title">공지사항</h3>
+                    <h3 class="panel-title">영화정보</h3>
                   </div>
                   <div class="col col-xs-6 text-right">
 
                     <a href="/welcome"  class="btn btn-default">뒤로가기</a>
+
+                    <a href="/movieboard/mvwrite"  class="btn btn-success">글쓰기</a>
                   </div>
                 </div>
               </div>
@@ -170,10 +214,11 @@ used to vertically center elements, may need modification if you're not using de
                   <thead>
                     <tr>
                         <th class="hidden-xs">글번호</th>
-                        <th>작성자</th>
-                        <th>제목</th>
-                        <th>조회수</th>
-                        <th>작성일</th>
+                          <th>포스터</th>
+                        <th>(한글)영화제목</th>
+                        <th>(영어)영화제목</th>
+                        <th><em class="fa fa-cog"></em></th>
+                        <th>상세보기</th>
                     </tr>
                   </thead>
 
@@ -186,15 +231,17 @@ used to vertically center elements, may need modification if you're not using de
                              break;
                            }else{
                                var oneItem = rows[i];
-
-
-                    %>
+                          %>
                           <tr>
                             <td><%=oneItem.idx%></td>
-                            <td><%=oneItem.creator_id%></td>
-                            <td><a href="/board/read/<%=oneItem.idx%>"><%=oneItem.title%></a></td>
-                            <td><%=oneItem.hit%></td>
-                            <td><%=oneItem.modidate%></td>
+                            <td><%=oneItem.poster%></td>
+                            <td><%=oneItem.moviek%></td>
+                            <td><%=oneItem.moviee%></a></td>
+                            <td align="center">
+                            <a href='/movieboard/delete/<%=oneItem.idx%>' class="btn btn-danger"><em class="fa fa-trash"></em></a>
+                            </td>
+                            <td align="center"><a href='#' class="btn btn-info">상세보기</a>
+                            </td>
                           </tr>
                           <%
                                }
@@ -204,18 +251,41 @@ used to vertically center elements, may need modification if you're not using de
                 </table>
 
               </div>
+
+
+
+
               <div class="panel-footer">
 
                 <div class="row">
 
-                  <div class="col col-xs-4">Page
+                  <div class="col col-xs-4">
+                    <div class="search">
+
+                      <form action="/movieboard/search" method="get" id="searchAction" name="searchAction">
+                        <input type="text" class="search_word" id="searchWord" name="searchWord">
+                        <a href="#" onclick="searchContent();"><div class="btn btn-info">검색</div></a>
+                   </form>
+                    </div>
+
                   </div>
+
+                  <script>
+                  function searchContent() {
+                    if($('#searchWord').val == ''){
+                        alert("검색어를 입력해주세요!!!");
+                      } else {
+                        $('#searchAction').submit();
+                        console.log("");
+                      }
+                    }
+                  </script>
 
                   <div class="col col-xs-8">
                     <%
                     for(var j=0;j<rows.length/8;j++){%>
                     <ul class="pagination hidden-xs pull-right">
-                      <li><a href="/board/blistuser/<%=j+1%>"><%=j+1 %></a></li>
+                      <li><a href="/movieboard/mvlist/<%=j+1%>"><%=j+1 %></a></li>
                     </ul>
                     <%  }
                       %>
@@ -229,10 +299,48 @@ used to vertically center elements, may need modification if you're not using de
                 </div>
 
               </div>
+
             </div>
 
 </div></div></div>
 
+<div class="container">
+  <div class="row">
+    <div class="page-header">
+      <h2>Tim 영화정보</h2>
+    </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="container">
+
+<%
+   for(var i=leng-((page*page_num)-page_num); i>leng-(page*page_num); i--)
+   {
+     if(i<0){
+       break;
+     }else{
+         var oneItem = rows[i];
+    %>
+
+    <div class="add"></div>
+
+<div class="row equipo-item">
+<div class="col-md-3 separador-vertical"><img src="<%=oneItem.poster%>" class="img-responsive center-block"></div>
+<div class="col-md-9">
+<h2 class="titulo-equipo"><a href="/movieboard/mvread/<%=oneItem.idx%>"><%=oneItem.moviek%></a></h2>
+<p class="texto-equipo">d</p>
+</div>
+
+</div>
+
+  <%
+       }
+     }
+  %>
+</div>
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

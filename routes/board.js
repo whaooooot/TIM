@@ -57,7 +57,7 @@ route.get('/blist/:page', function(req,res,next){
             else{
             console.log("rows : " + JSON.stringify(rows));
 
-            res.render('blist', {title: '게시판 전체 글 조회', u_id:u_id,rows: rows, page: page, leng : Object.keys(rows).length-1, page_num:8, pass: true });
+            res.render('blist', {title: '게시판 전체 글 조회', u_id:u_id, rows: rows, page: page, leng : Object.keys(rows).length-1, page_num:8, pass: true });
             connection.release();
 
           }
@@ -235,15 +235,16 @@ function(error, results){
 
 
 
-route.get('/search', function(req,res,next){
+route.post('/blist/', function(req,res,next){
   if(req.user && req.user.displayName){ //정보불러옴
     var u_id = req.user.username;
     var page = req.params.page;
+
     pool.getConnection(function (err, connection) {
         // Use the connection
         var searchWord = req.body.searchWord;
-        var search = "SELECT title FROM board";
-        connection.query(search, searchWord,  function (err, rows) {
+        var search = "select idx, creator_id, title, content, date_format(modidate,'%Y-%m-%d %H:%i:%s') modidate, hit from board where title=?";
+        connection.query(search, [searchWord],  function (err, rows) {
             if (err){ console.error("err : " + err);}
             else{
             console.log("rows : " + JSON.stringify(rows));
