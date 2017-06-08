@@ -25,6 +25,7 @@ module.exports = function(app){
    route.get('/map3', function(req, res){
      if(req.user && req.user.displayName){ //정보불러옴
        var u_id = req.user.username;
+         var id = req.user.id;
       pool.query('SELECT * FROM map', function(error, rows, fields){
         if(error){
           console.log('error : ', error.message);
@@ -32,7 +33,7 @@ module.exports = function(app){
           console.log('디비값', rows);
                   var json = JSON.stringify(rows);
                   //var sessionid = req.user.
-                     res.render('map3', {json, u_id : u_id});
+                     res.render('map3', {json, u_id : u_id,id:id});
                 }
             });
       }

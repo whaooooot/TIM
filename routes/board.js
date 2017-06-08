@@ -49,6 +49,7 @@ route.get('/blist/:page', function(req,res,next){
   if(req.user && req.user.displayName){ //정보불러옴
     var u_id = req.user.username;
     var page = req.params.page;
+    var id = req.user.id;
     pool.getConnection(function (err, connection) {
         // Use the connection
         var boardselect = "SELECT idx, creator_id, title, date_format(modidate,'%Y-%m-%d %H:%i:%s') modidate,hit FROM board";
@@ -57,7 +58,7 @@ route.get('/blist/:page', function(req,res,next){
             else{
             console.log("rows : " + JSON.stringify(rows));
 
-            res.render('blist', {title: '게시판 전체 글 조회', u_id:u_id, rows: rows, page: page, leng : Object.keys(rows).length-1, page_num:8, pass: true });
+            res.render('blist', {title: '게시판 전체 글 조회', id:id,u_id:u_id, rows: rows, page: page, leng : Object.keys(rows).length-1, page_num:8, pass: true });
             connection.release();
 
           }
@@ -71,6 +72,7 @@ route.get('/blistuser/:page', function(req,res,next){
   if(req.user && req.user.displayName){ //정보불러옴
     var u_id = req.user.username;
     var page = req.params.page;
+    var id = req.user.id;
     pool.getConnection(function (err, connection) {
         // Use the connection
         var boardselect = "SELECT idx, creator_id, title, date_format(modidate,'%Y-%m-%d %H:%i:%s') modidate,hit FROM board";
@@ -79,7 +81,7 @@ route.get('/blistuser/:page', function(req,res,next){
             else{
             console.log("rows : " + JSON.stringify(rows));
 
-            res.render('blistuser', {title: '게시판 전체 글 조회', u_id:u_id,rows: rows, page: page, leng : Object.keys(rows).length-1, page_num:8, pass: true });
+            res.render('blistuser', {title: '게시판 전체 글 조회', id:id ,u_id:u_id,rows: rows, page: page, leng : Object.keys(rows).length-1, page_num:8, pass: true });
             connection.release();
 
           }
@@ -94,8 +96,9 @@ app.use(bodyParser.urlencoded({extended:true}));
 // 글쓰기 화면 표시 GET
 route.get('/write', function(req,res,next){
   var u_id = req.user.username;  //user가패스포트값불러오기
+  var id = req.user.id;
   console.log(u_id);
-    res.render("./write", {u_id : u_id});   //json방식으로 변수선언해서부르기  렌터로는 값보내기
+    res.render("./write", {u_id : u_id,id:id});   //json방식으로 변수선언해서부르기  렌터로는 값보내기
 });
 
 
@@ -132,6 +135,7 @@ route.get('/read/:idx',function(req,res,next)
 {  if(req.user && req.user.displayName){ //정보불러옴
     var u_id = req.user.username;
     var idx = req.params.idx;
+    var id = req.user.id;
 
     pool.getConnection(function(err,connection)
     {
@@ -150,9 +154,9 @@ route.get('/read/:idx',function(req,res,next)
 
             if(req.user && req.user.displayName){ //정보불러옴
               if(req.user.username == 'admin'){
-            res.render('read', {title:"글 조회", u_id:u_id,row:row[0]});
+            res.render('read', {title:"글 조회", u_id:u_id,row:row[0],id:id});
             }else{
-            res.render('readuser', {title:"글 조회", u_id:u_id,row:row[0]});
+            res.render('readuser', {title:"글 조회", u_id:u_id,row:row[0],id:id});
             }
           }
             connection.release();
@@ -171,6 +175,7 @@ route.get('/update',function(req,res,next)
   if(req.user && req.user.displayName){ //정보불러옴
       var u_id = req.user.username;
     var idx = req.query.idx;
+    var id = req.user.id;
 
     pool.getConnection(function(err,connection)
     {
@@ -181,7 +186,7 @@ route.get('/update',function(req,res,next)
         {
             if(err) console.error(err);
             console.log("update에서 1개 글 조회 결과 확인 : ",rows);
-            res.render('update', {title:"글 수정", row:rows[0],u_id:u_id});
+            res.render('update', {title:"글 수정", row:rows[0],u_id:u_id,id:id});
             connection.release();
         });
     });
@@ -239,6 +244,7 @@ route.post('/blist/', function(req,res,next){
   if(req.user && req.user.displayName){ //정보불러옴
     var u_id = req.user.username;
     var page = req.params.page;
+    var id = req.user.id;
 
     pool.getConnection(function (err, connection) {
         // Use the connection
@@ -249,7 +255,7 @@ route.post('/blist/', function(req,res,next){
             else{
             console.log("rows : " + JSON.stringify(rows));
             console.log("searchWord : " + JSON.stringify(searchWord));
-            res.render('blist', {title: '게시판 전체 글 조회', u_id:u_id, title:searchWord,  rows: rows, page: page, leng : Object.keys(rows).length-1, page_num:8, pass: true });
+            res.render('blist', {title: '게시판 전체 글 조회', id:id,u_id:u_id, title:searchWord,  rows: rows, page: page, leng : Object.keys(rows).length-1, page_num:8, pass: true });
             connection.release();
 
           }

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Bootstrap -->
+    <link href="/register/css/bootstrap.min.css" rel="stylesheet">
+    <!-- font awesome -->
+    <link href="/register/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Custom Style -->
+    <link href="/register/css/style.css" rel="stylesheet">
+
+    <meta name="description" content="This is a free Bootstrap landing page theme created for BootstrapZero. Feature video background and one page design." />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Codeply">
+    <link rel="stylesheet" href="/landing-zero-theme/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/landing-zero-theme/css/animate.min.css" />
+    <link rel="stylesheet" href="/landing-zero-theme/css/ionicons.min.css" />
+    <link rel="stylesheet" href="/landing-zero-theme/css/styles.css" />
+      <meta charset="utf-8">
+      <!-- This file has been downloaded from Bootsnipp.com. Enjoy! -->
+      <title>Tim 회원수정</title>
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+
+    <nav id="topNav" class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+          <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+              </button>
+                <div class="navbar-collapse collapse" id="bs-navbar">
+                  <ul class="nav navbar-nav">
+                  <li>
+                    <a class="navbar-brand page-scroll" href="/welcome">
+                      <li>
+                      <img src="/timmarker.png" class="img-responsive" width="40" height="40">
+                      </li>
+                  <!--  <i class="ion-ios-analytics-outline"></i> -->               Travel In Movie</a>
+
+                  </li>
+              </ul>
+            </div>
+        </div>
+
+          <div class="navbar-collapse collapse" id="bs-navbar">
+              <ul class="nav navbar-nav">
+                  <li>
+                      <a class="page-scroll" href="/board">Notice</a>
+                  </li>
+                  <li>
+                      <a class="page-scroll" href="/map3">map</a>
+                  </li>
+                  <li>
+                      <a class="page-scroll" href="/movieboard">MOVIE</a>
+                  </li>
+                  <li>
+                      <a class="page-scroll" href="/travelboard">TRAVEL</a>
+                  </li>
+              </ul>
+              <ul class="nav navbar-nav navbar-right">
+                  <li>
+                      <a class="page-scroll" data-toggle="modal" title="A free Bootstrap video landing theme" href="/mlistuser/<%=id%>">회원정보수정</a>
+                      </li>
+                      <li>
+                      <a class="page-scroll" data-toggle="modal" title="A free Bootstrap video landing theme">반갑습니다, <%=u_id%> 님 </a>
+                  </li>
+                  <li>
+                  <a class="page-scroll" data-toggle="modal" title="A free Bootstrap video landing theme" href="/auth/logout">logout</a>
+              </li>
+              </ul>
+          </div>
+      </div>
+    </nav>
+    <br><br><br>
+      <div class="container">
+        <div class="row">
+          <div class="page-header">
+            <h2>Tim 회원정보수정</h2>
+          </div>
+          </div>
+
+    <% prodList.forEach(function(item, index){%>
+
+      <article class="container">
+        <div class="col-md-12">
+        <form class="form-horizontal" action="edit/" method="post">
+        <div class="form-group">
+          <label class="col-sm-3 control-label" for="inputId">아이디</label>
+        <div class="col-sm-6">
+          <input type="text" class="col-sm-3 control-label" name="id" for="inputId" value="<%=item.username%>" readonly="readonly">
+        </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label" for="inputName">이름</label>
+          <div class="col-sm-6">
+            <input type="text" class="col-sm-3 control-label" name="name" for="inputName" value="<%=item.displayName%>" readonly="readonly">
+          </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label" for="inputNumber">휴대폰번호</label>
+          <div class="col-sm-6">
+            <input type="tel" class="form-control" id="inputNumber" placeholder="<%=item.phonenum%>" name="phonenum" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label" for="inputEmail">이메일</label>
+        <div class="col-sm-6">
+          <input class="form-control" id="inputEmail" type="email" placeholder="<%=item.email%>" name="email" required>
+        </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-12 text-center">
+            <button class="btn btn-primary" type="submit">수정<i class="fa fa-check spaceLeft"></i></button>
+            <a href="/welcome" class="btn btn-danger" ctype="submit">수정취소<i class="fa fa-times spaceLeft"></i></a>
+          </div>
+        </div>
+
+        </form>
+          <hr>
+        </div>
+      </article>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="../register/js/bootstrap.min.js"></script>
+
+<% }); %>
+  </body>
+</html>

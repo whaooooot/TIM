@@ -11,15 +11,18 @@ route.get('/welcome', function(req, res){
         console.log(u_id);
       res.render('./welcomeadmin', {u_id : u_id});
     }else{
+      var id= req.user.id;
       var u_id = req.user.username;  //user가패스포트값불러오기
       var u_faceid = req.user.displayName
         console.log(u_id);
         console.log(u_faceid);
-      res.render('./welcomeuser',{u_id : u_id, u_faceid : u_faceid});
+      res.render('./welcomeuser',{u_id : u_id, u_faceid : u_faceid,id:id});
   }
   } else{
       res.render('/welcome');
   }
 });
+
+
 
 module.exports = route;

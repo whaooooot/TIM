@@ -70,6 +70,7 @@ route.get('/dmlistuser/:page', function(req,res,next){
   if(req.user && req.user.displayName){ //정보불러옴
     var u_id = req.user.username;
     var page = req.params.page;
+     var id = req.user.id;
     pool.getConnection(function (err, connection) {
         // Use the connection
         var mapselect = "SELECT idx, zzlat, zzlon, location, movie  FROM map";
@@ -78,7 +79,7 @@ route.get('/dmlistuser/:page', function(req,res,next){
             else{
             console.log("rows : " + JSON.stringify(rows));
 
-            res.render('dmlistuser', {title: '게시판 전체 글 조회', u_id:u_id,rows: rows, page: page, leng : Object.keys(rows).length-1, page_num:8, pass: true });
+            res.render('dmlistuser', {title: '게시판 전체 글 조회',id:id, u_id:u_id,rows: rows, page: page, leng : Object.keys(rows).length-1, page_num:8, pass: true });
             connection.release();
 
           }

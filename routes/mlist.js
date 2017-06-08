@@ -28,6 +28,17 @@ module.exports = function(app){
     debug    :  false
   });
 
+  /* GET users listing. */
+  route.get('/', function(req, res, next) {
+    if(req.user && req.user.displayName){ //정보불러옴
+      if(req.user.username == 'admin'){
+        res.redirect('/board/mlist/1');
+      }else{
+        res.redirect('/board/mlistuser/1');
+    }
+    }
+  });
+
 
   //list접속하면 list.ejs보여준다
   route.get( '/mlist', function(req, res){
@@ -52,6 +63,45 @@ module.exports = function(app){
    })
  }
 });
+
+
+//수정  localhost:3000/delete/3같은 거에서 id=3인 row 수정
+route.get('/mlistuser/:id', function(req, res){
+  if(req.user && req.user.displayName){ //정보불러옴
+      var u_id = req.user.username;
+      var id= req.user.id;
+   fs.readFile('views/mlistuser.ejs', 'utf8', function(error, data){
+      pool.query('select * from users where id = ?', [req.params.id],
+          function(error, result){
+             if(error){
+                console.log('readFile Error');
+             }else{
+                res.send( ejs.render(data, {
+                    prodList : result, u_id:u_id ,id:id}
+                  ));
+             }
+          }
+      );
+   })
+}
+});
+
+//'edit.ejs' 에서 POST 방식으로 전달되는 변경된 데이타를 MySQL에 업데이트한다.
+route.post('/mlistuser/:id', function(req, res){
+  var id = req.body.id;
+  console.log("id@@@@@"+req.body.id);
+   pool.query('update users set phonenum=?, email=? where username=?',
+       [req.body.phonenum, req.body.email, req.body.id ],
+        function(error, result){
+            if(error){
+                console.log('update error : ', error.message );
+            }else{
+                res.redirect('/welcome'); //업데이트 완료 후 메인화면으로 이동한다.(변경사항 확인)
+            }
+   });
+});
+
+
 
   //삭제  localhost:3000/delete/3같은 거에서 id=3인 row 삭제
   route.get('/delete/:id',function(req, res){
