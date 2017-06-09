@@ -137,11 +137,9 @@ route.get('/tread/:idx',function(req,res,next)
 
     pool.getConnection(function(err,connection)
     {
-        var sql = "select idx, creator_id, title, content, date_format(modidate,'%Y-%m-%d %H:%i:%s') modidate, hit,img,moviek from travel where idx=?";
-        //var sql2 = "update board set hit = hit + 1 WHERE idx = ?";
-        connection.query(sql, [idx], function(err,row)
+        var sql = "select idx, creator_id, title, content, date_format(modidate,'%Y-%m-%d %H:%i:%s') modidate, hit, img, moviek from travel where idx=?";
+          connection.query(sql, [idx], function(err,row)
         {
-
             console.log("idx@@@@@"+idx);
             var sql2 = connection.query("update travel set hit = hit + 1 WHERE idx = ?", idx,function(err, rows, fields){
               console.log('ok?');
@@ -189,6 +187,7 @@ route.get('/tupdate',function(req,res,next)
     });
 }});
 
+
 route.post('/tupdate',function(req,res,next)
 {
     var idx = req.body.idx;
@@ -201,8 +200,8 @@ route.post('/tupdate',function(req,res,next)
 
     pool.getConnection(function(err,connection)
     {
-        var sql = "update travel set creator_id=? , title=?,content=?, regdate=now(),img=?,moviek=? where idx=? ";
-        connection.query(sql,[creator_id,title,content,img,idx,moviek],function(err,result)
+        var sql = "update travel set creator_id=? , title=?,content=?, regdate=now(),img=?, moviek=? where idx=?";
+        connection.query(sql,datas,function(err,result)
         {
             console.log(result);
             if(err) console.error("글 수정 중 에러 발생 err : ",err);
@@ -232,20 +231,47 @@ function(error, results){
 
 
 
-route.get('/search', function(req,res,next){
+route.post('/tlist/:page', function(req,res,next){
   if(req.user && req.user.displayName){ //정보불러옴
     var u_id = req.user.username;
     var page = req.params.page;
+    var id = req.user.id;
+
     pool.getConnection(function (err, connection) {
         // Use the connection
         var searchWord = req.body.searchWord;
-        var search = "SELECT title FROM travel";
-        connection.query(search, searchWord,  function (err, rows) {
+          var search = "SELECT idx, creator_id, title, content, date_format(modidate,'%Y-%m-%d %H:%i:%s') modidate,hit,img,moviek FROM travel where title=?";
+      connection.query(search, [searchWord],  function (err, rows) {
             if (err){ console.error("err : " + err);}
             else{
             console.log("rows : " + JSON.stringify(rows));
             console.log("searchWord : " + JSON.stringify(searchWord));
-            res.render('tlist', {title: '게시판 전체 글 조회', u_id:u_id, title:searchWord,  rows: rows, page: page, leng : Object.keys(rows).length-1, page_num:8, pass: true });
+            res.render('tlist', {title: '게시판 전체 글 조회', id:id, u_id:u_id,  rows: rows, page: page, leng : Object.keys(rows).length-1, page_num:8, pass: true });
+            connection.release();
+
+          }
+        });
+    });
+}
+});
+
+
+route.post('/tlistuser/:page', function(req,res,next){
+  if(req.user && req.user.displayName){ //정보불러옴
+    var u_id = req.user.username;
+    var page = req.params.page;
+    var id = req.user.id;
+
+    pool.getConnection(function (err, connection) {
+        // Use the connection
+        var searchWord = req.body.searchWord;
+          var search = "SELECT idx, creator_id, title, content, date_format(modidate,'%Y-%m-%d %H:%i:%s') modidate,hit,img,moviek FROM travel where title=?";
+      connection.query(search, [searchWord],  function (err, rows) {
+            if (err){ console.error("err : " + err);}
+            else{
+            console.log("rows : " + JSON.stringify(rows));
+            console.log("searchWord : " + JSON.stringify(searchWord));
+            res.render('tlistuser', {title: '게시판 전체 글 조회', id:id, u_id:u_id,  rows: rows, page: page, leng : Object.keys(rows).length-1, page_num:8, pass: true });
             connection.release();
 
           }

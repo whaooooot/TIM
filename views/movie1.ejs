@@ -268,7 +268,7 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
 
  <script>
 
-   var a = 'https://apis.daum.net/contents/movie?apikey=24baf278d4fb55931b843f0cca64f3e1&q= "+<%=rows[0].moviek%>+" &output=json'
+   var a = 'https://apis.daum.net/contents/movie?apikey=24baf278d4fb55931b843f0cca64f3e1&q= "+<%=rows[0].moviee%>+" &output=json'
 
       $(function(datas){
 
@@ -282,21 +282,22 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
 
 
               var actor = data['channel']['item']['0'];
-                   var open_info = data['channel']['item']['0']['open_info'];
-                   var director = data['channel']['item']['0']['director']['0'];
-                   var eng_title = data['channel']['item']['0']['eng_title']['0'];
-                   var genre = data['channel']['item']['0']['genre']['0'];
-                   var grades = data['channel']['item']['0']['grades']['0'];
-                   var nation = data['channel']['item']['0']['nation']['0'];
-                   var photo1 = data['channel']['item']['0']['photo1']['content'];
-                   var photo2 = data['channel']['item']['0']['photo2']['content'];
-                   var photo3 = data['channel']['item']['0']['photo3']['content'];
-                   var photo4 = data['channel']['item']['0']['photo4']['content'];
-                   var photo5 = data['channel']['item']['0']['photo5']['content'];
-                   var story = data['channel']['item']['0']['story']['0'];
-                   var thumbnail = data['channel']['item']['0']['thumbnail']['0']['content'];
-                   var title = data['channel']['item']['0']['title']['0'];
-                   var video = data['channel']['item']['0']['video']['0']['link'];
+              var open_info = data['channel']['item']['0']['open_info'];
+              var director = data['channel']['item']['0']['director']['0'];
+              var eng_title = data['channel']['item']['0']['eng_title']['0'];
+              var genre = data['channel']['item']['0']['genre']['0'];
+              var grades = data['channel']['item']['0']['grades']['0'];
+              var nation = data['channel']['item']['0']['nation']['0'];
+              var photo1 = data['channel']['item']['0']['photo1']['content'];
+              var photo2 = data['channel']['item']['0']['photo2']['content'];
+              var photo3 = data['channel']['item']['0']['photo3']['content'];
+              var photo4 = data['channel']['item']['0']['photo4']['content'];
+              var photo5 = data['channel']['item']['0']['photo5']['content'];
+              var story = data['channel']['item']['0']['story']['0'];
+              var thumbnail = data['channel']['item']['0']['thumbnail']['0']['content'];
+              var title = data['channel']['item']['0']['title']['0'];
+              var video = data['channel']['item']['0']['video']['0']['link'];
+/////////////////////
 
       //  $('#qq').append(//"<img src= "+thumbnail+" >"+
       //                  //"<p id='demo' class='demo'></p>예고편:" + "<embed src= "+video+" ></embed>"+

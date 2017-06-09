@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Tim</title>
+    <title>Tim(Travel In Movie)</title>
     <meta name="description" content="This is a free Bootstrap landing page theme created for BootstrapZero. Feature video background and one page design." />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="Codeply">
@@ -55,7 +55,7 @@
                         <a class="page-scroll" data-toggle="modal" title="A free Bootstrap video landing theme" href="/mlistuser/<%=id%>">회원정보수정</a>
                         </li>
                         <li>
-                        <a class="page-scroll" data-toggle="modal" title="A free Bootstrap video landing theme">반갑습니다, <%=u_id%> 님 </a> <!--<%=u_faceid%>-->
+                        <a class="page-scroll" data-toggle="modal" title="A free Bootstrap video landing theme">반갑습니다, <%=u_id%> <%=u_faceid%>님 </a> <!--<%=u_faceid%>-->
                     </li>
                     <li>
                     <a class="page-scroll" data-toggle="modal" title="A free Bootstrap video landing theme" href="/auth/logout">logout</a>
@@ -144,93 +144,102 @@
     </section>
 -->
 
-    <section id="three" class="no-padding">
-        <div class="container-fluid">
-            <div class="row no-gutter">
-                <div class="col-lg-4 col-sm-6">
+<section id="three" class="no-padding">
+    <div class="container-fluid">
+        <div class="row no-gutter">
+            <div class="col-lg-4 col-sm-6">
+
+
+              <!-- <form action="./movie/:idx" method="post">
+
+                  <button class="btn btn-small btn-primary" type="submit">영화정보</button> -->
                   <a class="btn btn-small btn-primary" href="/movie/2">영화정보</a>
-                    <a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="./pic/건축1.jpg">
-                        <img src="./pic/건축1.jpg" class="img-responsive" alt="Image 1" width="600" height="600">
-                        <div class="gallery-box-caption">
-                            <div class="gallery-box-content">
-                                <div>
-                                    <i class="icon-lg ion-ios-search"></i>
-                                </div>
+                <a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="./pic/건축1.jpg">
+                    <img src="./pic/건축1.jpg" class="img-responsive" alt="Image 1" width="600" height="600">
+                    <div class="gallery-box-caption">
+                        <div class="gallery-box-content">
+                            <div>
+                                <i class="icon-lg ion-ios-search"></i>
                             </div>
                         </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                  <a class="btn btn-small btn-primary" href="/movie/2">영화정보</a>
-                    <a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="./pic/곡성.jpg">
-                        <img src="./pic/곡성.jpg" class="img-responsive" alt="Image 2" width="600" height="600">
-                        <div class="gallery-box-caption">
-                            <div class="gallery-box-content">
-                                <div>
-                                    <i class="icon-lg ion-ios-search"></i>
-                                </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+
+                <a class="btn btn-small btn-primary" href="/movie/3">영화정보</a>
+                <a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="./pic/곡성.jpg">
+                    <img src="./pic/곡성.jpg" class="img-responsive" alt="Image 2" width="600" height="600">
+                    <div class="gallery-box-caption">
+                        <div class="gallery-box-content">
+                            <div>
+                                <i class="icon-lg ion-ios-search"></i>
                             </div>
                         </div>
-                    </a>
-                </div>
-				<div class="clearfix hidden-lg"> </div>
-                <div class="col-lg-4 col-sm-6">
-                  <a class="btn btn-small btn-primary" href="/movie/2">영화정보</a>
-                    <a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="./pic/클래식.jpg">
-                        <img src="./pic/클래식.jpg" class="img-responsive" alt="Image 3" width="600" height="600">
-                        <div class="gallery-box-caption">
-                            <div class="gallery-box-content">
-                                <div>
-                                    <i class="icon-lg ion-ios-search"></i>
-                                </div>
+                    </div>
+                </a>
+            </div>
+    <div class="clearfix hidden-lg"> </div>
+            <div class="col-lg-4 col-sm-6">
+
+                <a class="btn btn-small btn-primary" href="/movie/6">영화정보</a>
+                <a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="./pic/클래식.jpg">
+                    <img src="./pic/클래식.jpg" class="img-responsive" alt="Image 3" width="600" height="600">
+                    <div class="gallery-box-caption">
+                        <div class="gallery-box-content">
+                            <div>
+                                <i class="icon-lg ion-ios-search"></i>
                             </div>
                         </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                  <a class="btn btn-small btn-primary" href="/movie/2">영화정보</a>
-                    <a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="./pic/괴물.jpg">
-                        <img src="./pic/괴물.jpg" class="img-responsive" alt="Image 4" width="600" height="600">
-                        <div class="gallery-box-caption">
-                            <div class="gallery-box-content">
-                                <div>
-                                    <i class="icon-lg ion-ios-search"></i>
-                                </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+
+                <a class="btn btn-small btn-primary" href="/movie/1">영화정보</a>
+                <a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="./pic/괴물.jpg">
+                    <img src="./pic/괴물.jpg" class="img-responsive" alt="Image 4" width="600" height="600">
+                    <div class="gallery-box-caption">
+                        <div class="gallery-box-content">
+                            <div>
+                                <i class="icon-lg ion-ios-search"></i>
                             </div>
                         </div>
-                    </a>
-                </div>
-				<div class="clearfix hidden-lg"> </div>
-                <div class="col-lg-4 col-sm-6">
-                  <a class="btn btn-small btn-primary" href="/movie/2">영화정보</a>
-                    <a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="./pic/변호인.jpg">
-                        <img src="./pic/변호인.jpg" class="img-responsive" alt="Image 5" width="600" height="600">
-                        <div class="gallery-box-caption">
-                            <div class="gallery-box-content">
-                                <div>
-                                    <i class="icon-lg ion-ios-search"></i>
-                                </div>
+                    </div>
+                </a>
+            </div>
+    <div class="clearfix hidden-lg"> </div>
+            <div class="col-lg-4 col-sm-6">
+
+                <a class="btn btn-small btn-primary" href="/movie/7">영화정보</a>
+                <a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="./pic/변호인.jpg">
+                    <img src="./pic/변호인.jpg" class="img-responsive" alt="Image 5" width="600" height="600">
+                    <div class="gallery-box-caption">
+                        <div class="gallery-box-content">
+                            <div>
+                                <i class="icon-lg ion-ios-search"></i>
                             </div>
                         </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                  <a class="btn btn-small btn-primary" href="/movie/2">영화정보</a>
-                    <a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="./pic/부산행.jpg">
-                        <img src="./pic/부산행.jpg" class="img-responsive" alt="Image 6" width="600" height="600">
-                        <div class="gallery-box-caption">
-                            <div class="gallery-box-content">
-                                <div>
-                                    <i class="icon-lg ion-ios-search"></i>
-                                </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+
+                <a class="btn btn-small btn-primary" href="/movie/8">영화정보</a>
+                <a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="./pic/부산행.jpg">
+                    <img src="./pic/부산행.jpg" class="img-responsive" alt="Image 6" width="600" height="600">
+                    <div class="gallery-box-caption">
+                        <div class="gallery-box-content">
+                            <div>
+                                <i class="icon-lg ion-ios-search"></i>
                             </div>
                         </div>
-                    </a>
-                </div>
+                    </div>
+                </a>
             </div>
         </div>
-    </section>
-
+    </div>
+</section>
 
     <section class="container-fluid" id="four">
 
@@ -290,7 +299,7 @@
                       <div class="caption">
                         <h3>[건축학개론] 제주도</h3>
                         <p>서연의 집</p>
-                        <p align="center"><a href="/travelboard/tread/2" class="btn btn-success btn-block">여행지정보 보러가기</a></p>
+                        <p align="center"><a href="/travelboard/tread/4" class="btn btn-success btn-block">여행지정보 보러가기</a></p>
                       </div>
                     </div>
                   </li>
@@ -311,7 +320,7 @@
                       <div class="caption">
                         <h3>[변호인] 부산</h3>
                         <p>흰여울문화마을</p>
-                        <p align="center"><a href="/travelboard/tread/2" class="btn btn-success btn-block">여행지 정보보러가기</a></p>
+                        <p align="center"><a href="/travelboard/tread/10" class="btn btn-success btn-block">여행지 정보보러가기</a></p>
                       </div>
                     </div>
                   </li>
@@ -454,53 +463,54 @@
     </section>
 -->
 
-<!--
-    <footer id="footer">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-xs-6 col-sm-3 column">
-                    <h4>Information</h4>
-                    <ul class="list-unstyled">
-                        <li><a href="">Products</a></li>
-                        <li><a href="">Services</a></li>
-                        <li><a href="">Benefits</a></li>
-                        <li><a href="">Developers</a></li>
-                    </ul>
-                </div>
-                <div class="col-xs-6 col-sm-3 column">
-                    <h4>About</h4>
-                    <ul class="list-unstyled">
-                        <li><a href="#">Contact Us</a></li>
-                        <li><a href="#">Delivery Information</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms &amp; Conditions</a></li>
-                    </ul>
-                </div>
-                <div class="col-xs-12 col-sm-3 column">
-                    <h4>Stay Posted</h4>
-                    <form>
-                        <div class="form-group">
-                          <input type="text" class="form-control" title="No spam, we promise!" placeholder="Tell us your email">
-                        </div>
-                        <div class="form-group">
-                          <button class="btn btn-primary" data-toggle="modal" data-target="#alertModal" type="button">Subscribe for updates</button>
-                        </div>
-                    </form>
-                </div>
-                <div class="col-xs-12 col-sm-3 text-right">
-                    <h4>Follow</h4>
-                    <ul class="list-inline">
-                      <li><a rel="nofollow" href="" title="Twitter"><i class="icon-lg ion-social-twitter-outline"></i></a>&nbsp;</li>
-                      <li><a rel="nofollow" href="" title="Facebook"><i class="icon-lg ion-social-facebook-outline"></i></a>&nbsp;</li>
-                      <li><a rel="nofollow" href="" title="Dribble"><i class="icon-lg ion-social-dribbble-outline"></i></a></li>
-                    </ul>
-                </div>
+<footer id="footer">
+  <!--
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-6 col-sm-3 column">
+                <h4>Information</h4>
+                <ul class="list-unstyled">
+                    <li><a href="">Products</a></li>
+                    <li><a href="">Services</a></li>
+                    <li><a href="">Benefits</a></li>
+                    <li><a href="">Developers</a></li>
+                </ul>
             </div>
-            <br/>
-            <span class="pull-right text-muted small"><a href="">TIM(Travel In Movie)</a> ©2017 Heechang Ahn </span>
+            <div class="col-xs-6 col-sm-3 column">
+                <h4>About</h4>
+                <ul class="list-unstyled">
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Delivery Information</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms &amp; Conditions</a></li>
+                </ul>
+            </div>
+            <div class="col-xs-12 col-sm-3 column">
+                <h4>Stay Posted</h4>
+                <form>
+                    <div class="form-group">
+                      <input type="text" class="form-control" title="No spam, we promise!" placeholder="Tell us your email">
+                    </div>
+                    <div class="form-group">
+                      <button class="btn btn-primary" data-toggle="modal" data-target="#alertModal" type="button">Subscribe for updates</button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-xs-12 col-sm-3 text-right">
+                <h4>Follow</h4>
+                <ul class="list-inline">
+                  <li><a rel="nofollow" href="" title="Twitter"><i class="icon-lg ion-social-twitter-outline"></i></a>&nbsp;</li>
+                  <li><a rel="nofollow" href="" title="Facebook"><i class="icon-lg ion-social-facebook-outline"></i></a>&nbsp;</li>
+                  <li><a rel="nofollow" href="" title="Dribble"><i class="icon-lg ion-social-dribbble-outline"></i></a></li>
+                </ul>
+            </div>
         </div>
-    </footer>
--->
+        -->
+        <br/>
+        <span class="pull-right text-muted"><a href="">TIM(Travel In Movie)</a> ©2017 Heechang Ahn </span>
+    </div>
+
+</footer>
 
     <div id="galleryModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-lg">

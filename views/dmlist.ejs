@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="/landing-zero-theme/css/styles.css" />
     <meta charset="utf-8">
     <!-- This file has been downloaded from Bootsnipp.com. Enjoy! -->
-    <title>Tim 여행지</title>
+    <title>Tim 길찾기</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
     <style type="text/css">
         .separador-vertical{
@@ -235,10 +235,10 @@ used to vertically center elements, may need modification if you're not using de
                   <div class="col col-xs-4">
                     <div class="search">
 
-                      <form action="/mapboard/search" method="get" id="searchAction" name="searchAction">
-                        <input type="text" class="search_word" id="searchWord" name="searchWord">
-                        <a href="#" onclick="searchContent();"><div class="btn btn-info">검색</div></a>
-                   </form>
+                      <form action="/mapboard/dmlist/1" method="post">
+                          <input type="text" class="search_word" id="searchWord" name="searchWord">
+                            <button class="btn btn-info" type="submit">영화 검색</button>  <!--onclick="searchContent();"-->
+                     </form>
                     </div>
 
                   </div>
@@ -268,6 +268,7 @@ used to vertically center elements, may need modification if you're not using de
                     </ul>
 
                   </div>
+
 
                 </div>
 

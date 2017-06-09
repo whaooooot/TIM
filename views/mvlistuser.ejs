@@ -23,7 +23,7 @@
 
     <meta charset="utf-8">
     <!-- This file has been downloaded from Bootsnipp.com. Enjoy! -->
-    <title>Tim 여행지</title>
+    <title>Tim 영화</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
     <style type="text/css">
 
@@ -145,7 +145,7 @@ used to vertically center elements, may need modification if you're not using de
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-              
+
                     <li>
                     <a class="page-scroll" data-toggle="modal" title="A free Bootstrap video landing theme">반갑습니다, <%=u_id%> 님 </a>
                 </li>
@@ -191,7 +191,55 @@ used to vertically center elements, may need modification if you're not using de
            }
          }
       %>
+
+      <div class="row">
+
+        <div class="col col-xs-4">
+          <div class="search">
+
+            <form action="/movieboard/mvlistuser/1" method="post">
+                <input type="text" class="search_word" id="searchWord" name="searchWord">
+                  <button class="btn btn-info" type="submit">영화 검색</button>  <!--onclick="searchContent();"-->
+           </form>
+          </div>
+
+        </div>
+
+        <script>
+        function searchContent() {
+          if($('#searchWord').val == ''){
+              alert("검색어를 입력해주세요!!!");
+            } else {
+              $('#searchAction').submit();
+              console.log("");
+            }
+          }
+        </script>
+
+      <div class="col col-xs-8">
+        <%
+        for(var j=0;j<rows.length/8;j++){%>
+        <ul class="pagination hidden-xs pull-right">
+          <li><a href="/movieboard/mvlistuser/<%=j+1%>"><%=j+1 %></a></li>
+        </ul>
+        <%  }
+          %>
+        <ul class="pagination visible-xs pull-right">
+            <li><a href="#">&laquo;</a></li>
+            <li><a href="#">&raquo;</a></li>
+        </ul>
+
+      </div>
     </div>
+
+    </div>
+
+
+
+
+
+
+
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

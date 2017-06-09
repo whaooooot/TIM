@@ -16,10 +16,8 @@ route.get('/welcome', function(req, res){
       var u_faceid = req.user.displayName
         console.log(u_id);
         console.log(u_faceid);
-      res.render('./welcomeuser',{u_id : u_id, u_faceid : u_faceid,id:id});
+      res.render('./welcomeuser',{u_id : u_id, u_faceid : u_faceid, id:id});
   }
-  } else{
-      res.render('/welcome');
   }
 });
 

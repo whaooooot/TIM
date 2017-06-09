@@ -72,7 +72,7 @@
 										</li>
 								</ul>
 								<ul class="nav navbar-nav navbar-right">
-					
+
 												<li>
 												<a class="page-scroll" data-toggle="modal" title="A free Bootstrap video landing theme">반갑습니다, <%=u_id%> 님 </a>
 										</li>
@@ -177,7 +177,7 @@
 												title: test[count].location,
 												latlng: new daum.maps.LatLng(test[count].zzlat, test[count].zzlon)
 								};
-								iwContent[count] = '<div style="padding:5px;">'+test[count].location+' <br> <a href="http://map.daum.net/link/to/tim여행지,'+test[count].zzlat+','+test[count].zzlon+'" style= target="_blank">길찾기</a></div>';
+								iwContent[count] = '<div style="padding:5px;">'+test[count].location+' <br> 관련영화:'+test[count].movie+'<br>  <a href="http://map.daum.net/link/to/tim여행지,'+test[count].zzlat+','+test[count].zzlon+'" style= target="_blank">길찾기</a></div>';
 					};
 
 					var imageSrc = "/timmarker.png";

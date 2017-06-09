@@ -145,7 +145,7 @@ used to vertically center elements, may need modification if you're not using de
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-              
+
                     <li>
                     <a class="page-scroll" data-toggle="modal" title="A free Bootstrap video landing theme">반갑습니다, <%=u_id%> 님 </a>
                 </li>
@@ -196,11 +196,32 @@ used to vertically center elements, may need modification if you're not using de
            }
          }
       %>
-    </div>
 
-    <div class="row">
+      <div class="row">
 
-      <div class="col col-xs-8" >
+        <div class="col col-xs-4">
+          <div class="search">
+
+            <form action="/travelboard/tlistuser/1" method="post">
+                <input type="text" class="search_word" id="searchWord" name="searchWord">
+                  <button class="btn btn-info" type="submit">제목 검색</button>  <!--onclick="searchContent();"-->
+           </form>
+          </div>
+
+        </div>
+
+        <script>
+        function searchContent() {
+          if($('#searchWord').val == ''){
+              alert("검색어를 입력해주세요!!!");
+            } else {
+              $('#searchAction').submit();
+              console.log("");
+            }
+          }
+        </script>
+
+      <div class="col col-xs-8">
         <%
         for(var j=0;j<rows.length/8;j++){%>
         <ul class="pagination hidden-xs pull-right">
@@ -214,8 +235,9 @@ used to vertically center elements, may need modification if you're not using de
         </ul>
 
       </div>
-
     </div>
+    </div>
+
 
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

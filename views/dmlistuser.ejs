@@ -23,7 +23,7 @@
 
     <meta charset="utf-8">
     <!-- This file has been downloaded from Bootsnipp.com. Enjoy! -->
-    <title>Tim 여행지</title>
+    <title>Tim 길찾기</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
     <style type="text/css">
 
@@ -236,10 +236,10 @@ used to vertically center elements, may need modification if you're not using de
               <div class="col col-xs-4">
                 <div class="search">
 
-                  <form action="/mapboard/search" method="get" id="searchAction" name="searchAction">
-                    <input type="text" class="search_word" id="searchWord" name="searchWord">
-                    <a href="#" onclick="searchContent();"><div class="btn btn-info">검색</div></a>
-               </form>
+                  <form action="/mapboard/dmlistuser/1" method="post">
+                      <input type="text" class="search_word" id="searchWord" name="searchWord">
+                        <button class="btn btn-info" type="submit">영화 검색</button>  <!--onclick="searchContent();"-->
+                 </form>
                 </div>
 
               </div>
@@ -259,7 +259,7 @@ used to vertically center elements, may need modification if you're not using de
                 <%
                 for(var j=0;j<rows.length/8;j++){%>
                 <ul class="pagination hidden-xs pull-right">
-                  <li><a href="/mapboard/dmlist/<%=j+1%>"><%=j+1 %></a></li>
+                  <li><a href="/mapboard/dmlistuser/<%=j+1%>"><%=j+1 %></a></li>
                 </ul>
                 <%  }
                   %>

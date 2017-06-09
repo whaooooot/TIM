@@ -181,9 +181,6 @@ if (cluster.isMaster) { //클러스터설정
     var test1 = require('./routes/test1')(app);
     app.use('', test1);
 
-    var main = require('./routes/main')(app);//ejs예시
-    app.use('', main);
-
     var mlist = require('./routes/mlist')(app);//ejs예시
     app.use('', mlist);
 

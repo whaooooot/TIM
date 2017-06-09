@@ -208,7 +208,15 @@ used to vertically center elements, may need modification if you're not using de
 
                 <div class="row">
 
-                  <div class="col col-xs-4">Page
+                  <div class="col col-xs-4">
+                    <div class="search">
+
+                    <form action="/board/blistuser/1" method="post">
+                        <input type="text" class="search_word" id="searchWord" name="searchWord">
+                          <button class="btn btn-info" type="submit">검색</button>  <!--onclick="searchContent();"-->
+                   </form>
+                    </div>
+
                   </div>
 
                   <div class="col col-xs-8">

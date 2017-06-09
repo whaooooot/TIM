@@ -246,12 +246,9 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
                    </li>
                </ul>
                <ul class="nav navbar-nav navbar-right">
-                   <li>
-                       <a class="page-scroll" data-toggle="modal" title="A free Bootstrap video landing theme" href="/mlist">회원정보수정</a>
-                       </li>
+
                        <li>
-                       <a class="page-scroll" data-toggle="modal" title="A free Bootstrap video landing theme">반갑습니다, <%=u_id%> 님 </a>
-                   </li>
+                        </li>
                    <li>
                    <a class="page-scroll" data-toggle="modal" title="A free Bootstrap video landing theme" href="/auth/logout">logout</a>
                </li>
@@ -262,7 +259,7 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
        <div class="container">
          <div class="row">
            <div class="page-header">
-             <h2>Tim 여행지게시판</h2>
+             <h2>Tim 영화 상세정보</h2>
            </div>
            </div>
 
@@ -270,7 +267,7 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
 
  <script>
 
-   var a = 'https://apis.daum.net/contents/movie?apikey=24baf278d4fb55931b843f0cca64f3e1&q= "+<%=rows[0].moviee%>+" &output=json'
+   var a = 'https://apis.daum.net/contents/movie?apikey=24baf278d4fb55931b843f0cca64f3e1&q= 건축학개론 &output=json'
 
       $(function(datas){
 
@@ -283,22 +280,24 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
             success:function(data){
 
 
-       var actor = data['channel']['item']['1'];
-       var open_info = data['channel']['item']['1']['open_info'];
-       var director = data['channel']['item']['1']['director']['0'];
-       var eng_title = data['channel']['item']['1']['eng_title']['0'];
-       var genre = data['channel']['item']['1']['genre']['0'];
-       var grades = data['channel']['item']['1']['grades']['0'];
-       var nation = data['channel']['item']['1']['nation']['0'];
-       var photo1 = data['channel']['item']['1']['photo1']['content'];
-       var photo2 = data['channel']['item']['1']['photo2']['content'];
-       var photo3 = data['channel']['item']['1']['photo3']['content'];
-       var photo4 = data['channel']['item']['1']['photo4']['content'];
-       var photo5 = data['channel']['item']['1']['photo5']['content'];
-       var story = data['channel']['item']['1']['story']['0'];
-       var thumbnail = data['channel']['item']['1']['thumbnail']['0']['content'];
-       var title = data['channel']['item']['1']['title']['0'];
-       var video = data['channel']['item']['1']['video']['0']['link'];
+              var actor = data['channel']['item']['0'];
+                   var open_info = data['channel']['item']['0']['open_info'];
+                   var director = data['channel']['item']['0']['director']['0'];
+                   var eng_title = data['channel']['item']['0']['eng_title']['0'];
+                   var genre = data['channel']['item']['0']['genre']['0'];
+                   var grades = data['channel']['item']['0']['grades']['0'];
+                   var nation = data['channel']['item']['0']['nation']['0'];
+                   var photo1 = data['channel']['item']['0']['photo1']['content'];
+                   var photo2 = data['channel']['item']['0']['photo2']['content'];
+                   var photo3 = data['channel']['item']['0']['photo3']['content'];
+                   var photo4 = data['channel']['item']['0']['photo4']['content'];
+                   var photo5 = data['channel']['item']['0']['photo5']['content'];
+                   var story = data['channel']['item']['0']['story']['0'];
+                   var thumbnail = data['channel']['item']['0']['thumbnail']['0']['content'];
+                   var title = data['channel']['item']['0']['title']['0'];
+                   var video = data['channel']['item']['0']['video']['0']['link'];
+
+
 /////////////////////
 
       //  $('#qq').append(//"<img src= "+thumbnail+" >"+
@@ -356,11 +355,14 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
               $(".star").append(grades['content']);
               $(".nation").append(nation['content']);
               $(".story").append(story['content']);
-              $(".p1").append("<img src= "+photo1+" >");
-              $(".p2").append("<img src= "+photo2+" >");
-              $(".p3").append("<img src= "+photo3+" >");
-              $(".p4").append("<img src= "+photo4+" >");
-              $(".p5").append("<img src= "+photo5+" >");
+              $(".p1").append("<img src= "+photo1+" width=290px height=260px>");
+              $(".p2").append("<img src= "+photo2+" width=290px height=260px>");
+              $(".p3").append("<img src= "+photo3+" width=290px height=260px>");
+              $(".p4").append("<img src= "+photo4+" width=290px height=260px>");
+              $(".p11").append("<img src= "+photo1+" width=700px height=450px>");
+              $(".p22").append("<img src= "+photo2+" width=700px height=450px>");
+              $(".p33").append("<img src= "+photo3+" width=700px height=450px>");
+              $(".p44").append("<img src= "+photo4+" width=700px height=450px>");
               $(".purl").append(""+thumbnail+" ");
 
 
@@ -437,7 +439,7 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
                               <a data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary">미정</a>
                               <span class="pull-right">
                                   <a href="/travelboard" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i>  여행지</a>
-                                  <a href="/test" data-original-title="Remove this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger">뒤로가기</a>
+                                  <a href="/movieboard" data-original-title="Remove this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger">뒤로가기</a>
                               </span>
                           </div>
 
@@ -450,19 +452,19 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
           <div class="container">
               <div class="row">
             <div class="column">
-              <div  width=200px height=200px class="p1"  onclick="openModal();currentSlide(1)"class="hover-shadow">
+              <div class="p1"  onclick="openModal();currentSlide(1)"class="hover-shadow">
               </div>
             </div>
             <div class="column">
-              <div  width=200px height=200px class="p2"  onclick="openModal();currentSlide(2)"class="hover-shadow">
+              <div class="p2"  onclick="openModal();currentSlide(2)"class="hover-shadow">
               </div>
             </div>
             <div class="column">
-              <div  width=200px height=200px class="p3"  onclick="openModal();currentSlide(3)"class="hover-shadow">
+              <div  class="p3"  onclick="openModal();currentSlide(3)"class="hover-shadow">
               </div>
               </div>
             <div class="column">
-              <div  width=200px height=200px class="p4"  onclick="openModal();currentSlide(4)"class="hover-shadow">
+              <div class="p4"  onclick="openModal();currentSlide(4)"class="hover-shadow">
               </div>
             </div>
 
@@ -477,23 +479,23 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
 
               <div class="mySlides">
                 <div class="numbertext">1 / 4</div>
-                <div class="p1" >
+                <div class="p11" >
                 </div>
               </div>
 
               <div class="mySlides">
                 <div class="numbertext">2 / 4</div>
-                <div class="p2" >
+                <div class="p22" >
                 </div>          </div>
 
               <div class="mySlides">
                 <div class="numbertext">3 / 4</div>
-                <div class="p3" >
+                <div class="p33" >
                 </div>            </div>
 
               <div class="mySlides">
                 <div class="numbertext">4 / 4</div>
-                <div class="p4" >
+                <div class="p44" >
                 </div>            </div>
 
 

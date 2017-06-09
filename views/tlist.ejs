@@ -235,10 +235,10 @@ used to vertically center elements, may need modification if you're not using de
                   <div class="col col-xs-4">
                     <div class="search">
 
-                      <form action="/travelboard/search" method="get" id="searchAction" name="searchAction">
-                        <input type="text" class="search_word" id="searchWord" name="searchWord">
-                        <a href="#" onclick="searchContent();"><div class="btn btn-info">검색</div></a>
-                   </form>
+                      <form action="/travelboard/tlist/1" method="post">
+                          <input type="text" class="search_word" id="searchWord" name="searchWord">
+                            <button class="btn btn-info" type="submit">검색</button>  <!--onclick="searchContent();"-->
+                     </form>
                     </div>
 
                   </div>
@@ -314,7 +314,45 @@ used to vertically center elements, may need modification if you're not using de
            }
          }
       %>
+      <div class="row">
 
+        <div class="col col-xs-4">
+          <div class="search">
+
+            <form action="/travelboard/tlist/1" method="post">
+                <input type="text" class="search_word" id="searchWord" name="searchWord">
+                  <button class="btn btn-info" type="submit">제목 검색</button>  <!--onclick="searchContent();"-->
+           </form>
+          </div>
+
+        </div>
+
+        <script>
+        function searchContent() {
+          if($('#searchWord').val == ''){
+              alert("검색어를 입력해주세요!!!");
+            } else {
+              $('#searchAction').submit();
+              console.log("");
+            }
+          }
+        </script>
+
+      <div class="col col-xs-8">
+        <%
+        for(var j=0;j<rows.length/8;j++){%>
+        <ul class="pagination hidden-xs pull-right">
+          <li><a href="/travelboard/tlist/<%=j+1%>"><%=j+1 %></a></li>
+        </ul>
+        <%  }
+          %>
+        <ul class="pagination visible-xs pull-right">
+            <li><a href="#">&laquo;</a></li>
+            <li><a href="#">&raquo;</a></li>
+        </ul>
+
+      </div>
+      </div>
 
 
 </div>
