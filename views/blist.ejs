@@ -184,6 +184,7 @@ used to vertically center elements, may need modification if you're not using de
                              break;
                            }else{
                                var oneItem = rows[i];
+                               console.log(rows + "     uuuu   " + i);
                           %>
                           <tr>
                             <td align="center">
@@ -200,9 +201,6 @@ used to vertically center elements, may need modification if you're not using de
                                }
                              }
                           %>
-
-
-
                         </tbody>
                 </table>
 
@@ -216,7 +214,7 @@ used to vertically center elements, may need modification if you're not using de
                   <div class="col col-xs-4">
                     <div class="search">
 
-                      <form action="/board/blist" method="post">
+                    <form action="/board/blist/1" method="post">
                         <input type="text" class="search_word" id="searchWord" name="searchWord">
                           <button class="btn btn-info" type="submit">검색</button>  <!--onclick="searchContent();"-->
                    </form>
